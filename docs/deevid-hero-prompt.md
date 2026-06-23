@@ -7,7 +7,35 @@
 
 ---
 
-## 메인 프롬프트 (EN — Deevid 입력용)
+## ⭐ 추천: 통합 원샷 프롬프트 (EN — 이것 하나만 붙여넣기)
+
+> 와이드 컷 + 안경 반사 + 신호 흐름을 합치고 구조를 정리한 버전. 한 번에 잘 나오도록 권장.
+
+```
+Cinematic black-and-white monochrome video, seamless loop. A young Korean man in his
+late twenties wearing glasses sits at a desk, seen from behind and slightly to the side,
+typing code on a glowing computer monitor in a dark minimalist room. The screen light
+reflects softly in his glasses. As he types, the world beyond his desk slowly transforms
+through his code: automated robotic arms move, smart-factory machinery and conveyor lines
+come alive, small drones rise into the air, and a futuristic cityscape forms from
+circuit-like light lines. Thin glowing white signal pulses travel along these lines,
+flowing outward from his screen into the world, symbolizing automation and digital
+transformation. High-contrast grayscale, fine film grain, soft volumetric light, shallow
+depth of field. Slow, steady, calm camera push-in. Subtle minimal motion throughout.
+Strictly black and white, grayscale only.
+```
+
+### 네거티브 프롬프트 (별도 입력칸이 있을 때)
+
+```
+color, saturated colors, text, captions, subtitles, logos, watermark, UI overlay,
+fast camera movement, shaky camera, distorted hands, extra fingers, deformed face,
+cartoon, anime, low quality, blurry
+```
+
+---
+
+## 메인 프롬프트 (EN — 분리형 / 와이드 컷)
 
 ```
 Black and white monochrome cinematic shot. A young Korean man in his late twenties,
