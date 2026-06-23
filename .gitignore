@@ -17,3 +17,5 @@ pnpm-debug.log*
 
 # unused large source video
 public/hero1_pingpong.mp4
+
+*.tsbuildinfo
