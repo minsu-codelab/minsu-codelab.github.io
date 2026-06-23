@@ -10,8 +10,9 @@
 ## 메인 프롬프트 (EN — Deevid 입력용)
 
 ```
-Black and white monochrome cinematic shot. A young man sits at a desk coding on a
-glowing monitor in a dark minimalist room, seen from behind / three-quarter side.
+Black and white monochrome cinematic shot. A young Korean man in his late twenties,
+wearing glasses, sits at a desk coding on a glowing monitor in a dark minimalist room,
+seen from behind / three-quarter side.
 Beyond the monitor, the world transforms through his code: automated robotic arms,
 smart-factory machinery, drones flying, data streams and circuit-like light lines
 spreading across a futuristic cityscape. Thin lines of light and signal pulses flow
@@ -23,11 +24,11 @@ camera push-in, seamless loop. Monochrome, no color, no text, no logos, no capti
 ## 보조 프롬프트 (대안 컷 — EN)
 
 ```
-Monochrome, high-contrast cinematic. Extreme close-up of hands typing on a mechanical
-keyboard; in the monitor / glasses reflection, a grayscale world of robots, smart
-factories and flowing data lines comes alive. Glowing white signal dots travel along
-thin lines from the screen outward into darkness. Minimal, slow motion, fine grain,
-seamless loop, no color, no text, no logos.
+Monochrome, high-contrast cinematic. A young Korean man wearing glasses, seen in
+profile, typing on a mechanical keyboard; in his glasses and the monitor reflection,
+a grayscale world of robots, smart factories and flowing data lines comes alive.
+Glowing white signal dots travel along thin lines from the screen outward into
+darkness. Minimal, slow motion, fine grain, seamless loop, no color, no text, no logos.
 ```
 
 ## 설정 가이드
