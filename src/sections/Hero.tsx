@@ -106,9 +106,9 @@ export default function Hero() {
                   <span
                     key={ci}
                     data-char
-                    className="inline-block text-[16vw] sm:text-[13vw] lg:text-[11rem] xl:text-[12rem]"
+                    className="inline-block text-[clamp(2.5rem,14vw,12rem)] sm:text-[13vw] lg:text-[11rem] xl:text-[12rem]"
                   >
-                    {ch === ' ' ? ' ' : ch}
+                    {ch === ' ' ? '\u00A0' : ch}
                   </span>
                 ))}
               </span>

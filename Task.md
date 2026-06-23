@@ -15,12 +15,19 @@
 - [x] `xfade` 필터를 사용하여 영상 루프 솔기(seam) 제거 (Crossfade 1초 적용)
 - [x] 영상의 첫 프레임을 활용하여 `hero-poster.jpg` 추출
 - [x] 기존 `public/hero.mp4` 파일 백업 후 신규 생성된 비디오 파일로 교체
-- [x] `src/sections/Hero.tsx`의 텍스트 엘리먼트에 `break-keep` 및 `whitespace-pre-wrap` 적용
+- [x] `src/index.css` `body` 태그에 `word-break: keep-all` 전역 적용하여 전체 사이트 줄바꿈 최적화
 - [x] `src/sections/Hero.tsx`의 기존 `grayscale`, `contrast-125` CSS 클래스 제거 (비디오에 직접 효과가 베이크됨)
-- [ ] Git 커밋 및 Push 진행 (진행 예정)
+- [x] `hero.mp4`와 `hero1.mp4`를 하나의 완벽한 핑퐁 루프 시퀀스(정주행-역주행)로 스티칭 생성
+- [x] 모바일 환경의 반응형 타이틀 글자 겹침(Overlapping) 문제를 `clamp()` 폰트 사이즈와 분할 교정으로 완벽히 해결
+- [x] Git 커밋 및 Push 진행 (진행 완료)
 
 ## 🔄 Revision History
-- **v1.0_260623**: 
-  - `public/hero.mp4` 비디오 FFmpeg 처리 완료 (루프, 흑백, 크로스페이드)
-  - 포스터 이미지 추출 완료
-  - `src/sections/Hero.tsx` 컴포넌트 텍스트 줄바꿈 로직 개선 완료
+> **[Current Revision: v1.3_260623]**
+> - **v1.3_260623**:
+>   - [src/sections/Hero.tsx, src/data/profile.ts]: 모바일 디바이스 가로축 넘침 방지를 위한 `clamp()` 적용 및 `heroLines` 분할 단위 조정
+> - **v1.2_260623**: 
+>   - `public/hero.mp4`: `hero.mp4`와 `hero1.mp4`를 결합한 30초 핑퐁(정-역) 무한 루프 시퀀스 비디오 교체 적용
+> - **v1.1_260623**: 
+>   - `src/index.css`에 전역 `word-break: keep-all` 추가 적용
+> - **v1.0_260623**: 
+>   - `public/hero.mp4` 비디오 FFmpeg 처리 및 `src/sections/Hero.tsx` 기초 보정
