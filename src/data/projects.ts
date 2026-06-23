@@ -115,6 +115,9 @@ export const projects: Project[] = [
     shots: [
       { src: 'shots/arctictwin-1.jpg', caption: { ko: 'Cesium 3D 디지털 트윈 — 항로·해빙·실시간 선박 대시보드', en: 'Cesium 3D digital twin — route, sea-ice & live vessel dashboard' } },
       { src: 'shots/arctictwin-2.jpg', caption: { ko: '위성 지도 위 항로 시각화와 분석 패널', en: 'Route visualization and analysis panels over the satellite map' } },
+      { src: 'shots/arctictwin-3.jpg', caption: { ko: 'Fuel Analysis — 연료 소비·비용 분석', en: 'Fuel Analysis — consumption & cost' } },
+      { src: 'shots/arctictwin-4.jpg', caption: { ko: 'What-If 시나리오 — 조건별 항행 비교', en: 'What-If scenarios — comparing voyage conditions' } },
+      { src: 'shots/arctictwin-5.jpg', caption: { ko: 'Trend Report — 항로 리포트 생성', en: 'Trend Report — voyage report generation' } },
     ],
   },
   {
@@ -174,6 +177,12 @@ export const projects: Project[] = [
         { id: 'bd2', label: { ko: 'GCP GPU (추론 때만)', en: 'GCP GPU (on demand)' }, emphasis: true },
       ],
     },
+    shots: [
+      { src: 'shots/aeroinspect-3.jpg', caption: { ko: '3D 하자 리포트 뷰어 — 건물 디지털 트윈 위 하자 위치 매핑', en: '3D defect report viewer — defects mapped onto the building twin' } },
+      { src: 'shots/aeroinspect-2.jpg', caption: { ko: '랜딩 — 도면 없이 드론으로 3D 디지털 트윈 완성', en: 'Landing — drone-built 3D digital twin, no blueprint needed' } },
+      { src: 'shots/aeroinspect-4.jpg', caption: { ko: '3D 리포트 — 하자 상세·평면 데이터 뷰어', en: '3D report — defect detail & floor-plan data viewer' } },
+      { src: 'shots/aeroinspect-5.jpg', caption: { ko: '핵심 기술 스택 소개', en: 'Core tech-stack overview' } },
+    ],
   },
   {
     id: 'rechord',
@@ -357,6 +366,11 @@ export const projects: Project[] = [
         { id: 'ed3', label: { ko: 'GitHub Actions CI', en: 'GitHub Actions CI' } },
       ],
     },
+    shots: [
+      { src: 'shots/closet-1.jpg', caption: { ko: '3D 옷장 뷰어 — 행거·선반·서랍에 옷을 배치', en: '3D wardrobe viewer — garments placed across rods, shelves & drawers' } },
+      { src: 'shots/closet-2.jpg', caption: { ko: '랜딩 — "가진 옷을 알면 충동구매가 멈춥니다"', en: 'Landing — "know what you own, stop impulse buys"' } },
+      { src: 'shots/closet-3.jpg', caption: { ko: '옷장 대시보드 — 카테고리·색상 필터', en: 'Wardrobe dashboard — category & color filters' } },
+    ],
   },
   {
     id: 'eggtalk',
@@ -405,5 +419,8 @@ export const projects: Project[] = [
         { id: 'fd2', label: { ko: '24h 캐시 · Throttle', en: '24h cache · throttle' }, emphasis: true },
       ],
     },
+    shots: [
+      { src: 'shots/eggtalk-1.jpg', caption: { ko: 'MS 모듈 — Kakao 지도 기반 대중교통 길찾기 화면 (로컬 실행)', en: 'MS module — Kakao-map transit routing screen (local run)' } },
+    ],
   },
 ]
