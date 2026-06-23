@@ -74,7 +74,7 @@ export default function Hero() {
       <div className="absolute inset-0 -z-10">
         <video
           data-hero-video
-          className="h-full w-full object-cover opacity-[0.28] grayscale contrast-125"
+          className="h-full w-full object-cover opacity-[0.28]"
           autoPlay
           muted
           loop
@@ -92,7 +92,7 @@ export default function Hero() {
       <div data-hero-parallax className="mx-auto w-full max-w-6xl">
         <div
           data-hero-fade
-          className="mb-7 flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.3em] text-paper/50"
+          className="mb-7 flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.3em] text-paper/50 break-keep whitespace-pre-wrap"
         >
           <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-paper" />
           {t.hero.role}
@@ -118,7 +118,7 @@ export default function Hero() {
 
         <p
           data-hero-fade
-          className="mt-8 max-w-xl text-lg text-paper/65 sm:text-xl"
+          className="mt-8 max-w-xl text-lg text-paper/65 sm:text-xl break-keep whitespace-pre-wrap"
         >
           {t.hero.tagline}
         </p>
