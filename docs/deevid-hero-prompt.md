@@ -12,31 +12,44 @@
 > 와이드 컷 + 안경 반사 + 신호 흐름을 합치고 구조를 정리한 버전. 한 번에 잘 나오도록 권장.
 
 > 소프트웨어 엔지니어링(코드·대시보드·데이터·클라우드) 중심, MacBook + macOS 화면으로 명시.
-> 공장/로봇은 배경에 소량만. 한 번에 확실히 나오도록 권장.
+> 공장/로봇은 배경에 소량만. **루프를 위해 카메라 고정(줌/팬 금지)** + 반복 앰비언트 모션.
 
 ```
-Cinematic black-and-white monochrome video, seamless loop. A young Korean man in his
-late twenties wearing glasses sits at a minimalist desk, seen from behind and slightly
+Cinematic black-and-white monochrome video, perfectly seamless loop — the first and last
+frame match, continuous cyclic motion, no fade in and no fade out. A young Korean man in
+his late twenties wearing glasses sits at a minimalist desk, seen from behind and slightly
 to the side, typing on a silver Apple MacBook laptop. The MacBook screen clearly shows a
 dark-themed code editor with scrolling lines of code and a terminal window, macOS style —
-real software development. As he codes, the dark room around him fills with floating
-holographic software interfaces born from his code: glowing UI dashboards, data
-visualizations and line charts, network graphs of connected nodes, web and mobile app
-screens, and cloud-server icons. Only a few small automated robotic arms and drones
-appear far in the background, kept subtle. Thin glowing white signal pulses travel along
-light lines, flowing outward from the MacBook screen into these floating interfaces,
-symbolizing software building digital systems. High-contrast grayscale, fine film grain,
-soft volumetric light, shallow depth of field. Slow, steady, calm camera push-in, subtle
-minimal motion. Strictly black and white, grayscale only.
+real software development. Around him, floating holographic software interfaces gently glow
+and pulse in a repeating cycle: UI dashboards, data visualizations and line charts, network
+graphs of connected nodes, web and mobile app screens, and cloud-server icons. Only a few
+small automated robotic arms and drones appear far in the background, kept subtle. Thin
+glowing white signal pulses travel along light lines in a continuous loop, flowing outward
+from the MacBook screen into these interfaces. Locked-off static camera, no zoom, no pan,
+only subtle ambient motion. High-contrast grayscale, fine film grain, soft volumetric
+light, shallow depth of field. Strictly black and white, grayscale only.
 ```
 
 ### 네거티브 프롬프트 (별도 입력칸이 있을 때)
 
 ```
 color, Windows logo, Windows UI, blue Windows screen, factory interior, heavy industrial
-machinery filling the frame, text captions, subtitles, watermark, fast camera, shaky
-camera, distorted hands, extra fingers, deformed face, cartoon, anime, low quality, blurry
+machinery filling the frame, fade in, fade out, abrupt cut, camera zoom, camera pan,
+fast camera, shaky camera, text captions, subtitles, watermark, distorted hands, extra
+fingers, deformed face, cartoon, anime, low quality, blurry
 ```
+
+### 루프 솔기 제거 (받은 뒤 후처리 — 거의 확실)
+
+영상에 솔기가 남으면 끝 0.5초를 처음과 크로스페이드해 매끄럽게 만든다:
+
+```bash
+# 5초 영상 기준, 끝 0.5초를 앞과 블렌드해 루프 솔기 제거
+ffmpeg -i hero_raw.mp4 -filter_complex \
+  "[0]split[a][b];[b]reverse[r];[a][r]xfade=transition=fade:duration=0.5:offset=4.5,format=yuv420p" \
+  -an hero.mp4
+```
+> 또는 ping-pong(정→역재생) 방식도 가능하나 타이핑이 거꾸로 보이므로 크로스페이드 권장.
 
 ---
 
