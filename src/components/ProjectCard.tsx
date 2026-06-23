@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import type { Project, ProjectLink } from '../data/projects'
 import { useLang } from '../i18n/LanguageContext'
 import SignalFlow from './SignalFlow'
+import Gallery from './Gallery'
 
 const ArrowIcon = () => (
   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5">
@@ -97,6 +98,11 @@ export default function ProjectCard({ project }: { project: Project }) {
               </div>
             ))}
           </div>
+        )}
+
+        {/* 실제 UI 스크린샷 슬라이드쇼 */}
+        {project.shots && project.shots.length > 0 && (
+          <Gallery shots={project.shots} name={project.name} />
         )}
 
         {/* PAAR */}

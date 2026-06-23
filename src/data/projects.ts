@@ -30,6 +30,12 @@ export interface Paar {
   result: L10n
 }
 
+/** 실제 UI 스크린샷 (public/shots/ 기준 경로) */
+export interface Shot {
+  src: string
+  caption: L10n
+}
+
 export interface Project {
   id: string
   index: string
@@ -44,6 +50,7 @@ export interface Project {
   links: ProjectLink[]
   pipeline: Flow
   deploy: Flow
+  shots?: Shot[]
 }
 
 export const projects: Project[] = [
@@ -105,6 +112,10 @@ export const projects: Project[] = [
         { id: 'ad3', label: { ko: 'DB → 스냅샷 폴백·자동복구', en: 'DB → snapshot fallback' }, emphasis: true },
       ],
     },
+    shots: [
+      { src: 'shots/arctictwin-1.jpg', caption: { ko: 'Cesium 3D 디지털 트윈 — 항로·해빙·실시간 선박 대시보드', en: 'Cesium 3D digital twin — route, sea-ice & live vessel dashboard' } },
+      { src: 'shots/arctictwin-2.jpg', caption: { ko: '위성 지도 위 항로 시각화와 분석 패널', en: 'Route visualization and analysis panels over the satellite map' } },
+    ],
   },
   {
     id: 'aeroinspect',
@@ -221,6 +232,11 @@ export const projects: Project[] = [
         { id: 'cd3', label: { ko: 'Supabase · Cloudflare', en: 'Supabase · Cloudflare' } },
       ],
     },
+    shots: [
+      { src: 'shots/rechord-1.jpg', caption: { ko: '랜딩 — 듣는 음악에서 직접 연주하는 음악으로', en: 'Landing — from listening to playing' } },
+      { src: 'shots/rechord-2.jpg', caption: { ko: '기능 소개 — 분리·키 변환·채보 흐름', en: 'Features — separation, transposition, transcription' } },
+      { src: 'shots/rechord-3.jpg', caption: { ko: '작업 화면 / 라이브러리', en: 'Workspace / library' } },
+    ],
   },
   {
     id: 'fde-shutter',
@@ -280,6 +296,13 @@ export const projects: Project[] = [
         { id: 'dd3', label: { ko: 'Fly.io 자동 배포', en: 'Fly.io auto deploy' } },
       ],
     },
+    shots: [
+      { src: 'shots/fde-1.jpg', caption: { ko: '견적 — 7개 모델 제작 규칙 엔진 (원본 엑셀 양식 보존)', en: 'Quote — rule engine for 7 models, original Excel form preserved' } },
+      { src: 'shots/fde-2.jpg', caption: { ko: '실적 대시보드 — 견적·작업지시·생산 KPI', en: 'Performance dashboard — quote, work-order & production KPIs' } },
+      { src: 'shots/fde-3.jpg', caption: { ko: '작업지시 / 공정 보드', en: 'Work-order / process board' } },
+      { src: 'shots/fde-4.jpg', caption: { ko: '품질관리서 발급 — 자재 종합 검사', en: 'QC certificate issuing — material inspection' } },
+      { src: 'shots/fde-5.jpg', caption: { ko: 'GitHub 조직 페이지 (fde-factory.github.io)', en: 'GitHub org landing page (fde-factory.github.io)' } },
+    ],
   },
   {
     id: 'closet',
