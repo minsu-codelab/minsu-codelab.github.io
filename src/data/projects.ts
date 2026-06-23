@@ -113,11 +113,11 @@ export const projects: Project[] = [
       ],
     },
     shots: [
-      { src: 'shots/arctictwin-1.jpg', caption: { ko: 'Cesium 3D 디지털 트윈 — 항로·해빙·실시간 선박 대시보드', en: 'Cesium 3D digital twin — route, sea-ice & live vessel dashboard' } },
-      { src: 'shots/arctictwin-2.jpg', caption: { ko: '위성 지도 위 항로 시각화와 분석 패널', en: 'Route visualization and analysis panels over the satellite map' } },
-      { src: 'shots/arctictwin-3.jpg', caption: { ko: 'Fuel Analysis — 연료 소비·비용 분석', en: 'Fuel Analysis — consumption & cost' } },
-      { src: 'shots/arctictwin-4.jpg', caption: { ko: 'What-If 시나리오 — 조건별 항행 비교', en: 'What-If scenarios — comparing voyage conditions' } },
-      { src: 'shots/arctictwin-5.jpg', caption: { ko: 'Trend Report — 항로 리포트 생성', en: 'Trend Report — voyage report generation' } },
+      { src: 'shots/arctictwin-1.jpg', caption: { ko: '① Cesium 3D 디지털 트윈 — 항로·해빙·실시간 선박 대시보드', en: '① Cesium 3D digital twin — route, sea-ice & live vessel dashboard' } },
+      { src: 'shots/arctictwin-2.jpg', caption: { ko: '② 위성 지도 위 항로 시각화와 분석 패널', en: '② Route visualization & analysis panels over the satellite map' } },
+      { src: 'shots/arctictwin-3.jpg', caption: { ko: '③ Fuel Analysis — 연료 소비·비용 분석', en: '③ Fuel Analysis — consumption & cost' } },
+      { src: 'shots/arctictwin-4.jpg', caption: { ko: '④ What-If 시나리오 — 조건별 항행 비교', en: '④ What-If scenarios — comparing voyage conditions' } },
+      { src: 'shots/arctictwin-5.jpg', caption: { ko: '⑤ Trend Report — 항로 리포트 생성', en: '⑤ Trend Report — voyage report generation' } },
     ],
   },
   {
@@ -178,10 +178,11 @@ export const projects: Project[] = [
       ],
     },
     shots: [
-      { src: 'shots/aeroinspect-3.jpg', caption: { ko: '3D 하자 리포트 뷰어 — 건물 디지털 트윈 위 하자 위치 매핑', en: '3D defect report viewer — defects mapped onto the building twin' } },
-      { src: 'shots/aeroinspect-2.jpg', caption: { ko: '랜딩 — 도면 없이 드론으로 3D 디지털 트윈 완성', en: 'Landing — drone-built 3D digital twin, no blueprint needed' } },
-      { src: 'shots/aeroinspect-4.jpg', caption: { ko: '3D 리포트 — 하자 상세·평면 데이터 뷰어', en: '3D report — defect detail & floor-plan data viewer' } },
-      { src: 'shots/aeroinspect-5.jpg', caption: { ko: '핵심 기술 스택 소개', en: 'Core tech-stack overview' } },
+      { src: 'shots/aeroinspect-2.jpg', caption: { ko: '① 랜딩 — 도면 없이 드론으로 3D 디지털 트윈 완성', en: '① Landing — drone-built 3D digital twin, no blueprint' } },
+      { src: 'shots/aeroinspect-1.jpg', caption: { ko: '② 직원 허브 — 점검 시작·보고서·현장 관리', en: '② Employee hub — inspection, reports & site management' } },
+      { src: 'shots/aeroinspect-7.jpg', caption: { ko: '③ 실시간 하자 검출 — 영상 위 bbox + AI 하자 분석 패널', en: '③ Real-time defect detection — live bbox + AI analysis panel' } },
+      { src: 'shots/aeroinspect-3.jpg', caption: { ko: '④ 3D 하자 리포트 뷰어 — 건물 트윈 위 하자 위치 매핑', en: '④ 3D defect report — defects mapped onto the building twin' } },
+      { src: 'shots/aeroinspect-4.jpg', caption: { ko: '⑤ 3D 리포트 — 하자 상세·평면 데이터 뷰어', en: '⑤ 3D report — defect detail & floor-plan viewer' } },
     ],
   },
   {
@@ -242,9 +243,9 @@ export const projects: Project[] = [
       ],
     },
     shots: [
-      { src: 'shots/rechord-1.jpg', caption: { ko: '랜딩 — 듣는 음악에서 직접 연주하는 음악으로', en: 'Landing — from listening to playing' } },
-      { src: 'shots/rechord-2.jpg', caption: { ko: '기능 소개 — 분리·키 변환·채보 흐름', en: 'Features — separation, transposition, transcription' } },
-      { src: 'shots/rechord-3.jpg', caption: { ko: '작업 화면 / 라이브러리', en: 'Workspace / library' } },
+      { src: 'shots/rechord-1.jpg', caption: { ko: '① 랜딩 — 듣는 음악에서 직접 연주하는 음악으로', en: '① Landing — from listening to playing' } },
+      { src: 'shots/rechord-2.jpg', caption: { ko: '② 기능 소개 — 분리·키 변환·채보 흐름', en: '② Features — separation, transposition, transcription' } },
+      { src: 'shots/rechord-3.jpg', caption: { ko: '③ 작업 화면 / 라이브러리', en: '③ Workspace / library' } },
     ],
   },
   {
@@ -306,11 +307,11 @@ export const projects: Project[] = [
       ],
     },
     shots: [
-      { src: 'shots/fde-1.jpg', caption: { ko: '견적 — 7개 모델 제작 규칙 엔진 (원본 엑셀 양식 보존)', en: 'Quote — rule engine for 7 models, original Excel form preserved' } },
-      { src: 'shots/fde-2.jpg', caption: { ko: '실적 대시보드 — 견적·작업지시·생산 KPI', en: 'Performance dashboard — quote, work-order & production KPIs' } },
-      { src: 'shots/fde-3.jpg', caption: { ko: '작업지시 / 공정 보드', en: 'Work-order / process board' } },
-      { src: 'shots/fde-4.jpg', caption: { ko: '품질관리서 발급 — 자재 종합 검사', en: 'QC certificate issuing — material inspection' } },
-      { src: 'shots/fde-5.jpg', caption: { ko: 'GitHub 조직 페이지 (fde-factory.github.io)', en: 'GitHub org landing page (fde-factory.github.io)' } },
+      { src: 'shots/fde-5.jpg', caption: { ko: '① GitHub 조직 페이지 (fde-factory.github.io) — 스마트팩토리 소개', en: '① GitHub org page (fde-factory.github.io) — smart-factory intro' } },
+      { src: 'shots/fde-2.jpg', caption: { ko: '② 실적 대시보드 — 견적·작업지시·생산 KPI', en: '② Performance dashboard — quote, work-order & production KPIs' } },
+      { src: 'shots/fde-1.jpg', caption: { ko: '③ 견적 — 7개 모델 제작 규칙 엔진 (원본 엑셀 양식 보존)', en: '③ Quote — rule engine for 7 models, Excel form preserved' } },
+      { src: 'shots/fde-3.jpg', caption: { ko: '④ 작업지시 / 공정 보드', en: '④ Work-order / process board' } },
+      { src: 'shots/fde-4.jpg', caption: { ko: '⑤ 품질관리서 발급 — 자재 종합 검사', en: '⑤ QC certificate issuing — material inspection' } },
     ],
   },
   {
@@ -367,9 +368,9 @@ export const projects: Project[] = [
       ],
     },
     shots: [
-      { src: 'shots/closet-1.jpg', caption: { ko: '3D 옷장 뷰어 — 행거·선반·서랍에 옷을 배치', en: '3D wardrobe viewer — garments placed across rods, shelves & drawers' } },
-      { src: 'shots/closet-2.jpg', caption: { ko: '랜딩 — "가진 옷을 알면 충동구매가 멈춥니다"', en: 'Landing — "know what you own, stop impulse buys"' } },
-      { src: 'shots/closet-3.jpg', caption: { ko: '옷장 대시보드 — 카테고리·색상 필터', en: 'Wardrobe dashboard — category & color filters' } },
+      { src: 'shots/closet-2.jpg', caption: { ko: '① 랜딩 — "가진 옷을 알면 충동구매가 멈춥니다"', en: '① Landing — "know what you own, stop impulse buys"' } },
+      { src: 'shots/closet-3.jpg', caption: { ko: '② 옷장 대시보드 — 카테고리·색상 필터', en: '② Wardrobe dashboard — category & color filters' } },
+      { src: 'shots/closet-1.jpg', caption: { ko: '③ 3D 옷장 뷰어 — 행거·선반·서랍에 옷 배치', en: '③ 3D wardrobe — garments across rods, shelves & drawers' } },
     ],
   },
   {
