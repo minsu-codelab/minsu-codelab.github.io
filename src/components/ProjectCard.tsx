@@ -85,11 +85,15 @@ export default function ProjectCard({ project }: { project: Project }) {
           ))}
         </ul>
 
-        {/* 시그널 플로우 2종 */}
+        {/* 시그널 플로우 2종 (가로 공간 부족으로 인한 노드 겹침 방지를 위해 2개의 독립된 섹션으로 분리) */}
         {!project.muted ? (
-          <div className="mt-10 grid gap-10 rounded-2xl border border-paper/10 bg-paper/[0.02] p-6 sm:p-8 lg:grid-cols-2">
-            <SignalFlow flow={project.pipeline} kicker={t.work.pipeline} />
-            <SignalFlow flow={project.deploy} kicker={t.work.deploy} />
+          <div className="mt-10 flex flex-col gap-6">
+            <div className="rounded-2xl border border-paper/10 bg-paper/[0.02] p-6 sm:p-8">
+              <SignalFlow flow={project.pipeline} kicker={t.work.pipeline} />
+            </div>
+            <div className="rounded-2xl border border-paper/10 bg-paper/[0.02] p-6 sm:p-8">
+              <SignalFlow flow={project.deploy} kicker={t.work.deploy} />
+            </div>
           </div>
         ) : (
           <div className="mt-10 rounded-2xl border border-paper/10 bg-paper/[0.02] p-6 sm:p-8">
