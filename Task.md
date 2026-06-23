@@ -22,7 +22,10 @@
 - [x] Git 커밋 및 Push 진행 (진행 완료)
 
 ## 🔄 Revision History
-> **[Current Revision: v1.4_260623]**
+> **[Current Revision: v1.5_260623]**
+> - **v1.5_260623**:
+>   - [src/components/ProjectCard.tsx]: "데이터 파이프라인과 CI/CD Flow를 한 줄에 안넣고 두개의 section으로 나눠서 넣으면 되잖아" 피드백 반영. 데스크톱 환경(`lg:grid-cols-2`)에서 두 시그널 플로우가 한 줄에 배치되어 노드 텍스트가 겹치는 문제를 해결하기 위해, 수직 형태의 2개의 독립된 Box(섹션)로 완벽히 분리.
+>   - [src/sections/Hero.tsx]: `onEnded`를 `onTimeUpdate`로 변경하여 영상 종료 1초 전 다음 영상을 페이드 인(opacity 0.28) 시키며 부드럽게 전환(Crossfade Overlap)되도록 `activeVideo` 트리거 로직 최적화.
 > - **v1.4_260623**: 
 >   - 사용자의 "hero, hero1 둘 다 사용" 요청에 따라 `hero.mp4`와 `hero1.mp4`를 독립 에셋으로 분리 복원하고 React State를 통해 번갈아 재생되도록 `Hero.tsx` 로직 수정
 > - **v1.3_260623**:

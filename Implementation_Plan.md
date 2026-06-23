@@ -7,8 +7,9 @@
   - 정주행 영상과 역주행(reverse) 영상을 `concat` 필터로 결합하여 각각 시작과 끝이 완전히 동일한 **Seamless Ping-Pong Loop**를 두 개 생성합니다.
 - **Frontend Architecture**:
   - `src/sections/Hero.tsx` 내부 `<video>` 태그 2개를 생성하여 각각 `hero.mp4`와 `hero1.mp4`를 `src`로 할당합니다.
-  - React의 `useState`(`activeVideo`)와 `onEnded` 이벤트를 사용하여 한 영상이 끝날 때 다른 영상을 재생(`play()`)시키고 `opacity` 전환 애니메이션을 주어 자연스럽게 교차되도록 프론트엔드 최적화를 진행했습니다.
-  - **Overlapping Fix**: Hero 타이틀 텍스트(`profile.heroLines`)의 분할 단위를 `['YOU', 'MIN SU']`로 최적화하고, CSS `clamp()` 함수를 적용하여 모바일 디바이스에서 글자가 화면 폭을 초과하여 겹치는 현상을 원천 방지합니다.
+  - React의 `useState`(`activeVideo`)와 `onTimeUpdate` 이벤트를 사용하여 한 영상이 끝나기 1초 전(`duration - 1`)에 다른 영상을 선제적으로 재생(`play()`)시키고 `opacity` 애니메이션을 주어, 영상 사이의 딜레이 없는 완벽한 **Crossfade Overlapping**을 구현했습니다.
+  - **Overlapping Fix 1 (Hero Layout)**: Hero 타이틀 텍스트(`profile.heroLines`)의 분할 단위를 `['YOU', 'MIN SU']`로 최적화하고, CSS `clamp()` 함수를 적용하여 모바일 디바이스에서 글자가 화면 폭을 초과하여 겹치는 현상을 원천 방지합니다.
+  - **Overlapping Fix 2 (ProjectCard Layout)**: `src/components/ProjectCard.tsx`의 "데이터 파이프라인"과 "CI/CD Flow"를 표시하는 `SignalFlow` 요소가 데스크톱 환경에서 가로 공간 제약으로 인해 노드 텍스트가 겹치는 현상을 방지하고자, `lg:grid-cols-2` 레이아웃을 제거하고 완전히 독립된 수직 구조의 2개 섹션으로 분할 배치했습니다.
 
 ## 2. 데이터 흐름 (Data Flow)
 - **Asset Flow**: 
