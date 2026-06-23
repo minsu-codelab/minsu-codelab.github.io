@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useLang } from '../i18n/LanguageContext'
@@ -10,6 +10,22 @@ export default function Hero() {
   const { t } = useLang()
   const reduced = useReducedMotion()
   const root = useRef<HTMLElement>(null)
+  
+  const [activeVideo, setActiveVideo] = useState<'hero' | 'hero1'>('hero')
+  const v1Ref = useRef<HTMLVideoElement>(null)
+  const v2Ref = useRef<HTMLVideoElement>(null)
+
+  const handleHeroEnded = () => {
+    setActiveVideo('hero1')
+    v2Ref.current?.play()
+    if (v1Ref.current) v1Ref.current.currentTime = 0
+  }
+
+  const handleHero1Ended = () => {
+    setActiveVideo('hero')
+    v1Ref.current?.play()
+    if (v2Ref.current) v2Ref.current.currentTime = 0
+  }
 
   useLayoutEffect(() => {
     const scope = root.current
@@ -70,19 +86,33 @@ export default function Hero() {
       id="hero"
       className="relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-5 sm:px-8"
     >
-      {/* 배경 영상 (public/hero.mp4 가 있으면 재생, 없으면 그라데이션만) */}
-      <div className="absolute inset-0 -z-10">
+      {/* 배경 영상 (hero.mp4 와 hero1.mp4 순차 재생) */}
+      <div className="absolute inset-0 -z-10 bg-black">
         <video
+          ref={v1Ref}
           data-hero-video
-          className="h-full w-full object-cover opacity-[0.28]"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+            activeVideo === 'hero' ? 'opacity-[0.28]' : 'opacity-0'
+          }`}
           autoPlay
           muted
-          loop
           playsInline
           poster="/hero-poster.jpg"
+          onEnded={handleHeroEnded}
         >
-          <source src="/hero.webm" type="video/webm" />
           <source src="/hero.mp4" type="video/mp4" />
+        </video>
+        <video
+          ref={v2Ref}
+          data-hero-video
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
+            activeVideo === 'hero1' ? 'opacity-[0.28]' : 'opacity-0'
+          }`}
+          muted
+          playsInline
+          onEnded={handleHero1Ended}
+        >
+          <source src="/hero1.mp4" type="video/mp4" />
         </video>
         {/* 가독성 오버레이 */}
         <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/55 to-ink" />

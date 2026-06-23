@@ -17,12 +17,14 @@
 - [x] 기존 `public/hero.mp4` 파일 백업 후 신규 생성된 비디오 파일로 교체
 - [x] `src/index.css` `body` 태그에 `word-break: keep-all` 전역 적용하여 전체 사이트 줄바꿈 최적화
 - [x] `src/sections/Hero.tsx`의 기존 `grayscale`, `contrast-125` CSS 클래스 제거 (비디오에 직접 효과가 베이크됨)
-- [x] `hero.mp4`와 `hero1.mp4`를 하나의 완벽한 핑퐁 루프 시퀀스(정주행-역주행)로 스티칭 생성
+- [x] `hero.mp4` 및 `hero1.mp4` 모두 사용 요구사항에 맞춰 두 개의 비디오를 각각 B&W 핑퐁화하여 독립적인 에셋으로 적용
 - [x] 모바일 환경의 반응형 타이틀 글자 겹침(Overlapping) 문제를 `clamp()` 폰트 사이즈와 분할 교정으로 완벽히 해결
 - [x] Git 커밋 및 Push 진행 (진행 완료)
 
 ## 🔄 Revision History
-> **[Current Revision: v1.3_260623]**
+> **[Current Revision: v1.4_260623]**
+> - **v1.4_260623**: 
+>   - 사용자의 "hero, hero1 둘 다 사용" 요청에 따라 `hero.mp4`와 `hero1.mp4`를 독립 에셋으로 분리 복원하고 React State를 통해 번갈아 재생되도록 `Hero.tsx` 로직 수정
 > - **v1.3_260623**:
 >   - [src/sections/Hero.tsx, src/data/profile.ts]: 모바일 디바이스 가로축 넘침 방지를 위한 `clamp()` 적용 및 `heroLines` 분할 단위 조정
 > - **v1.2_260623**: 
