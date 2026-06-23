@@ -15,16 +15,24 @@ export default function Hero() {
   const v1Ref = useRef<HTMLVideoElement>(null)
   const v2Ref = useRef<HTMLVideoElement>(null)
 
-  const handleHeroEnded = () => {
-    setActiveVideo('hero1')
-    v2Ref.current?.play()
-    if (v1Ref.current) v1Ref.current.currentTime = 0
-  }
-
-  const handleHero1Ended = () => {
-    setActiveVideo('hero')
-    v1Ref.current?.play()
-    if (v2Ref.current) v2Ref.current.currentTime = 0
+  const handleTimeUpdate = (e: React.SyntheticEvent<HTMLVideoElement>, type: 'hero' | 'hero1') => {
+    const video = e.currentTarget
+    // 영상 종료 1초 전(크로스페이드 시간)에 다음 영상 전환을 시작하여 두 영상이 겹치며(Overlapping) 자연스럽게 이어지게 함
+    if (video.duration - video.currentTime <= 1.0) {
+      if (type === 'hero' && activeVideo === 'hero') {
+        setActiveVideo('hero1')
+        if (v2Ref.current) {
+          v2Ref.current.currentTime = 0
+          v2Ref.current.play().catch(() => {})
+        }
+      } else if (type === 'hero1' && activeVideo === 'hero1') {
+        setActiveVideo('hero')
+        if (v1Ref.current) {
+          v1Ref.current.currentTime = 0
+          v1Ref.current.play().catch(() => {})
+        }
+      }
+    }
   }
 
   useLayoutEffect(() => {
@@ -98,7 +106,7 @@ export default function Hero() {
           muted
           playsInline
           poster="/hero-poster.jpg"
-          onEnded={handleHeroEnded}
+          onTimeUpdate={e => handleTimeUpdate(e, 'hero')}
         >
           <source src="/hero.mp4" type="video/mp4" />
         </video>
@@ -110,7 +118,7 @@ export default function Hero() {
           }`}
           muted
           playsInline
-          onEnded={handleHero1Ended}
+          onTimeUpdate={e => handleTimeUpdate(e, 'hero1')}
         >
           <source src="/hero1.mp4" type="video/mp4" />
         </video>
