@@ -23,7 +23,7 @@ export default function Skills() {
               className="bg-ink p-6"
             >
               <div className="mb-5 flex items-center justify-between">
-                <h3 className="font-display text-sm uppercase tracking-[0.2em] text-paper/80">
+                <h3 className="font-display text-sm font-medium tracking-[0.08em] text-paper/80">
                   {cat.label[lang]}
                 </h3>
                 <span className="font-mono text-xs text-paper/30">0{ci + 1}</span>

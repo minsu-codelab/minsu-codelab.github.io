@@ -3,7 +3,6 @@ import type { L10n } from '../i18n/LanguageContext'
 export interface FlowNode {
   id: string
   label: L10n
-  /** 0..1 위치 (가로 흐름 기준). 시각화에서 노드 배치에 사용 */
   emphasis?: boolean
 }
 
@@ -17,22 +16,33 @@ export interface ProjectLink {
   url: string
 }
 
+/** 한눈에 보이는 핵심 수치 (큰 숫자 + 짧은 설명) */
+export interface Metric {
+  value: string
+  label: L10n
+}
+
+/** PAAR: Problem · Approach · Action · Result */
+export interface Paar {
+  problem: L10n
+  approach: L10n
+  action: L10n
+  result: L10n
+}
+
 export interface Project {
   id: string
   index: string
   name: string
   tagline: L10n
-  summary: L10n
   period: string
   kind: 'team' | 'solo'
-  // 비중 축소 표시용 (EggTalk)
   muted?: boolean
-  highlights: L10n[]
+  metrics: Metric[]
+  paar: Paar
   stack: string[]
   links: ProjectLink[]
-  // 데이터 파이프라인 흐름 (입력→처리→출력)
   pipeline: Flow
-  // 배포/인프라(CI/CD) 흐름 — 프로젝트마다 다름
   deploy: Flow
 }
 
@@ -42,29 +52,35 @@ export const projects: Project[] = [
     index: '01',
     name: 'ArcticTwin',
     tagline: {
-      ko: '북극항로 사업성·리스크 정량화 디지털 트윈',
-      en: 'A digital twin quantifying Arctic-route profitability & risk',
-    },
-    summary: {
-      ko: '위성·해빙·기상 공공데이터를 3D 디지털 트윈(Cesium)에 실시간 재현하고, 5종 AI로 북극항로의 수익성·리스크·항행 적합성을 정량 지표로 산출하는 의사결정 웹 서비스.',
-      en: 'A decision-making web service that recreates satellite, sea-ice and weather public data in a 3D digital twin (Cesium), and uses 5 AI models to quantify the profitability, risk and navigability of Arctic routes.',
+      ko: '북극항로의 수익성과 리스크를 숫자로 답하는 디지털 트윈',
+      en: 'A digital twin that answers Arctic-route profit and risk with numbers',
     },
     period: '2026.04 — 06',
     kind: 'team',
-    highlights: [
-      {
-        ko: '강화학습(SAC) 빙산 회피·출항 스케줄링을 항로 3 × 빙급 7 × 선종 4 = 84개 조합으로 자동 반복학습 (보상함수 자동 조정 파이프라인)',
-        en: 'Reinforcement learning (SAC) for ice avoidance & departure scheduling, auto-retrained across 3 routes × 7 ice classes × 4 ship types = 84 combinations (auto-tuning reward pipeline).',
-      },
-      {
-        ko: 'AI 출력 신뢰성 보증: RL 경로를 정밀 해상마스크로 검증 후 위반 시 A* 폴백하는 하이브리드 구조로 비현실 경로(육지 관통) 제거',
-        en: 'Trustworthy AI: RL paths verified against a precise sea mask, falling back to A* on violation — a hybrid that removes unrealistic (land-crossing) routes.',
-      },
-      {
-        ko: '24/7 무중단 설계: PostgreSQL 우선 + JSON 스냅샷 자동 폴백·복구. CI/CD 디스크풀로 인한 전체 502 장애를 진단·해결',
-        en: '24/7 uptime: PostgreSQL-first with automatic JSON-snapshot fallback & recovery. Diagnosed and fixed a full 502 outage caused by a CI/CD disk-full.',
-      },
+    metrics: [
+      { value: '40%', label: { ko: '수에즈 대비 거리 단축', en: 'shorter than the Suez route' } },
+      { value: '84', label: { ko: '항로×빙급×선종 자동 학습 조합', en: 'auto-trained route × ice × ship combos' } },
+      { value: '100%', label: { ko: '출항 스케줄 안전 성공률(검증 조합)', en: 'safe-departure success (verified set)' } },
+      { value: '24/7', label: { ko: '무중단 운영', en: 'uninterrupted uptime' } },
     ],
+    paar: {
+      problem: {
+        ko: '북극항로는 수에즈보다 거리가 40% 짧지만, 지금 이 배로 가는 게 정말 이득인지 숫자로 따져볼 도구가 없었습니다.',
+        en: 'The Arctic route is 40% shorter than Suez, yet there was no tool to actually judge — in numbers — whether a given ship should take it.',
+      },
+      approach: {
+        ko: '가능성을 말로 설명하는 대신 연료비·리스크·항행 적합성을 실측 지표로 뽑아내야 설득이 된다고 봤습니다.',
+        en: 'I decided that talking about "potential" convinces no one — the answer had to come out as fuel cost, risk, and navigability figures.',
+      },
+      action: {
+        ko: '위성·해빙·기상 공공데이터를 Cesium 3D 트윈에 얹고 빙산 회피(SAC 강화학습)·연료 예측(XGBoost)·SAR 빙산 탐지(YOLOv8)·What-If LLM을 붙였습니다. 강화학습은 항로·빙급·선종 84개 조합을 알아서 반복 학습하도록 파이프라인을 짰습니다.',
+        en: 'I layered satellite, sea-ice and weather data onto a Cesium 3D twin, then added ice avoidance (SAC RL), fuel prediction (XGBoost), SAR iceberg detection (YOLOv8) and a What-If LLM. The RL retrains itself across 84 route × ice-class × ship-type combinations.',
+      },
+      result: {
+        ko: '출항 스케줄링은 검증한 조합 전부에서 안전 성공률 100%가 나왔고, RL이 그린 경로는 해상 마스크로 검증해 이상하면 A*로 되돌렸습니다. 디스크 풀로 서비스 전체가 502로 죽던 장애도 직접 추적해 잡고 24/7로 돌렸습니다.',
+        en: 'Departure scheduling hit a 100% safe-success rate across every verified combination, and every RL path was checked against a sea mask — falling back to A* when it strayed onto land. I also traced and fixed a disk-full outage that had been taking the whole service down with 502s, then kept it running 24/7.',
+      },
+    },
     stack: ['React', 'Vite', 'Cesium', 'deck.gl', 'FastAPI', 'PostgreSQL', 'SAC', 'XGBoost', 'YOLOv8', 'Docker', 'AWS EC2', 'Vercel'],
     links: [
       { kind: 'live', url: 'http://www.arctictwin.com' },
@@ -72,22 +88,21 @@ export const projects: Project[] = [
       { kind: 'backend', url: 'https://github.com/youmin0523/Arctic_Twin_Backend' },
     ],
     pipeline: {
-      title: { ko: '데이터 → 5종 AI → 정량 지표', en: 'Data → 5 AI models → metrics' },
+      title: { ko: '공공데이터에서 의사결정 지표까지', en: 'From public data to a decision' },
       nodes: [
-        { id: 'a1', label: { ko: '위성·해빙·기상 공공데이터', en: 'Satellite · sea-ice · weather data' } },
+        { id: 'a1', label: { ko: '위성·해빙·기상 데이터', en: 'Satellite · ice · weather' } },
         { id: 'a2', label: { ko: 'Cesium 3D 트윈', en: 'Cesium 3D twin' } },
-        { id: 'a3', label: { ko: 'SAC · XGBoost · YOLOv8 · LLM', en: 'SAC · XGBoost · YOLOv8 · LLM' }, emphasis: true },
-        { id: 'a4', label: { ko: '해상마스크 검증 → A* 폴백', en: 'Sea-mask check → A* fallback' }, emphasis: true },
+        { id: 'a3', label: { ko: 'AI 4종 (RL·XGBoost·YOLO·LLM)', en: '4 AI models' }, emphasis: true },
+        { id: 'a4', label: { ko: '경로 검증 → A* 폴백', en: 'Path check → A* fallback' }, emphasis: true },
         { id: 'a5', label: { ko: '연료비 · ROI · 리스크', en: 'Fuel · ROI · risk' } },
       ],
     },
     deploy: {
-      title: { ko: '배포 · 무중단 가용성', en: 'Deploy · high availability' },
+      title: { ko: '무중단 운영 구조', en: 'Always-on operation' },
       nodes: [
         { id: 'ad1', label: { ko: 'Docker', en: 'Docker' } },
-        { id: 'ad2', label: { ko: 'AWS EC2 (백엔드)', en: 'AWS EC2 (backend)' } },
-        { id: 'ad3', label: { ko: 'Vercel (프론트)', en: 'Vercel (frontend)' } },
-        { id: 'ad4', label: { ko: 'PG → 스냅샷 폴백·자동복구', en: 'PG → snapshot fallback & recovery' }, emphasis: true },
+        { id: 'ad2', label: { ko: 'AWS EC2 + Vercel', en: 'AWS EC2 + Vercel' } },
+        { id: 'ad3', label: { ko: 'DB → 스냅샷 폴백·자동복구', en: 'DB → snapshot fallback' }, emphasis: true },
       ],
     },
   },
@@ -96,29 +111,35 @@ export const projects: Project[] = [
     index: '02',
     name: 'AeroInspect',
     tagline: {
-      ko: '드론 기반 건물 하자 점검 AI 플랫폼',
-      en: 'Drone-based building-defect inspection AI platform',
-    },
-    summary: {
-      ko: '드론 RGB·열화상 영상을 실시간 AI로 분석해 건축 하자를 자동 검출·3D 매핑하고 LLM 보고서까지 생성하는 점검 SaaS.',
-      en: 'An inspection SaaS that analyzes drone RGB/thermal video in real time to auto-detect building defects, 3D-map them and generate LLM reports.',
+      ko: '드론으로 찍고 AI가 찾아내는 건물 하자 점검 SaaS',
+      en: 'Drone footage in, building defects out — an inspection SaaS',
     },
     period: '2026.04 — 06',
     kind: 'team',
-    highlights: [
-      {
-        ko: '건축 하자 20여 종을 6개 전문 AI 모델로 분할 학습 (데이터 63,285장 직접 수집, 로컬 GPU + Colab 멀티계정 병행, 수십 회 재학습)',
-        en: 'Trained 6 specialist AI models for 20+ defect types (63,285 images collected, local GPU + multi-account Colab, dozens of retrains).',
-      },
-      {
-        ko: 'WebSocket 실시간 추론 파이프라인: 드롭 큐(maxsize=1)·계층적 추론으로 30fps↔100ms 격차 해소, Tier1 지연 <60ms',
-        en: 'Real-time WebSocket inference: drop-queue (maxsize=1) + tiered inference closed the 30fps↔100ms gap, Tier-1 latency <60ms.',
-      },
-      {
-        ko: 'WBF 앙상블 효과를 정량 실측해 외부 모델 추가를 데이터로 반박, self-ensemble로 recall +3.8%. 번들 70%↓·이미지 80MB→5.2MB',
-        en: 'Measured WBF ensemble gains to refute "add more models" with data; self-ensemble lifted recall +3.8%. Bundle −70%, image 80MB→5.2MB.',
-      },
+    metrics: [
+      { value: '63,285', label: { ko: '직접 모은 학습 이미지', en: 'images collected & trained on' } },
+      { value: '94.1%', label: { ko: 'M1 검출 recall (앙상블, +3.8%p)', en: 'M1 detection recall (ensemble, +3.8pp)' } },
+      { value: '<60ms', label: { ko: '실시간 추론 지연 (Tier1)', en: 'real-time inference (Tier 1)' } },
+      { value: '80→5.2MB', label: { ko: '빌드 이미지 경량화', en: 'build image slimmed down' } },
     ],
+    paar: {
+      problem: {
+        ko: '건물 하자 점검은 사람 눈에 의존해서, 손이 안 닿는 외벽은 빠지고 결과가 검사자마다 달랐습니다.',
+        en: 'Building inspection leaned on the human eye — hard-to-reach façades got skipped and results varied person to person.',
+      },
+      approach: {
+        ko: '공개 모델로는 한국 건축 하자가 잘 안 잡혔습니다. 데이터를 직접 모아 학습하는 수밖에 없다고 판단했습니다.',
+        en: 'Off-the-shelf models missed Korean construction defects, so I concluded I had to gather data and train the models myself.',
+      },
+      action: {
+        ko: '하자 20여 종을 6개 모델로 나눠 학습했고(직접 모은 63,285장), 실시간 추론은 최신 프레임만 처리하는 드롭 큐로 묶었습니다. "외부 모델을 더 붙이면 좋아지겠지"라는 기대는 WBF로 직접 재서 깼습니다.',
+        en: 'I split 20+ defect types across 6 models (63,285 images, collected by hand) and wrapped real-time inference in a drop-queue that only processes the latest frame. The assumption that "more external models = better" I tested with WBF — and disproved.',
+      },
+      result: {
+        ko: '같은 도메인 self-ensemble로 M1 검출 recall을 90.4%에서 94.1%로 올렸고, 외부 모델은 오탐만 늘어 쓰지 않았습니다. Tier1 추론은 60ms 안쪽, 빌드 이미지는 80MB에서 5.2MB로 줄였습니다.',
+        en: 'Same-domain self-ensemble lifted M1 detection recall from 90.4% to 94.1%; the external model only added false positives, so I dropped it. Tier-1 inference stays under 60ms, and the build image went from 80MB to 5.2MB.',
+      },
+    },
     stack: ['React', 'Three.js', 'FastAPI', 'WebSocket', 'PostgreSQL', 'PyTorch', 'ONNX', 'YOLOv8', 'ResNet50', 'Docker', 'Fly.io', 'GCP'],
     links: [
       { kind: 'live', url: 'http://www.aeroinspect.site' },
@@ -126,21 +147,20 @@ export const projects: Project[] = [
       { kind: 'backend', url: 'https://github.com/youmin0523/AeroInspect_backend' },
     ],
     pipeline: {
-      title: { ko: '드론 영상 → 실시간 추론 → 보고서', en: 'Drone video → real-time inference → report' },
+      title: { ko: '드론 영상에서 보고서까지', en: 'From drone video to a report' },
       nodes: [
         { id: 'b1', label: { ko: '드론 영상 (30fps)', en: 'Drone video (30fps)' } },
-        { id: 'b2', label: { ko: 'WebSocket 드롭 큐', en: 'WebSocket drop-queue' }, emphasis: true },
-        { id: 'b3', label: { ko: '6모델 앙상블 (WBF)', en: '6-model ensemble (WBF)' }, emphasis: true },
-        { id: 'b4', label: { ko: '3D 매핑 (R3F)', en: '3D mapping (R3F)' } },
+        { id: 'b2', label: { ko: '드롭 큐 (최신 프레임)', en: 'Drop-queue (latest frame)' }, emphasis: true },
+        { id: 'b3', label: { ko: '6모델 앙상블 검출', en: '6-model ensemble' }, emphasis: true },
+        { id: 'b4', label: { ko: '3D 하자 매핑', en: '3D defect mapping' } },
         { id: 'b5', label: { ko: 'LLM 자동 보고서', en: 'LLM auto report' } },
       ],
     },
     deploy: {
-      title: { ko: '배포 · GPU 비용 분리', en: 'Deploy · GPU cost split' },
+      title: { ko: 'GPU 비용 분리 배포', en: 'GPU-cost-split deploy' },
       nodes: [
-        { id: 'bd1', label: { ko: 'Docker (이미지 5.2MB)', en: 'Docker (5.2MB image)' } },
-        { id: 'bd2', label: { ko: 'Fly.io (API 상시)', en: 'Fly.io (always-on API)' } },
-        { id: 'bd3', label: { ko: 'GCP GPU VM (추론, 평소 OFF)', en: 'GCP GPU VM (inference, off by default)' }, emphasis: true },
+        { id: 'bd1', label: { ko: 'Fly.io (API 상시)', en: 'Fly.io (always-on API)' } },
+        { id: 'bd2', label: { ko: 'GCP GPU (추론 때만)', en: 'GCP GPU (on demand)' }, emphasis: true },
       ],
     },
   },
@@ -149,51 +169,56 @@ export const projects: Project[] = [
     index: '03',
     name: 'Re:Chord',
     tagline: {
-      ko: 'AI 음원 분리 · 키/코드/악보 자동 추출 플랫폼',
-      en: 'AI stem separation & key/chord/score extraction platform',
-    },
-    summary: {
-      ko: '업로드 한 번으로 음원 분리 → 키 변환 → 코드·악보 채보를 자동화해, 팀 키에 맞는 반주(MR)를 단일 도구로 만드는 AI 음악 플랫폼.',
-      en: 'An AI music platform that, from a single upload, automates stem separation → key transposition → chord/score transcription to produce backing tracks in your team’s key.',
+      ko: '업로드 한 번으로 반주·키·코드·악보까지 뽑는 음악 도구',
+      en: 'One upload → backing track, key, chords and score',
     },
     period: '2026.05 — 06',
     kind: 'solo',
-    highlights: [
-      {
-        ko: '단일 분리 모델의 한계를 4-model 앙상블(MDX23C·BS-Roformer·htdemucs·MelBand)로 극복 — 반주 SDR 15.06dB, AUX 음색 자동 추정 98.3% 실측',
-        en: 'Overcame single-model limits with a 4-model ensemble (MDX23C, BS-Roformer, htdemucs, MelBand) — backing SDR 15.06 dB, AUX timbre estimation 98.3% (measured).',
-      },
-      {
-        ko: '"품질은 주장이 아니라 측정" — SDR·F1 정확도 회귀 게이트를 CI에 박아 모든 퇴행을 자동 차단. pytest 220개 통과',
-        en: '"Quality is measured, not claimed" — SDR/F1 regression gates in CI auto-block every regression. 220 pytest passing.',
-      },
-      {
-        ko: 'FastAPI 백엔드(106 모듈·60 API) · React 프론트 · Docker·Supabase·Cloudflare 배포까지 기획부터 인프라까지 1인 구축',
-        en: 'Built solo end-to-end: FastAPI backend (106 modules, 60 APIs), React frontend, and Docker/Supabase/Cloudflare deployment.',
-      },
+    metrics: [
+      { value: '15.06dB', label: { ko: '반주 분리 SDR (실측)', en: 'backing-track SDR (measured)' } },
+      { value: '98.3%', label: { ko: '악기 음색 자동 추정', en: 'instrument-timbre estimation' } },
+      { value: '220', label: { ko: 'pytest 통과 (CI 게이트)', en: 'pytest passing (CI gate)' } },
+      { value: '1인', label: { ko: '기획부터 인프라까지', en: 'solo — plan to infra' } },
     ],
+    paar: {
+      problem: {
+        ko: '찬양팀은 매주 새 곡을 연습하는데, 팀 키에 맞는 반주(MR)는 구하기 어렵고 음원 분리·키 변환·채보가 전부 따로 놀았습니다.',
+        en: 'Worship teams rehearse new songs weekly, but backing tracks in their key are hard to find, and separation, transposition and transcription were all separate chores.',
+      },
+      approach: {
+        ko: '분리 품질이 무너지면 그 위에 얹는 코드와 악보가 전부 틀어집니다. 그래서 분리부터 측정 가능한 수치로 잡기로 했습니다.',
+        en: 'If separation quality breaks, every chord and score on top of it breaks too — so I started by pinning separation to measurable numbers.',
+      },
+      action: {
+        ko: '업로드 한 번이면 분리 → 키 변환 → 채보까지 끝나도록 묶고, 분리는 모델 4개를 앙상블로 돌렸습니다. "품질은 주장이 아니라 측정"이라는 원칙으로 SDR·F1 회귀 게이트를 CI에 박았습니다.',
+        en: 'I chained separation → transposition → transcription behind a single upload, and ran four models as an ensemble for the split. Living by "quality is measured, not claimed," I baked SDR/F1 regression gates into CI.',
+      },
+      result: {
+        ko: '반주 분리 SDR 15.06dB, 음색 추정 98.3%를 실측으로 확보했고, pytest 220개가 모든 퇴행을 자동으로 막습니다. 결제·도메인 연결만 남기고 출시 직전까지 혼자 만들었습니다.',
+        en: 'I measured 15.06 dB backing-track SDR and 98.3% timbre estimation, with 220 pytest cases auto-blocking any regression. I built it solo to the edge of launch — only payments and the domain were left.',
+      },
+    },
     stack: ['React', 'Vite', 'FastAPI', 'Python', 'PyTorch', 'Demucs', 'BS-Roformer', 'Whisper', 'Docker', 'Supabase', 'Cloudflare'],
     links: [
       { kind: 'live', url: 'http://www.youmin.site' },
       { kind: 'repo', url: 'https://github.com/youmin0523/Re-Chord_PJT' },
     ],
     pipeline: {
-      title: { ko: '업로드 → 분리·채보 → MR', en: 'Upload → separate & transcribe → MR' },
+      title: { ko: '업로드에서 반주까지', en: 'From upload to backing track' },
       nodes: [
         { id: 'c1', label: { ko: '음원 업로드', en: 'Audio upload' } },
-        { id: 'c2', label: { ko: '4모델 앙상블 분리', en: '4-model ensemble separation' }, emphasis: true },
+        { id: 'c2', label: { ko: '4모델 앙상블 분리', en: '4-model ensemble split' }, emphasis: true },
         { id: 'c3', label: { ko: '키 변환', en: 'Key transpose' } },
-        { id: 'c4', label: { ko: 'Whisper · LLM 채보', en: 'Whisper · LLM transcription' } },
-        { id: 'c5', label: { ko: 'MR · 코드 · 악보', en: 'MR · chords · score' } },
+        { id: 'c4', label: { ko: 'Whisper·LLM 채보', en: 'Whisper · LLM transcribe' } },
+        { id: 'c5', label: { ko: '반주·코드·악보', en: 'Track · chords · score' } },
       ],
     },
     deploy: {
-      title: { ko: 'CI 정확도 회귀 게이트', en: 'CI accuracy regression gate' },
+      title: { ko: '정확도 회귀 게이트', en: 'Accuracy regression gate' },
       nodes: [
         { id: 'cd1', label: { ko: 'git push', en: 'git push' } },
-        { id: 'cd2', label: { ko: 'pytest 220 + SDR/F1 게이트', en: 'pytest 220 + SDR/F1 gate' }, emphasis: true },
-        { id: 'cd3', label: { ko: 'Docker', en: 'Docker' } },
-        { id: 'cd4', label: { ko: 'Supabase · Cloudflare', en: 'Supabase · Cloudflare' } },
+        { id: 'cd2', label: { ko: 'SDR·F1 게이트 (pytest 220)', en: 'SDR·F1 gate (220 tests)' }, emphasis: true },
+        { id: 'cd3', label: { ko: 'Supabase · Cloudflare', en: 'Supabase · Cloudflare' } },
       ],
     },
   },
@@ -202,39 +227,45 @@ export const projects: Project[] = [
     index: '04',
     name: 'FDE Smart Shutter',
     tagline: {
-      ko: '방화셔터 견적·생산 자동화 스마트팩토리',
-      en: 'Fire-shutter estimation & production smart factory',
-    },
-    summary: {
-      ko: '방화셔터 7개 모델의 제작 규칙을 규칙 엔진으로 코드화하고, 견적→생산→검사 추적성과 MES·ERP·실시간 협업까지 구현한 스마트팩토리 플랫폼. (가장 깊은 도메인 경험)',
-      en: 'A smart-factory platform that codifies the manufacturing rules of 7 fire-shutter models into a rule engine, with quote→production→inspection traceability plus MES, ERP and real-time collaboration. (My deepest domain.)',
+      ko: '엑셀 수작업 견적을 규칙 엔진으로 옮긴 방화셔터 스마트팩토리',
+      en: 'A fire-shutter smart factory that turned Excel quoting into a rule engine',
     },
     period: '2026.05 — 06',
     kind: 'solo',
-    highlights: [
-      {
-        ko: '7개 모델 제작 규칙을 규칙 엔진으로 코드화 — 숙련자만 가능하던 견적을 비숙련자도 산출, 골든 회귀 테스트 36건 100% 통과',
-        en: 'Codified 7 models’ manufacturing rules into a rule engine — anyone can now produce quotes once limited to experts; 36 golden regression tests pass 100%.',
-      },
-      {
-        ko: '견적→발주→승인→품질→작업지시→실측을 잇는 추적성(digital thread) + JWT 4역할 RBAC·무충돌 채번·원본 엑셀 양식 100% 보존 출력',
-        en: 'A digital thread linking quote→order→approval→QC→work-order→measurement, with JWT 4-role RBAC, conflict-free numbering and 100%-preserved Excel templates.',
-      },
-      {
-        ko: 'Docker·GitHub Actions로 Fly.io 자동 배포·운영. 환경 의존 버그(LibreOffice PDF 크래시·채번 동시성 충돌) 재현·해결. BE 16,000줄·DB 27테이블·API 23종',
-        en: 'Auto-deployed & operated on Fly.io via Docker/GitHub Actions; reproduced & fixed env-only bugs (LibreOffice PDF crash, numbering race). 16K LOC backend, 27 tables, 23 APIs.',
-      },
+    metrics: [
+      { value: '16,000', label: { ko: '백엔드 코드 줄 (1인)', en: 'lines of backend, solo' } },
+      { value: '27', label: { ko: 'DB 테이블', en: 'DB tables' } },
+      { value: '23', label: { ko: 'API 라우터', en: 'API routers' } },
+      { value: '36/36', label: { ko: '골든 회귀 테스트 통과', en: 'golden regression tests pass' } },
     ],
+    paar: {
+      problem: {
+        ko: '방화셔터는 모델마다 제작 규칙이 까다로워 숙련자만 엑셀로 견적을 냈고, 견적부터 검사까지 이력이 전혀 남지 않았습니다.',
+        en: 'Each fire-shutter model had finicky build rules, so only veterans could quote in Excel — and nothing was traceable from quote to inspection.',
+      },
+      approach: {
+        ko: '숙련자 머릿속 규칙을 코드로 옮기되, 거래처와 인증기관이 믿고 보는 원본 엑셀 양식은 100% 그대로 살려야 했습니다.',
+        en: 'I had to move the veterans’ rules into code while keeping the original Excel forms — the ones clients and certifiers trust — 100% intact.',
+      },
+      action: {
+        ko: '7개 모델 제작 규칙을 규칙 엔진으로 코드화하고, 견적→발주→승인→품질→작업지시→실측을 하나로 잇는 추적 구조에 실시간 사내 메신저까지 붙였습니다. (제가 4년간 일한 도메인이라 규칙이 손에 익었습니다.)',
+        en: 'I codified 7 models’ rules into a rule engine and built a single traceable thread from quote → order → approval → QC → work-order → measurement, plus a real-time in-house messenger. (This was my own domain for four years, so the rules were second nature.)',
+      },
+      result: {
+        ko: '이제 비숙련자도 견적을 낼 수 있고, 핵심 계산은 골든 테스트 36건으로 묶어 두었습니다. 백엔드 16,000줄·27테이블·23 API를 혼자 만들어 Fly.io에 올려 운영 중입니다.',
+        en: 'Now non-experts can produce quotes, and the core calculations are locked behind 36 golden tests. I built the 16,000-line backend, 27 tables and 23 APIs alone and run it live on Fly.io.',
+      },
+    },
     stack: ['Python', 'FastAPI', 'SQLAlchemy', 'Alembic', 'React', 'WebSocket', 'Docker', 'PostgreSQL', 'Fly.io', 'GitHub Actions'],
     links: [
       { kind: 'live', url: 'https://fde-shutter.fly.dev/' },
       { kind: 'org', url: 'https://github.com/fde-factory' },
     ],
     pipeline: {
-      title: { ko: '디지털 스레드 (견적 → 실측)', en: 'Digital thread (quote → measurement)' },
+      title: { ko: '견적에서 실측까지 한 줄로', en: 'One thread: quote to measurement' },
       nodes: [
         { id: 'd1', label: { ko: '견적 (규칙 엔진)', en: 'Quote (rule engine)' }, emphasis: true },
-        { id: 'd2', label: { ko: '발주 (LOT)', en: 'Order (LOT)' } },
+        { id: 'd2', label: { ko: '발주', en: 'Order' } },
         { id: 'd3', label: { ko: '승인', en: 'Approval' } },
         { id: 'd4', label: { ko: '품질', en: 'QC' } },
         { id: 'd5', label: { ko: '작업지시', en: 'Work order' } },
@@ -245,9 +276,8 @@ export const projects: Project[] = [
       title: { ko: 'CI/CD 자동 배포', en: 'CI/CD auto deploy' },
       nodes: [
         { id: 'dd1', label: { ko: 'git push', en: 'git push' } },
-        { id: 'dd2', label: { ko: 'GitHub Actions (테스트·골든·alembic)', en: 'GitHub Actions (test·golden·alembic)' }, emphasis: true },
-        { id: 'dd3', label: { ko: 'Docker 빌드', en: 'Docker build' } },
-        { id: 'dd4', label: { ko: 'Fly.io 자동 배포', en: 'Fly.io auto deploy' } },
+        { id: 'dd2', label: { ko: 'GitHub Actions (골든 검증)', en: 'GitHub Actions (golden check)' }, emphasis: true },
+        { id: 'dd3', label: { ko: 'Fly.io 자동 배포', en: 'Fly.io auto deploy' } },
       ],
     },
   },
@@ -256,44 +286,50 @@ export const projects: Project[] = [
     index: '05',
     name: "What's in my Closet",
     tagline: {
-      ko: 'AI 의류 인벤토리 · 중복구매 방지 플랫폼',
-      en: 'AI wardrobe inventory & duplicate-purchase prevention',
-    },
-    summary: {
-      ko: '임베딩·색상거리·카테고리를 가중 합성한 유사도 엔진으로 "비슷한 옷"을 사전 경고해 중복 구매를 막는 AI 의류 관리 플랫폼.',
-      en: 'An AI wardrobe platform that warns about "similar clothes you already own" — preventing duplicate purchases via a weighted similarity engine over embeddings, color distance and category.',
+      ko: '"이거 비슷한 거 있었는데" 를 사기 전에 알려주는 옷장 앱',
+      en: 'The wardrobe app that warns "you already own one like this" before you buy',
     },
     period: '2026.06',
     kind: 'solo',
-    highlights: [
-      {
-        ko: '임베딩(코사인) + 색상거리(CIEDE2000) + 카테고리 가중 합성 멀티신호 유사도 엔진 — 임계값 캘리브레이션 하네스로 밴드 정확도 94.7%·오경보 0',
-        en: 'A multi-signal similarity engine (cosine embedding + CIEDE2000 color + category weighting) — threshold-calibration harness achieved 94.7% band accuracy, 0 false alarms.',
-      },
-      {
-        ko: 'PostgreSQL 16 + pgvector(HNSW) 코사인 검색으로 별도 벡터 DB 없이 유사 의류 top-K 검색, L2 정규화로 코사인=내적 통일',
-        en: 'pgvector (HNSW) cosine search on PostgreSQL 16 — top-K similar-item search with no separate vector DB; L2 normalization unifies cosine with inner product.',
-      },
-      {
-        ko: '외부 서비스 5종을 env 게이팅 + 결정적 폴백으로 추상화 → API 키 0개로 전 기능 동작·E2E. Vitest 97 · Playwright 12 · GitHub Actions CI',
-        en: 'Abstracted 5 external services behind env-gating + deterministic fallbacks → full pipeline runs with zero API keys. Vitest 97, Playwright 12, GitHub Actions CI.',
-      },
+    metrics: [
+      { value: '94.7%', label: { ko: '중복 감지 정확도', en: 'duplicate-detection accuracy' } },
+      { value: '0', label: { ko: '오경보 (평가셋)', en: 'false alarms (eval set)' } },
+      { value: '0개', label: { ko: 'API 키로도 전 기능 동작', en: 'API keys needed to run it all' } },
+      { value: '97·12', label: { ko: 'Vitest · Playwright', en: 'Vitest · Playwright' } },
     ],
+    paar: {
+      problem: {
+        ko: '옷을 사고 나서야 "비슷한 거 있었는데" 하는 일이 잦은데, 정작 그걸 미리 알려주는 앱은 없었습니다.',
+        en: 'We so often realize "I already had one like this" only after buying — yet no app actually warns you beforehand.',
+      },
+      approach: {
+        ko: '"비슷하다"를 느낌이 아니라 믿을 수 있는 점수로 만들어야 했습니다.',
+        en: 'I needed to turn "looks similar" into a score you can actually trust.',
+      },
+      action: {
+        ko: '임베딩·색상거리(CIEDE2000)·카테고리를 가중 합성한 유사도 엔진을 만들고 pgvector로 검색했습니다. 외부 서비스 5종은 키가 없어도 돌아가도록 폴백으로 감쌌습니다.',
+        en: 'I built a similarity engine that blends embeddings, CIEDE2000 color distance and category weights, and searched it with pgvector. The five external services I wrapped in fallbacks so it runs even with no keys.',
+      },
+      result: {
+        ko: '평가셋으로 임계값을 직접 맞춰 중복 감지 94.7%·오경보 0을 확인했고, API 키 0개로도 전 기능이 돌아갑니다. Vitest 97·Playwright 12 덕에 같은 곳을 몇 번이고 갈아엎으며 다듬을 수 있었습니다.',
+        en: 'Calibrating the threshold on a labeled set, I confirmed 94.7% accuracy with zero false alarms — and the whole thing runs with no API keys. With 97 Vitest and 12 Playwright tests, I could rework the same parts again and again without fear.',
+      },
+    },
     stack: ['Next.js', 'React', 'TypeScript', 'tRPC', 'Drizzle', 'PostgreSQL', 'pgvector', 'Auth.js', 'Playwright', 'Vitest'],
     links: [{ kind: 'repo', url: 'https://github.com/youmin0523/whats-in-my-closet' }],
     pipeline: {
-      title: { ko: '업로드 → 유사도 → 사전 경고', en: 'Upload → similarity → pre-warning' },
+      title: { ko: '사진 한 장에서 경고까지', en: 'From one photo to a warning' },
       nodes: [
-        { id: 'e1', label: { ko: '의류 이미지 업로드', en: 'Garment image upload' } },
-        { id: 'e2', label: { ko: '임베딩 + CIEDE2000 + 카테고리', en: 'Embedding + CIEDE2000 + category' }, emphasis: true },
-        { id: 'e3', label: { ko: 'pgvector HNSW 검색', en: 'pgvector HNSW search' }, emphasis: true },
+        { id: 'e1', label: { ko: '옷 사진 업로드', en: 'Garment photo' } },
+        { id: 'e2', label: { ko: '임베딩 + 색상 + 카테고리', en: 'Embedding + color + category' }, emphasis: true },
+        { id: 'e3', label: { ko: 'pgvector 유사도 검색', en: 'pgvector similarity search' }, emphasis: true },
         { id: 'e4', label: { ko: '"비슷한 옷" 경고', en: '"Similar item" warning' } },
       ],
     },
     deploy: {
-      title: { ko: '키 0개 동작 + E2E 게이트', en: 'Zero-key operation + E2E gate' },
+      title: { ko: '키 0개 동작 + E2E 게이트', en: 'Zero-key + E2E gate' },
       nodes: [
-        { id: 'ed1', label: { ko: 'env 게이팅 + 결정적 폴백', en: 'env-gating + deterministic fallback' }, emphasis: true },
+        { id: 'ed1', label: { ko: 'env 게이팅 + 폴백', en: 'env-gating + fallback' }, emphasis: true },
         { id: 'ed2', label: { ko: 'Vitest 97 · Playwright 12', en: 'Vitest 97 · Playwright 12' } },
         { id: 'ed3', label: { ko: 'GitHub Actions CI', en: 'GitHub Actions CI' } },
       ],
@@ -305,41 +341,45 @@ export const projects: Project[] = [
     name: 'EggTalk',
     muted: true,
     tagline: {
-      ko: '다마고치 펫 플랫폼 — 대중교통 길찾기 모듈(MS)',
-      en: 'Tamagotchi pet platform — transit-routing module (MS)',
-    },
-    summary: {
-      ko: '팀 프로젝트 중 단독 담당한 대중교통 길찾기 모듈. 이후 팀 리뉴얼로 대부분 대체되었으나, 지도 API·ODsay 기반 폴리라인 경로 렌더링은 직접 구현한 작업으로 기록해 둡니다.',
-      en: 'A transit-routing module I solely owned within a team project. Most of it was later replaced in a team renewal, but the map-API / ODsay polyline route rendering remains my own work, kept here for the record.',
+      ko: '펫 키우기 앱에 붙인 대중교통 길찾기 모듈 (단독 담당)',
+      en: 'A transit-routing module I owned inside a pet-care app',
     },
     period: '2026.02 — 03',
     kind: 'team',
-    highlights: [
-      {
-        ko: 'ODsay `searchPubTransPathT`·`loadLane` + Tmap 도보 API를 백엔드에서 프록시·가공해 지하철·버스·도보 통합 경로를 지도 폴리라인으로 렌더링',
-        en: 'Proxied/processed ODsay (searchPubTransPathT, loadLane) + Tmap walking APIs on the backend to render integrated subway/bus/walk routes as map polylines.',
+    metrics: [],
+    paar: {
+      problem: {
+        ko: '펫 키우기만 있는 앱이라 다시 켤 이유가 약했습니다. 매일 쓰는 대중교통 길찾기를 붙여 체류 시간을 늘려보기로 했습니다.',
+        en: 'A pet-only app gave little reason to come back, so we tried adding the transit routing people use every day.',
       },
-      {
-        ko: '외부 API 일 1,000건 한도 방어: Token Bucket Rate Limiter + 24h 응답 캐시 + 프론트 Throttle 3중 설계 (참고용)',
-        en: 'Defended the 1,000/day external-API limit with a 3-layer design: Token-Bucket rate limiter + 24h cache + front-end throttle (for reference).',
+      approach: {
+        ko: '여러 외부 지도 API를 한 번에 쓰되, 무료 한도를 넘기지 않는 구조가 필요했습니다.',
+        en: 'I needed to combine several external map APIs at once without blowing past their free quotas.',
       },
-    ],
+      action: {
+        ko: 'ODsay·Tmap·서울시 실시간 지하철 API를 백엔드에서 묶고, 지하철·버스·도보를 지도 위 하나의 폴리라인 경로로 그렸습니다.',
+        en: 'I proxied ODsay, Tmap and Seoul’s live subway APIs on the backend and drew subway, bus and walking as a single polyline route on the map.',
+      },
+      result: {
+        ko: '이후 팀 리뉴얼로 대부분 교체됐지만, 지도 API와 ODsay로 경로 폴리라인을 직접 그려본 경험은 그대로 남았습니다.',
+        en: 'Most of it was later replaced in a team renewal, but the hands-on experience of rendering route polylines from map APIs and ODsay stayed with me.',
+      },
+    },
     stack: ['React', 'Vite', 'Tailwind CSS', 'Node.js', 'Express', 'Kakao Maps SDK', 'ODsay API', 'Tmap API'],
     links: [],
     pipeline: {
-      title: { ko: '출발/도착 → ODsay → 폴리라인', en: 'Origin/dest → ODsay → polyline' },
+      title: { ko: '출발·도착에서 경로까지', en: 'From start/end to a route' },
       nodes: [
         { id: 'f1', label: { ko: '출발 · 도착', en: 'Origin · destination' } },
         { id: 'f2', label: { ko: 'ODsay · Tmap API', en: 'ODsay · Tmap API' } },
-        { id: 'f3', label: { ko: '지도 폴리라인 렌더링', en: 'Map polyline rendering' }, emphasis: true },
+        { id: 'f3', label: { ko: '지도 폴리라인', en: 'Map polyline' }, emphasis: true },
       ],
     },
     deploy: {
-      title: { ko: '비용 방어 3중 설계', en: '3-layer cost defense' },
+      title: { ko: 'API 비용 방어', en: 'API cost defense' },
       nodes: [
-        { id: 'fd1', label: { ko: 'Token Bucket', en: 'Token Bucket' } },
-        { id: 'fd2', label: { ko: '24h 캐시', en: '24h cache' } },
-        { id: 'fd3', label: { ko: '프론트 Throttle', en: 'Front throttle' } },
+        { id: 'fd1', label: { ko: 'Token Bucket', en: 'Token bucket' } },
+        { id: 'fd2', label: { ko: '24h 캐시 · Throttle', en: '24h cache · throttle' }, emphasis: true },
       ],
     },
   },

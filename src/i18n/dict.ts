@@ -32,6 +32,10 @@ export interface Dict {
     solo: string
     pipeline: string
     deploy: string
+    problem: string
+    approach: string
+    action: string
+    result: string
     live: string
     frontend: string
     backend: string
@@ -65,44 +69,48 @@ const ko: Dict = {
   },
   hero: {
     role: 'AI 풀스택 개발자',
-    tagline: '입력(Input)이 있으면, 반드시 출력(Output)이 있다.',
+    tagline: '입력이 있으면, 반드시 출력이 있다.',
     scroll: '스크롤',
   },
   about: {
     label: '소개',
-    heading: '배움을 결과물로 증명하는\n풀스택 개발자',
+    heading: '배운 걸 결과물로\n증명하는 개발자',
     body: [
-      '4년간 방화셔터 설계·현장 관리(PM)로 제조 현장의 문제를 정의하고 풀어왔습니다. 그 경험을 코드로 옮겨, 이제는 공공데이터·AI·실시간 시스템을 정량 지표와 제품으로 잇는 풀스택 개발자가 되었습니다.',
-      '"코드를 만들었다 ≠ 검증했다." 측정 가능한 수치, 회귀 테스트, 폴백 설계를 1급 시민으로 두고 일합니다. 기획부터 모델 학습, 백엔드, 프론트, 배포까지 한 흐름으로 끝내는 것을 지향합니다.',
+      '방화셔터를 설계하고 현장을 관리하며 4년을 보냈습니다. 제조 현장에서 문제를 정의하고 푸는 일을 하다, 그 과정을 코드로 옮기고 싶어 개발을 시작했습니다.',
+      '지금은 공공데이터와 AI, 실시간 시스템을 다뤄 "그래서 결과가 뭔데?"에 숫자로 답하는 풀스택 개발을 합니다. 코드를 짰다고 끝이 아니라, 측정하고 검증해야 끝이라고 생각합니다.',
     ],
     pillars: [
       {
-        title: '측정으로 증명',
-        desc: 'SDR·recall·정확도 게이트를 CI에 박아 모든 개선을 수치로, 모든 퇴행을 자동 차단으로.',
+        title: '말 대신 숫자로',
+        desc: 'SDR·recall·정확도를 CI 게이트에 걸어, 좋아진 건 수치로 보여주고 나빠진 건 자동으로 막습니다.',
       },
       {
-        title: '실패를 전제로 설계',
-        desc: 'PostgreSQL→스냅샷 폴백, API 키 0개 동작, 429 자동 폴백. 깨질 것을 가정하고 만든다.',
+        title: '깨질 걸 가정하고 만든다',
+        desc: 'DB가 죽으면 스냅샷으로, API 키가 없으면 폴백으로. 잘 되는 경우만 짜면 5%가 사용자에게 그대로 갑니다.',
       },
       {
         title: '기획부터 배포까지',
-        desc: '도메인 규칙 엔진, AI 파이프라인, 실시간 시스템, CI/CD를 단독으로 잇는 풀스택.',
+        desc: '규칙 엔진, AI 파이프라인, 실시간 시스템, 배포까지 혼자 끝까지 이어붙여 봤습니다.',
       },
     ],
   },
   skills: {
     label: '기술',
-    heading: '보유 기술',
-    note: '학습으로 끝내지 않고, 실제 서비스에 투입해 검증한 스택.',
+    heading: '쓰는 기술',
+    note: '배우고 끝낸 게 아니라, 실제 서비스에 넣어보고 남긴 것들입니다.',
   },
   work: {
     label: '프로젝트',
-    heading: '선택된 작업',
-    note: '입력에서 출력까지 — 각 프로젝트의 데이터 흐름과 배포 구조를 신호로 시각화했습니다.',
-    team: '팀 프로젝트',
-    solo: '개인 프로젝트',
-    pipeline: '데이터 파이프라인',
+    heading: '주요 프로젝트',
+    note: '입력에서 출력까지 — 각 프로젝트가 뭘 하고 어떻게 돌아가는지 흐름으로 풀었습니다.',
+    team: '팀',
+    solo: '개인',
+    pipeline: '동작 흐름',
     deploy: '배포 · 인프라',
+    problem: '문제',
+    approach: '접근',
+    action: '실행',
+    result: '결과',
     live: '라이브',
     frontend: '프론트엔드',
     backend: '백엔드',
@@ -111,18 +119,18 @@ const ko: Dict = {
   },
   journey: {
     label: '여정',
-    heading: '경력 · 학력',
+    heading: '경력과 학력',
   },
   contact: {
     label: '연락',
-    heading: '함께 만들어요',
-    line: '새로운 기술을 실제 결과물로 잇는 일에 관심 있는 팀과 이야기하고 싶습니다.',
+    heading: '같이 만들어요',
+    line: '새 기술을 실제 제품으로 이어붙이는 일에 관심 있는 팀이라면 편하게 연락 주세요.',
     email: '이메일',
     github: '깃허브',
     backToTop: '맨 위로',
   },
   footer: {
-    built: 'React · GSAP · Framer Motion 으로 제작 · 모노톤',
+    built: 'React · GSAP · Framer Motion',
   },
 }
 
@@ -136,44 +144,48 @@ const en: Dict = {
   },
   hero: {
     role: 'AI Full-Stack Developer',
-    tagline: 'Where there is an Input, there must be an Output.',
+    tagline: 'Where there is an input, there is always an output.',
     scroll: 'Scroll',
   },
   about: {
     label: 'About',
-    heading: 'A full-stack developer who\nproves learning with output',
+    heading: 'I prove what I learn\nby shipping it',
     body: [
-      'For four years I defined and solved manufacturing problems as a fire-shutter design & site manager (PM). I turned that experience into code — and became a full-stack developer who bridges public data, AI and real-time systems into quantified metrics and shipped products.',
-      '"Writing code ≠ verifying it." I treat measurable numbers, regression gates and fallback design as first-class citizens. My aim is to take a product end-to-end: planning, model training, backend, frontend and deployment.',
+      'I spent four years designing fire shutters and running the factory floor — defining and solving real manufacturing problems. I wanted to put that work into code, so I moved into development.',
+      'Now I work across public data, AI and real-time systems to answer one question with numbers: "so what actually came out of it?" To me, writing the code isn’t the finish line — measuring and verifying it is.',
     ],
     pillars: [
       {
-        title: 'Proven by measurement',
-        desc: 'SDR, recall and accuracy gates baked into CI — every gain is a number, every regression is auto-blocked.',
+        title: 'Numbers over claims',
+        desc: 'SDR, recall and accuracy sit on CI gates — gains show up as numbers, regressions get blocked automatically.',
       },
       {
-        title: 'Designed for failure',
-        desc: 'PostgreSQL→snapshot fallback, zero-key operation, automatic 429 fallback. Built assuming things break.',
+        title: 'Built assuming it breaks',
+        desc: 'DB down? Fall back to a snapshot. No API key? Fall back to a stub. Code only the happy path and 5% reaches the user broken.',
       },
       {
-        title: 'Plan to deploy, solo',
-        desc: 'Domain rule engines, AI pipelines, real-time systems and CI/CD — wired together single-handedly.',
+        title: 'Plan to deploy',
+        desc: 'Rule engines, AI pipelines, real-time systems, deployment — I’ve wired them all together end to end, solo.',
       },
     ],
   },
   skills: {
     label: 'Skills',
-    heading: 'Tech Stack',
-    note: 'Not just learned — put into real services and verified.',
+    heading: 'What I work with',
+    note: 'Not just learned — put into real services and kept what stuck.',
   },
   work: {
     label: 'Work',
-    heading: 'Selected Work',
-    note: 'From input to output — each project visualizes its data flow and deployment as signals.',
+    heading: 'Selected Projects',
+    note: 'From input to output — each project laid out as what it does and how it runs.',
     team: 'Team',
     solo: 'Solo',
-    pipeline: 'Data Pipeline',
+    pipeline: 'How it works',
     deploy: 'Deploy · Infra',
+    problem: 'Problem',
+    approach: 'Approach',
+    action: 'Action',
+    result: 'Result',
     live: 'Live',
     frontend: 'Frontend',
     backend: 'Backend',
@@ -182,18 +194,18 @@ const en: Dict = {
   },
   journey: {
     label: 'Journey',
-    heading: 'Experience · Education',
+    heading: 'Experience & Education',
   },
   contact: {
     label: 'Contact',
-    heading: "Let's build together",
-    line: 'I want to talk with teams who care about turning new technology into real, shipped products.',
+    heading: "Let's build something",
+    line: 'If your team cares about turning new tech into real products, I’d love to talk.',
     email: 'Email',
     github: 'GitHub',
     backToTop: 'Back to top',
   },
   footer: {
-    built: 'Built with React · GSAP · Framer Motion · Monochrome',
+    built: 'React · GSAP · Framer Motion',
   },
 }
 

@@ -14,3 +14,6 @@ pnpm-debug.log*
 .vscode/*
 !.vscode/extensions.json
 .idea
+
+# unused large source video
+public/hero1_pingpong.mp4

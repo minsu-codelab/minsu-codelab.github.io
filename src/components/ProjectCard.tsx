@@ -34,6 +34,13 @@ export default function ProjectCard({ project }: { project: Project }) {
     org: t.work.org,
   }
 
+  const paarRows = [
+    { label: t.work.problem, text: project.paar.problem[lang] },
+    { label: t.work.approach, text: project.paar.approach[lang] },
+    { label: t.work.action, text: project.paar.action[lang] },
+    { label: t.work.result, text: project.paar.result[lang], emphasis: true },
+  ]
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 40 }}
@@ -42,7 +49,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className={[
         'relative grid gap-8 border-t border-paper/10 py-16 lg:grid-cols-[auto_1fr] lg:gap-14',
-        project.muted ? 'opacity-70' : '',
+        project.muted ? 'opacity-80' : '',
       ].join(' ')}
     >
       {/* 좌측: 대형 인덱스 (데스크톱 sticky) */}
@@ -56,8 +63,8 @@ export default function ProjectCard({ project }: { project: Project }) {
           >
             {project.index}
           </span>
-          <div className="mt-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper/40">
-            <span>{project.period}</span>
+          <div className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-paper/40">
+            {project.period}
           </div>
           <div className="mt-1.5">
             <span className="inline-block rounded-full border border-paper/15 px-2.5 py-0.5 text-[10px] uppercase tracking-[0.15em] text-paper/50">
@@ -72,34 +79,54 @@ export default function ProjectCard({ project }: { project: Project }) {
         <h3 className="font-display text-3xl font-semibold tracking-tightest sm:text-4xl">
           {project.name}
         </h3>
-        <p className="mt-2 text-base text-paper/55">{project.tagline[lang]}</p>
-        <p className="mt-5 max-w-2xl leading-relaxed text-paper/75">{project.summary[lang]}</p>
+        <p className="mt-3 max-w-2xl break-keep text-lg leading-relaxed text-paper/70">
+          {project.tagline[lang]}
+        </p>
 
-        {/* 핵심 성과 */}
-        <ul className="mt-6 space-y-3">
-          {project.highlights.map((h, i) => (
-            <li key={i} className="flex gap-3 text-[15px] leading-relaxed text-paper/70">
-              <span className="mt-2 inline-block h-1 w-1 flex-shrink-0 rounded-full bg-paper/50" />
-              {h[lang]}
-            </li>
-          ))}
-        </ul>
-
-        {/* 시그널 플로우 2종 (가로 공간 부족으로 인한 노드 겹침 방지를 위해 2개의 독립된 섹션으로 분리) */}
-        {!project.muted ? (
-          <div className="mt-10 flex flex-col gap-6">
-            <div className="rounded-2xl border border-paper/10 bg-paper/[0.02] p-6 sm:p-8">
-              <SignalFlow flow={project.pipeline} kicker={t.work.pipeline} />
-            </div>
-            <div className="rounded-2xl border border-paper/10 bg-paper/[0.02] p-6 sm:p-8">
-              <SignalFlow flow={project.deploy} kicker={t.work.deploy} />
-            </div>
-          </div>
-        ) : (
-          <div className="mt-10 rounded-2xl border border-paper/10 bg-paper/[0.02] p-6 sm:p-8">
-            <SignalFlow flow={project.pipeline} kicker={t.work.pipeline} />
+        {/* 핵심 수치 (가장 먼저, 크게) */}
+        {project.metrics.length > 0 && (
+          <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-paper/10 bg-paper/10 sm:grid-cols-4">
+            {project.metrics.map((m, i) => (
+              <div key={i} className="bg-ink px-4 py-5 text-center">
+                <div className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+                  {m.value}
+                </div>
+                <div className="mt-1.5 break-keep text-[11px] leading-snug text-paper/45">
+                  {m.label[lang]}
+                </div>
+              </div>
+            ))}
           </div>
         )}
+
+        {/* PAAR */}
+        <div className="mt-9 space-y-4">
+          {paarRows.map((row, i) => (
+            <div key={i} className="grid gap-1.5 sm:grid-cols-[88px_1fr] sm:gap-5">
+              <div className="pt-0.5 text-[11px] uppercase tracking-[0.2em] text-paper/35">
+                {row.label}
+              </div>
+              <p
+                className={[
+                  'break-keep leading-relaxed',
+                  row.emphasis ? 'text-paper/90' : 'text-paper/65',
+                ].join(' ')}
+              >
+                {row.text}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* 메인: 동작 흐름 (가장 중요 — 크게) */}
+        <div className="mt-10 rounded-2xl border border-paper/10 bg-paper/[0.02] p-6 sm:p-8">
+          <SignalFlow flow={project.pipeline} kicker={t.work.pipeline} />
+        </div>
+
+        {/* 보조: 배포/인프라 (작게, demote) */}
+        <div className="mt-4 rounded-2xl border border-paper/[0.07] bg-paper/[0.01] p-5 opacity-70 transition-opacity hover:opacity-100 sm:px-8">
+          <SignalFlow flow={project.deploy} kicker={t.work.deploy} compact />
+        </div>
 
         {/* 스택 */}
         <div className="mt-8 flex flex-wrap gap-2">
