@@ -12,8 +12,8 @@
 > 와이드 컷 + 안경 반사 + 신호 흐름을 합치고 구조를 정리한 버전. 한 번에 잘 나오도록 권장.
 
 > 소프트웨어 엔지니어링(코드·대시보드·데이터·클라우드) 중심, MacBook + macOS 화면으로 명시.
-> 공장/로봇은 배경에 소량만. **밋밋함 방지를 위해 카메라는 움직이되 '제자리로 돌아오는 브리딩
-> + 패럴랙스'** 로 루프 유지(한 방향 줌/팬 금지).
+> 공장/로봇은 배경에 소량만. 카메라는 '제자리로 돌아오는 브리딩 + 패럴랙스'로 루프 유지.
+> **Deevid엔 네거티브 입력란이 없으므로 제약(no ~)을 메인 프롬프트 끝에 모두 포함했다. 이 하나만 입력.**
 
 ```
 Cinematic black-and-white monochrome video, perfectly seamless loop — the first and last
@@ -30,16 +30,10 @@ continuous cycle, flowing outward from the MacBook screen into these interfaces.
 motion is alive but loops: a very slow breathing dolly that eases gently in and returns to
 its exact starting position by the end, with soft parallax depth. High-contrast grayscale,
 fine film grain, soft volumetric light, shallow depth of field. Strictly black and white,
-grayscale only.
-```
-
-### 네거티브 프롬프트 (별도 입력칸이 있을 때)
-
-```
-color, Windows logo, Windows UI, blue Windows screen, factory interior, heavy industrial
-machinery filling the frame, one-directional pan, sudden zoom, fast camera, shaky camera,
-fade in, fade out, abrupt cut, text captions, subtitles, watermark, distorted hands, extra
-fingers, deformed face, cartoon, anime, low quality, blurry
+grayscale only — no color. Avoid: Windows logo or Windows UI or blue screen, factory
+interior or heavy industrial machinery filling the frame, one-directional pan, sudden zoom,
+fast or shaky camera, abrupt cut, any text, captions, subtitles or watermark, distorted
+hands or extra fingers, deformed face, cartoon or anime style, low quality or blur.
 ```
 
 ### 루프 솔기 제거 (받은 뒤 후처리 — 거의 확실)
