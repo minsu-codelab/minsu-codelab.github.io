@@ -11,26 +11,31 @@
 
 > 와이드 컷 + 안경 반사 + 신호 흐름을 합치고 구조를 정리한 버전. 한 번에 잘 나오도록 권장.
 
+> 소프트웨어 엔지니어링(코드·대시보드·데이터·클라우드) 중심, MacBook + macOS 화면으로 명시.
+> 공장/로봇은 배경에 소량만. 한 번에 확실히 나오도록 권장.
+
 ```
 Cinematic black-and-white monochrome video, seamless loop. A young Korean man in his
-late twenties wearing glasses sits at a desk, seen from behind and slightly to the side,
-typing code on a glowing computer monitor in a dark minimalist room. The screen light
-reflects softly in his glasses. As he types, the world beyond his desk slowly transforms
-through his code: automated robotic arms move, smart-factory machinery and conveyor lines
-come alive, small drones rise into the air, and a futuristic cityscape forms from
-circuit-like light lines. Thin glowing white signal pulses travel along these lines,
-flowing outward from his screen into the world, symbolizing automation and digital
-transformation. High-contrast grayscale, fine film grain, soft volumetric light, shallow
-depth of field. Slow, steady, calm camera push-in. Subtle minimal motion throughout.
-Strictly black and white, grayscale only.
+late twenties wearing glasses sits at a minimalist desk, seen from behind and slightly
+to the side, typing on a silver Apple MacBook laptop. The MacBook screen clearly shows a
+dark-themed code editor with scrolling lines of code and a terminal window, macOS style —
+real software development. As he codes, the dark room around him fills with floating
+holographic software interfaces born from his code: glowing UI dashboards, data
+visualizations and line charts, network graphs of connected nodes, web and mobile app
+screens, and cloud-server icons. Only a few small automated robotic arms and drones
+appear far in the background, kept subtle. Thin glowing white signal pulses travel along
+light lines, flowing outward from the MacBook screen into these floating interfaces,
+symbolizing software building digital systems. High-contrast grayscale, fine film grain,
+soft volumetric light, shallow depth of field. Slow, steady, calm camera push-in, subtle
+minimal motion. Strictly black and white, grayscale only.
 ```
 
 ### 네거티브 프롬프트 (별도 입력칸이 있을 때)
 
 ```
-color, saturated colors, text, captions, subtitles, logos, watermark, UI overlay,
-fast camera movement, shaky camera, distorted hands, extra fingers, deformed face,
-cartoon, anime, low quality, blurry
+color, Windows logo, Windows UI, blue Windows screen, factory interior, heavy industrial
+machinery filling the frame, text captions, subtitles, watermark, fast camera, shaky
+camera, distorted hands, extra fingers, deformed face, cartoon, anime, low quality, blurry
 ```
 
 ---
