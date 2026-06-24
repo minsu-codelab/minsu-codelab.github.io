@@ -105,11 +105,13 @@ export const projects: Project[] = [
       ],
     },
     deploy: {
-      title: { ko: '무중단 운영 구조', en: 'Always-on operation' },
+      title: { ko: 'CI/CD · 무중단 배포', en: 'CI/CD · zero-downtime deploy' },
       nodes: [
-        { id: 'ad1', label: { ko: 'Docker', en: 'Docker' } },
-        { id: 'ad2', label: { ko: 'AWS EC2 + Vercel', en: 'AWS EC2 + Vercel' } },
-        { id: 'ad3', label: { ko: 'DB → 스냅샷 폴백·자동복구', en: 'DB → snapshot fallback' }, emphasis: true },
+        { id: 'ad1', label: { ko: 'git push', en: 'git push' } },
+        { id: 'ad2', label: { ko: 'Docker 빌드 (AWS EC2)', en: 'Docker build (AWS EC2)' } },
+        { id: 'ad3', label: { ko: '이미지 prune · 배치 푸시 · 재시작', en: 'image prune · batched push · restart' }, emphasis: true },
+        { id: 'ad4', label: { ko: 'Vercel (프론트 자동배포)', en: 'Vercel (front auto-deploy)' } },
+        { id: 'ad5', label: { ko: 'PostgreSQL → JSON 스냅샷 폴백', en: 'PostgreSQL → JSON snapshot fallback' }, emphasis: true },
       ],
     },
     shots: [
@@ -172,10 +174,14 @@ export const projects: Project[] = [
       ],
     },
     deploy: {
-      title: { ko: 'GPU 비용 분리 배포', en: 'GPU-cost-split deploy' },
+      title: { ko: 'CI/CD · GPU 분리 배포', en: 'CI/CD · GPU-split deploy' },
       nodes: [
-        { id: 'bd1', label: { ko: 'Fly.io (API 상시)', en: 'Fly.io (always-on API)' } },
-        { id: 'bd2', label: { ko: 'GCP GPU (추론 때만)', en: 'GCP GPU (on demand)' }, emphasis: true },
+        { id: 'bd1', label: { ko: 'git push', en: 'git push' } },
+        { id: 'bd2', label: { ko: 'GitHub Actions (flyctl deploy)', en: 'GitHub Actions (flyctl deploy)' }, emphasis: true },
+        { id: 'bd3', label: { ko: 'Fly.io (API 상시)', en: 'Fly.io (always-on API)' } },
+        { id: 'bd4', label: { ko: 'Vercel (프론트)', en: 'Vercel (front)' } },
+        { id: 'bd5', label: { ko: 'GCP GPU VM (추론 · 온디맨드)', en: 'GCP GPU VM (inference · on-demand)' }, emphasis: true },
+        { id: 'bd6', label: { ko: 'GCS (학습 모델 가중치)', en: 'GCS (model weights)' } },
       ],
     },
     shots: [
@@ -236,11 +242,13 @@ export const projects: Project[] = [
       ],
     },
     deploy: {
-      title: { ko: '정확도 회귀 게이트', en: 'Accuracy regression gate' },
+      title: { ko: 'CI/CD · 정확도 회귀 게이트', en: 'CI/CD · accuracy gate' },
       nodes: [
         { id: 'cd1', label: { ko: 'git push', en: 'git push' } },
-        { id: 'cd2', label: { ko: 'SDR·F1 게이트 (pytest 220)', en: 'SDR·F1 gate (220 tests)' }, emphasis: true },
-        { id: 'cd3', label: { ko: 'Supabase · Cloudflare', en: 'Supabase · Cloudflare' } },
+        { id: 'cd2', label: { ko: 'GitHub Actions: ruff · pytest', en: 'GitHub Actions: ruff · pytest' }, emphasis: true },
+        { id: 'cd3', label: { ko: '정확도 회귀 게이트 (SDR · F1)', en: 'accuracy gate (SDR · F1)' }, emphasis: true },
+        { id: 'cd4', label: { ko: 'Docker', en: 'Docker' } },
+        { id: 'cd5', label: { ko: 'Cloudflare + Supabase', en: 'Cloudflare + Supabase' } },
       ],
     },
     shots: [
@@ -301,11 +309,13 @@ export const projects: Project[] = [
       ],
     },
     deploy: {
-      title: { ko: 'CI/CD 자동 배포', en: 'CI/CD auto deploy' },
+      title: { ko: 'CI/CD · GitHub Actions → Fly.io', en: 'CI/CD · GitHub Actions → Fly.io' },
       nodes: [
         { id: 'dd1', label: { ko: 'git push', en: 'git push' } },
-        { id: 'dd2', label: { ko: 'GitHub Actions (골든 검증)', en: 'GitHub Actions (golden check)' }, emphasis: true },
-        { id: 'dd3', label: { ko: 'Fly.io 자동 배포', en: 'Fly.io auto deploy' } },
+        { id: 'dd2', label: { ko: 'CI: pytest · 골든 BOM 회귀', en: 'CI: pytest · golden-BOM regression' }, emphasis: true },
+        { id: 'dd3', label: { ko: 'Alembic check (스키마 정합성)', en: 'Alembic check (schema integrity)' } },
+        { id: 'dd4', label: { ko: 'Fly.io 백엔드 (fde-shutter-api)', en: 'Fly.io backend (fde-shutter-api)' }, emphasis: true },
+        { id: 'dd5', label: { ko: 'Fly.io 프론트 (fde-shutter)', en: 'Fly.io front (fde-shutter)' } },
       ],
     },
     shots: [
@@ -362,11 +372,13 @@ export const projects: Project[] = [
       ],
     },
     deploy: {
-      title: { ko: '키 0개 동작 + E2E 게이트', en: 'Zero-key + E2E gate' },
+      title: { ko: 'CI/CD · GitHub Actions → Vercel', en: 'CI/CD · GitHub Actions → Vercel' },
       nodes: [
-        { id: 'ed1', label: { ko: 'env 게이팅 + 폴백', en: 'env-gating + fallback' }, emphasis: true },
-        { id: 'ed2', label: { ko: 'Vitest 97 · Playwright 12', en: 'Vitest 97 · Playwright 12' } },
-        { id: 'ed3', label: { ko: 'GitHub Actions CI', en: 'GitHub Actions CI' } },
+        { id: 'ed1', label: { ko: 'git push', en: 'git push' } },
+        { id: 'ed2', label: { ko: 'CI: Typecheck · Vitest 97', en: 'CI: typecheck · Vitest 97' }, emphasis: true },
+        { id: 'ed3', label: { ko: 'E2E: Playwright 12', en: 'E2E: Playwright 12' }, emphasis: true },
+        { id: 'ed4', label: { ko: 'pnpm build', en: 'pnpm build' } },
+        { id: 'ed5', label: { ko: 'Vercel (Next.js)', en: 'Vercel (Next.js)' } },
       ],
     },
     shots: [

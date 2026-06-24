@@ -129,8 +129,8 @@ export default function ProjectCard({ project }: { project: Project }) {
           <SignalFlow flow={project.pipeline} kicker={t.work.pipeline} />
         </div>
 
-        {/* 보조: 배포/인프라 (작게, demote) */}
-        <div className="mt-4 rounded-2xl border border-paper/[0.07] bg-paper/[0.01] p-5 opacity-70 transition-opacity hover:opacity-100 sm:px-8">
+        {/* CI/CD · 배포 흐름 */}
+        <div className="mt-4 rounded-2xl border border-paper/10 bg-paper/[0.02] p-6 sm:p-8">
           <SignalFlow flow={project.deploy} kicker={t.work.deploy} compact />
         </div>
 
