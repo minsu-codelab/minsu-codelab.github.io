@@ -64,8 +64,8 @@ const ko: Dict = {
     about: '소개',
     skills: '기술',
     work: '프로젝트',
-    journey: '여정',
-    contact: '연락',
+    journey: '경력',
+    contact: '연락처',
   },
   hero: {
     role: 'AI 풀스택 개발자',
@@ -96,7 +96,7 @@ const ko: Dict = {
   },
   skills: {
     label: '기술',
-    heading: '쓰는 기술',
+    heading: '기술 스택',
     note: '배우고 끝낸 게 아니라, 실제 서비스에 넣어보고 남긴 것들입니다.',
   },
   work: {
@@ -118,11 +118,11 @@ const ko: Dict = {
     org: '조직',
   },
   journey: {
-    label: '여정',
-    heading: '경력과 학력',
+    label: '경력',
+    heading: '경력 · 학력',
   },
   contact: {
-    label: '연락',
+    label: '연락처',
     heading: '같이 만들어요',
     line: '새 기술을 실제 제품으로 이어붙이는 일에 관심 있는 팀이라면 편하게 연락 주세요.',
     email: '이메일',
@@ -139,7 +139,7 @@ const en: Dict = {
     about: 'About',
     skills: 'Skills',
     work: 'Work',
-    journey: 'Journey',
+    journey: 'Experience',
     contact: 'Contact',
   },
   hero: {
@@ -171,8 +171,8 @@ const en: Dict = {
   },
   skills: {
     label: 'Skills',
-    heading: 'What I work with',
-    note: 'Not just learned — put into real services and kept what stuck.',
+    heading: 'Tech Stack',
+    note: 'Not just learned, but put into real services and kept what stuck.',
   },
   work: {
     label: 'Work',
@@ -193,7 +193,7 @@ const en: Dict = {
     org: 'Org',
   },
   journey: {
-    label: 'Journey',
+    label: 'Experience',
     heading: 'Experience & Education',
   },
   contact: {
