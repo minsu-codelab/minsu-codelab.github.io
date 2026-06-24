@@ -118,6 +118,7 @@ export const projects: Project[] = [
       { src: 'shots/arctictwin-3.jpg', caption: { ko: '③ Fuel Analysis — 연료 소비·비용 분석', en: '③ Fuel Analysis — consumption & cost' } },
       { src: 'shots/arctictwin-4.jpg', caption: { ko: '④ What-If 시나리오 — 조건별 항행 비교', en: '④ What-If scenarios — comparing voyage conditions' } },
       { src: 'shots/arctictwin-5.jpg', caption: { ko: '⑤ Trend Report — 항로 리포트 생성', en: '⑤ Trend Report — voyage report generation' } },
+      { src: 'shots/arctictwin-6.jpg', caption: { ko: '⑥ 생성된 PDF 보고서 — 10p 표·차트 (북극 항로 AI 동향 보고서)', en: '⑥ Generated PDF report — 10-page tables & charts' } },
     ],
   },
   {
