@@ -40,23 +40,23 @@
   ```
   ※ 업로드한 드론 영상 프레임이 어두운 구간이라 배경이 다소 검게 나왔습니다. 밝은 구간 영상으로 바꾸면 더 선명합니다.
 
-### 2. ArcticTwin — Trend Report PDF
-- 헤드리스 브라우저가 PDF 다운로드를 화면 렌더로 못 잡습니다.
-- 수동: arctictwin.com → TREND REPORT → GENERATE REPORT → 생성된 PDF를 직접 스크린샷.
-- 이미지 주시면 갤러리(arctictwin)에 바로 넣겠습니다.
+### 2. ArcticTwin — Trend Report PDF — ✅ 완료
+- TREND REPORT → GENERATE REPORT → PREVIEW REPORT의 **인라인 PDF 미리보기**를 캡처(표지 + 10p 표·차트 썸네일). 갤러리 ⑥번 컷.
+- 내부 표/차트 페이지를 더 넣고 싶으면 PDF를 직접 열어 페이지별 스크린샷 주세요.
 
-### 3. Re:Chord — 악보(채보) 결과 화면
-- 업로드→분리→채보는 라이브 백엔드에서 수 분 걸려 무인 자동화로 안정 캡처가 어려웠습니다.
-- 수동: youmin.site → 음원 업로드 → 처리 완료 후 악보 화면 스크린샷.
+### 3. Re:Chord — 악보(채보) 결과 화면 — 부분 (작업화면 추가, 악보는 미완)
+- 무인 업로드→"변환 시작"까지 자동화했으나, **합성 테스트 오디오 업로드가 라이브 백엔드에서 `network error`** 로 막혀 악보까지는 못 갔습니다.
+- 대신 **실제 변환 작업 화면**(음원 가져오기 + Quick MR/Karaoke/Stems/Pro 모드 선택)을 깨끗하게 캡처해 갤러리 ③에 추가했습니다.
+- **악보 결과**는 실제 곡(mp3/wav) 하나를 youmin.site에 올려 변환하면 나옵니다 — 그 악보 화면 캡처 주시면 갤러리에 추가하겠습니다.
 
-### 4. EggTalk — 길찾기 폴리라인 / 실시간 지하철
-- 운영 백엔드(keepinsight.site)가 **죽어 있어**(응답 000) 실제 경로/실시간 데이터가 안 옵니다.
-- 로컬 프론트는 지도+길찾기 UI까지만 렌더됩니다(현재 갤러리 컷).
-- 폴리라인을 로컬에서 보고 싶으면 `eggtalk-frontend/src/features/MS/MS.jsx` 의 `routeSegments` 에 샘플 좌표를 주입하면 됩니다(제가 시도한 방식). 원하시면 깨어계실 때 같이 띄워서 캡처하겠습니다.
+### 4. EggTalk — 길찾기 폴리라인 / 실시간 지하철 — 부분 (방법 찾음)
+- 운영 백엔드(keepinsight.site)는 죽었지만, **로컬 백엔드(`eggtalk-backend`)가 ODsay/Tmap/지하철 API 키를 갖고 있어 실행하면 실제 경로가 나옵니다** (시청→강남 40분 응답 실측 확인).
+- 다만 Kakao 지도 DOM이 무거워 헤드리스 자동 검색이 불안정 → 현재 갤러리는 MS 지도+길찾기 UI 컷.
+- **로컬 재현(30초)**: `eggtalk-backend`에서 `node index.js`(:8000) → `eggtalk-frontend`에서 `npm run dev` → /ms에서 출발/도착 입력·검색하면 실제 폴리라인이 그려집니다. 그 화면 캡처 주시면 교체하겠습니다.
 
-### 5. Closet — 3D 옷장 채우기
-- 현재는 DB 없이 **데모 아이템**으로 렌더된 3D 옷장입니다.
-- 실제 옷으로 꽉 채우려면: `DATABASE_URL`(PostgreSQL+pgvector) 설정 → `db:migrate` → seed → 옷 업로드.
+### 5. Closet — 3D 옷장 채우기 — ✅ 완료
+- 시스템 PostgreSQL은 비번/pgvector 문제로 막혀, **3D 옷장에 옷 30벌을 배치한 컷**으로 교체했습니다(행거·선반·서랍 채워짐).
+- 실제 DB 데이터로 하려면 pgvector 포함 DB(Docker `pgvector/pgvector:pg16` 권장) + `db:migrate` + 옷 등록이 필요합니다.
 
 ---
 

@@ -246,7 +246,8 @@ export const projects: Project[] = [
     shots: [
       { src: 'shots/rechord-1.jpg', caption: { ko: '① 랜딩 — 듣는 음악에서 직접 연주하는 음악으로', en: '① Landing — from listening to playing' } },
       { src: 'shots/rechord-2.jpg', caption: { ko: '② 기능 소개 — 분리·키 변환·채보 흐름', en: '② Features — separation, transposition, transcription' } },
-      { src: 'shots/rechord-3.jpg', caption: { ko: '③ 작업 화면 / 라이브러리', en: '③ Workspace / library' } },
+      { src: 'shots/rechord-4.jpg', caption: { ko: '③ 변환 작업 — 음원 가져오기 + 모드 선택(Quick MR·Karaoke·Stems·Pro)', en: '③ Convert — import audio + pick a mode (Quick MR · Karaoke · Stems · Pro)' } },
+      { src: 'shots/rechord-3.jpg', caption: { ko: '④ 작업 화면 / 라이브러리', en: '④ Workspace / library' } },
     ],
   },
   {
