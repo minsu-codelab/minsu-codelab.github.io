@@ -22,6 +22,9 @@ export function useSmoothScroll(enabled: boolean) {
       smoothWheel: true,
     })
 
+    // 새로고침 직후 Lenis 내부 위치도 최상단으로 고정 (브라우저 복원 잔재 방지)
+    lenis.scrollTo(0, { immediate: true })
+
     lenis.on('scroll', ScrollTrigger.update)
 
     const onRaf = (time: number) => {
