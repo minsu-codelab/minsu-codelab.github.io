@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import type { Project, ProjectLink } from '../data/projects'
 import { useLang } from '../i18n/LanguageContext'
-import SignalFlow from './SignalFlow'
+import FlowGraph from './FlowGraph'
 import Gallery from './Gallery'
 
 const ArrowIcon = () => (
@@ -126,12 +126,12 @@ export default function ProjectCard({ project }: { project: Project }) {
 
         {/* 메인: 동작 흐름 (가장 중요 — 크게) */}
         <div className="mt-10 rounded-2xl border border-paper/10 bg-paper/[0.02] p-6 sm:p-8">
-          <SignalFlow flow={project.pipeline} kicker={t.work.pipeline} />
+          <FlowGraph flow={project.pipeline} kicker={t.work.pipeline} />
         </div>
 
         {/* CI/CD · 배포 흐름 */}
         <div className="mt-4 rounded-2xl border border-paper/10 bg-paper/[0.02] p-6 sm:p-8">
-          <SignalFlow flow={project.deploy} kicker={t.work.deploy} compact />
+          <FlowGraph flow={project.deploy} kicker={t.work.deploy} compact />
         </div>
 
         {/* 스택 */}

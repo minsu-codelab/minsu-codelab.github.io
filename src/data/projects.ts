@@ -6,9 +6,16 @@ export interface FlowNode {
   emphasis?: boolean
 }
 
+/** 한 단계: 노드 1개면 단일 단계, 여러 개 + parallel이면 동시(병렬) 단계 */
+export interface FlowStep {
+  nodes: FlowNode[]
+  parallel?: boolean
+  note?: L10n // 병렬 그룹 라벨 (예: 앙상블 · 동시 배포 · 검증 후 선택)
+}
+
 export interface Flow {
   title: L10n
-  nodes: FlowNode[]
+  steps: FlowStep[]
 }
 
 export interface ProjectLink {
@@ -96,22 +103,43 @@ export const projects: Project[] = [
     ],
     pipeline: {
       title: { ko: '공공데이터에서 의사결정 지표까지', en: 'From public data to a decision' },
-      nodes: [
-        { id: 'a1', label: { ko: '위성·해빙·기상 데이터', en: 'Satellite · ice · weather' } },
-        { id: 'a2', label: { ko: 'Cesium 3D 트윈', en: 'Cesium 3D twin' } },
-        { id: 'a3', label: { ko: 'AI 4종 (RL·XGBoost·YOLO·LLM)', en: '4 AI models' }, emphasis: true },
-        { id: 'a4', label: { ko: '경로 검증 → A* 폴백', en: 'Path check → A* fallback' }, emphasis: true },
-        { id: 'a5', label: { ko: '연료비 · ROI · 리스크', en: 'Fuel · ROI · risk' } },
+      steps: [
+        { nodes: [{ id: 'a1', label: { ko: '위성·해빙·기상 데이터', en: 'Satellite · ice · weather' } }] },
+        { nodes: [{ id: 'a2', label: { ko: 'Cesium 3D 트윈', en: 'Cesium 3D twin' } }] },
+        {
+          parallel: true,
+          note: { ko: 'AI 병렬 분석', en: 'parallel AI' },
+          nodes: [
+            { id: 'a3', label: { ko: 'SAC 빙산 회피', en: 'SAC ice-avoid' }, emphasis: true },
+            { id: 'a4', label: { ko: 'XGBoost 연료', en: 'XGBoost fuel' }, emphasis: true },
+            { id: 'a5', label: { ko: 'YOLOv8 SAR 탐지', en: 'YOLOv8 SAR' }, emphasis: true },
+            { id: 'a6', label: { ko: 'What-If LLM', en: 'What-If LLM' }, emphasis: true },
+          ],
+        },
+        {
+          parallel: true,
+          note: { ko: '검증 후 선택', en: 'verify → pick' },
+          nodes: [
+            { id: 'a7', label: { ko: 'RL 경로', en: 'RL path' } },
+            { id: 'a8', label: { ko: 'A* 폴백', en: 'A* fallback' } },
+          ],
+        },
+        { nodes: [{ id: 'a9', label: { ko: '연료비 · ROI · 리스크', en: 'Fuel · ROI · risk' } }] },
       ],
     },
     deploy: {
-      title: { ko: 'CI/CD · 무중단 배포', en: 'CI/CD · zero-downtime deploy' },
-      nodes: [
-        { id: 'ad1', label: { ko: 'git push', en: 'git push' } },
-        { id: 'ad2', label: { ko: 'Docker 빌드 (AWS EC2)', en: 'Docker build (AWS EC2)' } },
-        { id: 'ad3', label: { ko: '이미지 prune · 배치 푸시 · 재시작', en: 'image prune · batched push · restart' }, emphasis: true },
-        { id: 'ad4', label: { ko: 'Vercel (프론트 자동배포)', en: 'Vercel (front auto-deploy)' } },
-        { id: 'ad5', label: { ko: 'PostgreSQL → JSON 스냅샷 폴백', en: 'PostgreSQL → JSON snapshot fallback' }, emphasis: true },
+      title: { ko: 'CI/CD · 병렬 배포', en: 'CI/CD · parallel deploy' },
+      steps: [
+        { nodes: [{ id: 'ad1', label: { ko: 'git push', en: 'git push' } }] },
+        {
+          parallel: true,
+          note: { ko: '동시 배포', en: 'deploy in parallel' },
+          nodes: [
+            { id: 'ad2', label: { ko: '프론트 · Vercel', en: 'Front · Vercel' }, emphasis: true },
+            { id: 'ad3', label: { ko: '백엔드 · AWS EC2 (Docker·prune)', en: 'Back · AWS EC2 (Docker·prune)' }, emphasis: true },
+          ],
+        },
+        { nodes: [{ id: 'ad4', label: { ko: '라이브 트윈 (DB→스냅샷 폴백)', en: 'Live twin (DB→snapshot fallback)' } }] },
       ],
     },
     shots: [
@@ -165,23 +193,46 @@ export const projects: Project[] = [
     ],
     pipeline: {
       title: { ko: '드론 영상에서 보고서까지', en: 'From drone video to a report' },
-      nodes: [
-        { id: 'b1', label: { ko: '드론 영상 (30fps)', en: 'Drone video (30fps)' } },
-        { id: 'b2', label: { ko: '드롭 큐 (최신 프레임)', en: 'Drop-queue (latest frame)' }, emphasis: true },
-        { id: 'b3', label: { ko: '6모델 앙상블 검출', en: '6-model ensemble' }, emphasis: true },
-        { id: 'b4', label: { ko: '3D 하자 매핑', en: '3D defect mapping' } },
-        { id: 'b5', label: { ko: 'LLM 자동 보고서', en: 'LLM auto report' } },
+      steps: [
+        { nodes: [{ id: 'b1', label: { ko: '드론 영상 (30fps)', en: 'Drone video (30fps)' } }] },
+        { nodes: [{ id: 'b2', label: { ko: 'WebSocket 드롭 큐', en: 'WebSocket drop-queue' }, emphasis: true }] },
+        {
+          parallel: true,
+          note: { ko: '6모델 앙상블 (WBF)', en: '6-model ensemble (WBF)' },
+          nodes: [
+            { id: 'b3', label: { ko: 'YOLOv8 검출', en: 'YOLOv8 detect' }, emphasis: true },
+            { id: 'b4', label: { ko: 'ResNet50 분류', en: 'ResNet50 classify' }, emphasis: true },
+            { id: 'b5', label: { ko: 'U-Net 단열', en: 'U-Net thermal' }, emphasis: true },
+            { id: 'b6', label: { ko: 'PatchCore 이상탐지', en: 'PatchCore anomaly' }, emphasis: true },
+          ],
+        },
+        {
+          parallel: true,
+          note: { ko: '429 시 폴백 선택', en: 'fallback on 429' },
+          nodes: [
+            { id: 'b7', label: { ko: 'VLM 1차', en: 'VLM primary' } },
+            { id: 'b8', label: { ko: 'ONNX 교차검증', en: 'ONNX cross-check' } },
+          ],
+        },
+        { nodes: [{ id: 'b9', label: { ko: '3D 하자 매핑', en: '3D defect mapping' } }] },
+        { nodes: [{ id: 'b10', label: { ko: 'LLM 자동 보고서', en: 'LLM auto report' } }] },
       ],
     },
     deploy: {
       title: { ko: 'CI/CD · GPU 분리 배포', en: 'CI/CD · GPU-split deploy' },
-      nodes: [
-        { id: 'bd1', label: { ko: 'git push', en: 'git push' } },
-        { id: 'bd2', label: { ko: 'GitHub Actions (flyctl deploy)', en: 'GitHub Actions (flyctl deploy)' }, emphasis: true },
-        { id: 'bd3', label: { ko: 'Fly.io (API 상시)', en: 'Fly.io (always-on API)' } },
-        { id: 'bd4', label: { ko: 'Vercel (프론트)', en: 'Vercel (front)' } },
-        { id: 'bd5', label: { ko: 'GCP GPU VM (추론 · 온디맨드)', en: 'GCP GPU VM (inference · on-demand)' }, emphasis: true },
-        { id: 'bd6', label: { ko: 'GCS (학습 모델 가중치)', en: 'GCS (model weights)' } },
+      steps: [
+        { nodes: [{ id: 'bd1', label: { ko: 'git push', en: 'git push' } }] },
+        { nodes: [{ id: 'bd2', label: { ko: 'GitHub Actions (flyctl)', en: 'GitHub Actions (flyctl)' }, emphasis: true }] },
+        {
+          parallel: true,
+          note: { ko: '동시 배포', en: 'deploy in parallel' },
+          nodes: [
+            { id: 'bd3', label: { ko: '프론트 · Vercel', en: 'Front · Vercel' }, emphasis: true },
+            { id: 'bd4', label: { ko: '백엔드 · Fly.io (API 상시)', en: 'Back · Fly.io (always-on)' }, emphasis: true },
+            { id: 'bd5', label: { ko: 'AI 추론 · GCP GPU VM (GCS 모델)', en: 'Inference · GCP GPU VM (GCS models)' }, emphasis: true },
+          ],
+        },
+        { nodes: [{ id: 'bd6', label: { ko: '라이브 점검 플랫폼', en: 'Live inspection platform' } }] },
       ],
     },
     shots: [
@@ -233,22 +284,39 @@ export const projects: Project[] = [
     ],
     pipeline: {
       title: { ko: '업로드에서 반주까지', en: 'From upload to backing track' },
-      nodes: [
-        { id: 'c1', label: { ko: '음원 업로드', en: 'Audio upload' } },
-        { id: 'c2', label: { ko: '4모델 앙상블 분리', en: '4-model ensemble split' }, emphasis: true },
-        { id: 'c3', label: { ko: '키 변환', en: 'Key transpose' } },
-        { id: 'c4', label: { ko: 'Whisper·LLM 채보', en: 'Whisper · LLM transcribe' } },
-        { id: 'c5', label: { ko: '반주·코드·악보', en: 'Track · chords · score' } },
+      steps: [
+        { nodes: [{ id: 'c1', label: { ko: '음원 업로드', en: 'Audio upload' } }] },
+        {
+          parallel: true,
+          note: { ko: '4모델 앙상블 분리', en: '4-model ensemble' },
+          nodes: [
+            { id: 'c2', label: { ko: 'MDX23C', en: 'MDX23C' }, emphasis: true },
+            { id: 'c3', label: { ko: 'BS-Roformer', en: 'BS-Roformer' }, emphasis: true },
+            { id: 'c4', label: { ko: 'htdemucs', en: 'htdemucs' }, emphasis: true },
+            { id: 'c5', label: { ko: 'MelBand', en: 'MelBand' }, emphasis: true },
+          ],
+        },
+        { nodes: [{ id: 'c6', label: { ko: '키 변환', en: 'Key transpose' } }] },
+        { nodes: [{ id: 'c7', label: { ko: 'Whisper·LLM 채보', en: 'Whisper · LLM transcribe' } }] },
+        { nodes: [{ id: 'c8', label: { ko: '반주·코드·악보', en: 'Track · chords · score' } }] },
       ],
     },
     deploy: {
-      title: { ko: 'CI/CD · 정확도 회귀 게이트', en: 'CI/CD · accuracy gate' },
-      nodes: [
-        { id: 'cd1', label: { ko: 'git push', en: 'git push' } },
-        { id: 'cd2', label: { ko: 'GitHub Actions: ruff · pytest', en: 'GitHub Actions: ruff · pytest' }, emphasis: true },
-        { id: 'cd3', label: { ko: '정확도 회귀 게이트 (SDR · F1)', en: 'accuracy gate (SDR · F1)' }, emphasis: true },
-        { id: 'cd4', label: { ko: 'Docker', en: 'Docker' } },
-        { id: 'cd5', label: { ko: 'Cloudflare + Supabase', en: 'Cloudflare + Supabase' } },
+      title: { ko: 'CI/CD · 정확도 게이트 → 병렬 배포', en: 'CI/CD · accuracy gate → parallel' },
+      steps: [
+        { nodes: [{ id: 'cd1', label: { ko: 'git push', en: 'git push' } }] },
+        { nodes: [{ id: 'cd2', label: { ko: 'CI: ruff · pytest', en: 'CI: ruff · pytest' }, emphasis: true }] },
+        { nodes: [{ id: 'cd3', label: { ko: '정확도 회귀 게이트 (SDR · F1)', en: 'accuracy gate (SDR · F1)' }, emphasis: true }] },
+        { nodes: [{ id: 'cd4', label: { ko: 'Docker', en: 'Docker' } }] },
+        {
+          parallel: true,
+          note: { ko: '동시 배포', en: 'deploy in parallel' },
+          nodes: [
+            { id: 'cd5', label: { ko: '프론트·CDN · Cloudflare', en: 'Front·CDN · Cloudflare' }, emphasis: true },
+            { id: 'cd6', label: { ko: '인증·DB · Supabase', en: 'Auth·DB · Supabase' }, emphasis: true },
+          ],
+        },
+        { nodes: [{ id: 'cd7', label: { ko: '라이브 음악 플랫폼', en: 'Live music platform' } }] },
       ],
     },
     shots: [
@@ -298,24 +366,30 @@ export const projects: Project[] = [
       { kind: 'org', url: 'https://github.com/fde-factory' },
     ],
     pipeline: {
-      title: { ko: '견적에서 실측까지 한 줄로', en: 'One thread: quote to measurement' },
-      nodes: [
-        { id: 'd1', label: { ko: '견적 (규칙 엔진)', en: 'Quote (rule engine)' }, emphasis: true },
-        { id: 'd2', label: { ko: '발주', en: 'Order' } },
-        { id: 'd3', label: { ko: '승인', en: 'Approval' } },
-        { id: 'd4', label: { ko: '품질', en: 'QC' } },
-        { id: 'd5', label: { ko: '작업지시', en: 'Work order' } },
-        { id: 'd6', label: { ko: '실측', en: 'Measurement' } },
+      title: { ko: '견적에서 실측까지 한 줄로 (디지털 스레드)', en: 'One thread: quote to measurement' },
+      steps: [
+        { nodes: [{ id: 'd1', label: { ko: '견적 (규칙 엔진)', en: 'Quote (rule engine)' }, emphasis: true }] },
+        { nodes: [{ id: 'd2', label: { ko: '발주', en: 'Order' } }] },
+        { nodes: [{ id: 'd3', label: { ko: '승인', en: 'Approval' } }] },
+        { nodes: [{ id: 'd4', label: { ko: '품질', en: 'QC' } }] },
+        { nodes: [{ id: 'd5', label: { ko: '작업지시', en: 'Work order' } }] },
+        { nodes: [{ id: 'd6', label: { ko: '실측', en: 'Measurement' } }] },
       ],
     },
     deploy: {
       title: { ko: 'CI/CD · GitHub Actions → Fly.io', en: 'CI/CD · GitHub Actions → Fly.io' },
-      nodes: [
-        { id: 'dd1', label: { ko: 'git push', en: 'git push' } },
-        { id: 'dd2', label: { ko: 'CI: pytest · 골든 BOM 회귀', en: 'CI: pytest · golden-BOM regression' }, emphasis: true },
-        { id: 'dd3', label: { ko: 'Alembic check (스키마 정합성)', en: 'Alembic check (schema integrity)' } },
-        { id: 'dd4', label: { ko: 'Fly.io 백엔드 (fde-shutter-api)', en: 'Fly.io backend (fde-shutter-api)' }, emphasis: true },
-        { id: 'dd5', label: { ko: 'Fly.io 프론트 (fde-shutter)', en: 'Fly.io front (fde-shutter)' } },
+      steps: [
+        { nodes: [{ id: 'dd1', label: { ko: 'git push', en: 'git push' } }] },
+        { nodes: [{ id: 'dd2', label: { ko: 'CI: pytest · 골든 BOM · Alembic check', en: 'CI: pytest · golden-BOM · Alembic' }, emphasis: true }] },
+        {
+          parallel: true,
+          note: { ko: 'Fly.io 동시 배포', en: 'Fly.io deploy in parallel' },
+          nodes: [
+            { id: 'dd3', label: { ko: '백엔드 · fde-shutter-api', en: 'Back · fde-shutter-api' }, emphasis: true },
+            { id: 'dd4', label: { ko: '프론트 · fde-shutter', en: 'Front · fde-shutter' }, emphasis: true },
+          ],
+        },
+        { nodes: [{ id: 'dd5', label: { ko: '라이브 스마트팩토리', en: 'Live smart factory' } }] },
       ],
     },
     shots: [
@@ -364,21 +438,36 @@ export const projects: Project[] = [
     links: [{ kind: 'repo', url: 'https://github.com/youmin0523/whats-in-my-closet' }],
     pipeline: {
       title: { ko: '사진 한 장에서 경고까지', en: 'From one photo to a warning' },
-      nodes: [
-        { id: 'e1', label: { ko: '옷 사진 업로드', en: 'Garment photo' } },
-        { id: 'e2', label: { ko: '임베딩 + 색상 + 카테고리', en: 'Embedding + color + category' }, emphasis: true },
-        { id: 'e3', label: { ko: 'pgvector 유사도 검색', en: 'pgvector similarity search' }, emphasis: true },
-        { id: 'e4', label: { ko: '"비슷한 옷" 경고', en: '"Similar item" warning' } },
+      steps: [
+        { nodes: [{ id: 'e1', label: { ko: '옷 사진 업로드', en: 'Garment photo' } }] },
+        {
+          parallel: true,
+          note: { ko: '멀티신호 유사도', en: 'multi-signal similarity' },
+          nodes: [
+            { id: 'e2', label: { ko: '패션 임베딩', en: 'Fashion embedding' }, emphasis: true },
+            { id: 'e3', label: { ko: '색상거리 (CIEDE2000)', en: 'Color (CIEDE2000)' }, emphasis: true },
+            { id: 'e4', label: { ko: '카테고리 가중', en: 'Category weight' }, emphasis: true },
+          ],
+        },
+        { nodes: [{ id: 'e5', label: { ko: '가중 합성 점수', en: 'Weighted score' } }] },
+        { nodes: [{ id: 'e6', label: { ko: 'pgvector HNSW 검색', en: 'pgvector HNSW search' }, emphasis: true }] },
+        { nodes: [{ id: 'e7', label: { ko: '"비슷한 옷" 경고', en: '"Similar item" warning' } }] },
       ],
     },
     deploy: {
       title: { ko: 'CI/CD · GitHub Actions → Vercel', en: 'CI/CD · GitHub Actions → Vercel' },
-      nodes: [
-        { id: 'ed1', label: { ko: 'git push', en: 'git push' } },
-        { id: 'ed2', label: { ko: 'CI: Typecheck · Vitest 97', en: 'CI: typecheck · Vitest 97' }, emphasis: true },
-        { id: 'ed3', label: { ko: 'E2E: Playwright 12', en: 'E2E: Playwright 12' }, emphasis: true },
-        { id: 'ed4', label: { ko: 'pnpm build', en: 'pnpm build' } },
-        { id: 'ed5', label: { ko: 'Vercel (Next.js)', en: 'Vercel (Next.js)' } },
+      steps: [
+        { nodes: [{ id: 'ed1', label: { ko: 'git push', en: 'git push' } }] },
+        {
+          parallel: true,
+          note: { ko: 'CI 병렬 잡', en: 'CI parallel jobs' },
+          nodes: [
+            { id: 'ed2', label: { ko: 'Typecheck · Vitest 97', en: 'Typecheck · Vitest 97' }, emphasis: true },
+            { id: 'ed3', label: { ko: 'E2E · Playwright 12', en: 'E2E · Playwright 12' }, emphasis: true },
+          ],
+        },
+        { nodes: [{ id: 'ed4', label: { ko: 'pnpm build', en: 'pnpm build' } }] },
+        { nodes: [{ id: 'ed5', label: { ko: 'Vercel (Next.js)', en: 'Vercel (Next.js)' } }] },
       ],
     },
     shots: [
@@ -421,17 +510,25 @@ export const projects: Project[] = [
     links: [],
     pipeline: {
       title: { ko: '출발·도착에서 경로까지', en: 'From start/end to a route' },
-      nodes: [
-        { id: 'f1', label: { ko: '출발 · 도착', en: 'Origin · destination' } },
-        { id: 'f2', label: { ko: 'ODsay · Tmap API', en: 'ODsay · Tmap API' } },
-        { id: 'f3', label: { ko: '지도 폴리라인', en: 'Map polyline' }, emphasis: true },
+      steps: [
+        { nodes: [{ id: 'f1', label: { ko: '출발 · 도착', en: 'Origin · destination' } }] },
+        { nodes: [{ id: 'f2', label: { ko: 'ODsay · Tmap API', en: 'ODsay · Tmap API' } }] },
+        { nodes: [{ id: 'f3', label: { ko: '지도 폴리라인 렌더링', en: 'Map polyline render' }, emphasis: true }] },
       ],
     },
     deploy: {
-      title: { ko: 'API 비용 방어', en: 'API cost defense' },
-      nodes: [
-        { id: 'fd1', label: { ko: 'Token Bucket', en: 'Token bucket' } },
-        { id: 'fd2', label: { ko: '24h 캐시 · Throttle', en: '24h cache · throttle' }, emphasis: true },
+      title: { ko: 'API 비용 방어 (3중)', en: 'API cost defense (3-layer)' },
+      steps: [
+        {
+          parallel: true,
+          note: { ko: '3중 동시 방어', en: '3-layer defense' },
+          nodes: [
+            { id: 'fd1', label: { ko: 'Token Bucket', en: 'Token bucket' }, emphasis: true },
+            { id: 'fd2', label: { ko: '24h 응답 캐시', en: '24h cache' }, emphasis: true },
+            { id: 'fd3', label: { ko: '프론트 Throttle', en: 'Front throttle' }, emphasis: true },
+          ],
+        },
+        { nodes: [{ id: 'fd4', label: { ko: '무료 한도 내 운영', en: 'Within free quota' } }] },
       ],
     },
     shots: [
