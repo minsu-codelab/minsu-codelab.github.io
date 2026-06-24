@@ -10,8 +10,28 @@ import { scrollToId } from '../hooks/useSmoothScroll'
 const HERO_VIDEOS = ['/hero.mp4', '/hero1.mp4']
 const CROSSFADE = 1.1 // 끝나기 n초 전부터 다음 영상으로 교차 전환
 
+// 태그라인에서 강조할 키워드 (입력/출력)
+const EMPHASIS: Record<'ko' | 'en', string[]> = {
+  ko: ['입력', '출력'],
+  en: ['input', 'output'],
+}
+
+/** 태그라인의 핵심 단어(입력/출력)를 밝은 흰색 볼드로 강조 렌더링. */
+function renderTagline(tagline: string, words: string[]) {
+  const parts = tagline.split(new RegExp(`(${words.join('|')})`, 'gi'))
+  return parts.map((part, i) =>
+    words.some((w) => w.toLowerCase() === part.toLowerCase()) ? (
+      <strong key={i} className="font-semibold text-paper">
+        {part}
+      </strong>
+    ) : (
+      <span key={i}>{part}</span>
+    ),
+  )
+}
+
 export default function Hero() {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const reduced = useReducedMotion()
   const root = useRef<HTMLElement>(null)
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
@@ -165,9 +185,9 @@ export default function Hero() {
 
         <p
           data-hero-fade
-          className="mt-8 max-w-xl break-keep text-lg text-paper/65 sm:text-xl"
+          className="mt-8 max-w-xl break-keep text-lg text-paper/55 sm:text-xl"
         >
-          {t.hero.tagline}
+          {renderTagline(t.hero.tagline, EMPHASIS[lang])}
         </p>
       </div>
 
