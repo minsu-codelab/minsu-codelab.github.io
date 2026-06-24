@@ -62,7 +62,7 @@ export const projects: Project[] = [
       ko: '북극항로의 수익성과 리스크를 숫자로 답하는 디지털 트윈',
       en: 'A digital twin that answers Arctic-route profit and risk with numbers',
     },
-    period: '2026.04 — 06',
+    period: '2026.04 ~ 06',
     kind: 'team',
     metrics: [
       { value: '40%', label: { ko: '수에즈 대비 거리 단축', en: 'shorter than the Suez route' } },
@@ -113,12 +113,12 @@ export const projects: Project[] = [
       ],
     },
     shots: [
-      { src: 'shots/arctictwin-1.jpg', caption: { ko: '① Cesium 3D 디지털 트윈 — 항로·해빙·실시간 선박 대시보드', en: '① Cesium 3D digital twin — route, sea-ice & live vessel dashboard' } },
+      { src: 'shots/arctictwin-1.jpg', caption: { ko: '① Cesium 3D 디지털 트윈: 항로·해빙·실시간 선박 대시보드', en: '① Cesium 3D digital twin — route, sea-ice & live vessel dashboard' } },
       { src: 'shots/arctictwin-2.jpg', caption: { ko: '② 위성 지도 위 항로 시각화와 분석 패널', en: '② Route visualization & analysis panels over the satellite map' } },
-      { src: 'shots/arctictwin-3.jpg', caption: { ko: '③ Fuel Analysis — 연료 소비·비용 분석', en: '③ Fuel Analysis — consumption & cost' } },
-      { src: 'shots/arctictwin-4.jpg', caption: { ko: '④ What-If 시나리오 — 조건별 항행 비교', en: '④ What-If scenarios — comparing voyage conditions' } },
-      { src: 'shots/arctictwin-5.jpg', caption: { ko: '⑤ Trend Report — 항로 리포트 생성', en: '⑤ Trend Report — voyage report generation' } },
-      { src: 'shots/arctictwin-6.jpg', caption: { ko: '⑥ 생성된 PDF 보고서 — 10p 표·차트 (북극 항로 AI 동향 보고서)', en: '⑥ Generated PDF report — 10-page tables & charts' } },
+      { src: 'shots/arctictwin-3.jpg', caption: { ko: '③ Fuel Analysis: 연료 소비·비용 분석', en: '③ Fuel Analysis — consumption & cost' } },
+      { src: 'shots/arctictwin-4.jpg', caption: { ko: '④ What-If 시나리오: 조건별 항행 비교', en: '④ What-If scenarios — comparing voyage conditions' } },
+      { src: 'shots/arctictwin-5.jpg', caption: { ko: '⑤ Trend Report: 항로 리포트 생성', en: '⑤ Trend Report — voyage report generation' } },
+      { src: 'shots/arctictwin-6.jpg', caption: { ko: '⑥ 생성된 PDF 보고서: 10p 표·차트 (북극 항로 AI 동향 보고서)', en: '⑥ Generated PDF report — 10-page tables & charts' } },
     ],
   },
   {
@@ -129,7 +129,7 @@ export const projects: Project[] = [
       ko: '드론으로 찍고 AI가 찾아내는 건물 하자 점검 SaaS',
       en: 'Drone footage in, building defects out — an inspection SaaS',
     },
-    period: '2026.04 — 06',
+    period: '2026.04 ~ 06',
     kind: 'team',
     metrics: [
       { value: '63,285', label: { ko: '직접 모은 학습 이미지', en: 'images collected & trained on' } },
@@ -179,11 +179,11 @@ export const projects: Project[] = [
       ],
     },
     shots: [
-      { src: 'shots/aeroinspect-2.jpg', caption: { ko: '① 랜딩 — 도면 없이 드론으로 3D 디지털 트윈 완성', en: '① Landing — drone-built 3D digital twin, no blueprint' } },
-      { src: 'shots/aeroinspect-1.jpg', caption: { ko: '② 직원 허브 — 점검 시작·보고서·현장 관리', en: '② Employee hub — inspection, reports & site management' } },
-      { src: 'shots/aeroinspect-7.jpg', caption: { ko: '③ 실시간 하자 검출 — 영상 위 bbox + AI 하자 분석 패널', en: '③ Real-time defect detection — live bbox + AI analysis panel' } },
-      { src: 'shots/aeroinspect-3.jpg', caption: { ko: '④ 3D 하자 리포트 뷰어 — 건물 트윈 위 하자 위치 매핑', en: '④ 3D defect report — defects mapped onto the building twin' } },
-      { src: 'shots/aeroinspect-4.jpg', caption: { ko: '⑤ 3D 리포트 — 하자 상세·평면 데이터 뷰어', en: '⑤ 3D report — defect detail & floor-plan viewer' } },
+      { src: 'shots/aeroinspect-2.jpg', caption: { ko: '① 랜딩: 도면 없이 드론으로 3D 디지털 트윈 완성', en: '① Landing — drone-built 3D digital twin, no blueprint' } },
+      { src: 'shots/aeroinspect-1.jpg', caption: { ko: '② 직원 허브: 점검 시작·보고서·현장 관리', en: '② Employee hub — inspection, reports & site management' } },
+      { src: 'shots/aeroinspect-7.jpg', caption: { ko: '③ 실시간 하자 검출: 영상 위 bbox + AI 하자 분석 패널', en: '③ Real-time defect detection — live bbox + AI analysis panel' } },
+      { src: 'shots/aeroinspect-3.jpg', caption: { ko: '④ 3D 하자 리포트 뷰어: 건물 트윈 위 하자 위치 매핑', en: '④ 3D defect report — defects mapped onto the building twin' } },
+      { src: 'shots/aeroinspect-4.jpg', caption: { ko: '⑤ 3D 리포트: 하자 상세·평면 데이터 뷰어', en: '⑤ 3D report — defect detail & floor-plan viewer' } },
     ],
   },
   {
@@ -194,7 +194,7 @@ export const projects: Project[] = [
       ko: '업로드 한 번으로 반주·키·코드·악보까지 뽑는 음악 도구',
       en: 'One upload → backing track, key, chords and score',
     },
-    period: '2026.05 — 06',
+    period: '2026.05 ~ 06',
     kind: 'solo',
     metrics: [
       { value: '15.06dB', label: { ko: '반주 분리 SDR (실측)', en: 'backing-track SDR (measured)' } },
@@ -244,9 +244,9 @@ export const projects: Project[] = [
       ],
     },
     shots: [
-      { src: 'shots/rechord-1.jpg', caption: { ko: '① 랜딩 — 듣는 음악에서 직접 연주하는 음악으로', en: '① Landing — from listening to playing' } },
-      { src: 'shots/rechord-2.jpg', caption: { ko: '② 기능 소개 — 분리·키 변환·채보 흐름', en: '② Features — separation, transposition, transcription' } },
-      { src: 'shots/rechord-4.jpg', caption: { ko: '③ 변환 작업 — 음원 가져오기 + 모드 선택(Quick MR·Karaoke·Stems·Pro)', en: '③ Convert — import audio + pick a mode (Quick MR · Karaoke · Stems · Pro)' } },
+      { src: 'shots/rechord-1.jpg', caption: { ko: '① 랜딩: 듣는 음악에서 직접 연주하는 음악으로', en: '① Landing — from listening to playing' } },
+      { src: 'shots/rechord-2.jpg', caption: { ko: '② 기능 소개: 분리·키 변환·채보 흐름', en: '② Features — separation, transposition, transcription' } },
+      { src: 'shots/rechord-4.jpg', caption: { ko: '③ 변환 작업: 음원 가져오기 + 모드 선택(Quick MR·Karaoke·Stems·Pro)', en: '③ Convert — import audio + pick a mode (Quick MR · Karaoke · Stems · Pro)' } },
       { src: 'shots/rechord-3.jpg', caption: { ko: '④ 작업 화면 / 라이브러리', en: '④ Workspace / library' } },
     ],
   },
@@ -258,7 +258,7 @@ export const projects: Project[] = [
       ko: '엑셀 수작업 견적을 규칙 엔진으로 옮긴 방화셔터 스마트팩토리',
       en: 'A fire-shutter smart factory that turned Excel quoting into a rule engine',
     },
-    period: '2026.05 — 06',
+    period: '2026.05 ~ 06',
     kind: 'solo',
     metrics: [
       { value: '16,000', label: { ko: '백엔드 코드 줄 (1인)', en: 'lines of backend, solo' } },
@@ -309,11 +309,11 @@ export const projects: Project[] = [
       ],
     },
     shots: [
-      { src: 'shots/fde-5.jpg', caption: { ko: '① GitHub 조직 페이지 (fde-factory.github.io) — 스마트팩토리 소개', en: '① GitHub org page (fde-factory.github.io) — smart-factory intro' } },
-      { src: 'shots/fde-2.jpg', caption: { ko: '② 실적 대시보드 — 견적·작업지시·생산 KPI', en: '② Performance dashboard — quote, work-order & production KPIs' } },
-      { src: 'shots/fde-1.jpg', caption: { ko: '③ 견적 — 7개 모델 제작 규칙 엔진 (원본 엑셀 양식 보존)', en: '③ Quote — rule engine for 7 models, Excel form preserved' } },
+      { src: 'shots/fde-5.jpg', caption: { ko: '① GitHub 조직 페이지 (fde-factory.github.io): 스마트팩토리 소개', en: '① GitHub org page (fde-factory.github.io) — smart-factory intro' } },
+      { src: 'shots/fde-2.jpg', caption: { ko: '② 실적 대시보드: 견적·작업지시·생산 KPI', en: '② Performance dashboard — quote, work-order & production KPIs' } },
+      { src: 'shots/fde-1.jpg', caption: { ko: '③ 견적: 7개 모델 제작 규칙 엔진 (원본 엑셀 양식 보존)', en: '③ Quote — rule engine for 7 models, Excel form preserved' } },
       { src: 'shots/fde-3.jpg', caption: { ko: '④ 작업지시 / 공정 보드', en: '④ Work-order / process board' } },
-      { src: 'shots/fde-4.jpg', caption: { ko: '⑤ 품질관리서 발급 — 자재 종합 검사', en: '⑤ QC certificate issuing — material inspection' } },
+      { src: 'shots/fde-4.jpg', caption: { ko: '⑤ 품질관리서 발급: 자재 종합 검사', en: '⑤ QC certificate issuing — material inspection' } },
     ],
   },
   {
@@ -370,9 +370,9 @@ export const projects: Project[] = [
       ],
     },
     shots: [
-      { src: 'shots/closet-2.jpg', caption: { ko: '① 랜딩 — "가진 옷을 알면 충동구매가 멈춥니다"', en: '① Landing — "know what you own, stop impulse buys"' } },
-      { src: 'shots/closet-3.jpg', caption: { ko: '② 옷장 대시보드 — 카테고리·색상 필터', en: '② Wardrobe dashboard — category & color filters' } },
-      { src: 'shots/closet-1.jpg', caption: { ko: '③ 3D 옷장 뷰어 — 행거·선반·서랍에 옷 배치', en: '③ 3D wardrobe — garments across rods, shelves & drawers' } },
+      { src: 'shots/closet-2.jpg', caption: { ko: '① 랜딩: "가진 옷을 알면 충동구매가 멈춥니다"', en: '① Landing — "know what you own, stop impulse buys"' } },
+      { src: 'shots/closet-3.jpg', caption: { ko: '② 옷장 대시보드: 카테고리·색상 필터', en: '② Wardrobe dashboard — category & color filters' } },
+      { src: 'shots/closet-1.jpg', caption: { ko: '③ 3D 옷장 뷰어: 행거·선반·서랍에 옷 배치', en: '③ 3D wardrobe — garments across rods, shelves & drawers' } },
     ],
   },
   {
@@ -384,7 +384,7 @@ export const projects: Project[] = [
       ko: '펫 키우기 앱에 붙인 대중교통 길찾기 모듈 (단독 담당)',
       en: 'A transit-routing module I owned inside a pet-care app',
     },
-    period: '2026.02 — 03',
+    period: '2026.02 ~ 03',
     kind: 'team',
     metrics: [],
     paar: {
@@ -423,7 +423,7 @@ export const projects: Project[] = [
       ],
     },
     shots: [
-      { src: 'shots/eggtalk-1.jpg', caption: { ko: 'MS 모듈 — Kakao 지도 기반 대중교통 길찾기 화면 (로컬 실행)', en: 'MS module — Kakao-map transit routing screen (local run)' } },
+      { src: 'shots/eggtalk-1.jpg', caption: { ko: 'MS 모듈: Kakao 지도 기반 대중교통 길찾기 화면 (로컬 실행)', en: 'MS module — Kakao-map transit routing screen (local run)' } },
     ],
   },
 ]

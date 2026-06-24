@@ -11,7 +11,7 @@ export interface TimelineEntry {
 // 최신순 정렬
 export const timeline: TimelineEntry[] = [
   {
-    period: '2025.12 — 2026.06',
+    period: '2025.12 ~ 2026.06',
     title: { ko: 'AI 웹서비스 풀스택 부트캠프', en: 'AI Web Full-Stack Bootcamp' },
     org: { ko: '코드랩 아카데미', en: 'Codelab Academy' },
     desc: {
@@ -21,7 +21,7 @@ export const timeline: TimelineEntry[] = [
     kind: 'edu',
   },
   {
-    period: '2021.08 — 2025.10',
+    period: '2021.08 ~ 2025.10',
     title: { ko: '방화셔터 설계 · 현장 관리 (PM)', en: 'Fire-Shutter Design & Site Manager (PM)' },
     org: { ko: '(주)주일기업', en: 'Juil Enterprise Co., Ltd.' },
     desc: {
@@ -31,7 +31,7 @@ export const timeline: TimelineEntry[] = [
     kind: 'work',
   },
   {
-    period: '2015.03 — 2020.02',
+    period: '2015.03 ~ 2020.02',
     title: { ko: '전기과 졸업', en: 'B.Eng. Electrical Engineering' },
     org: { ko: '연성대학교', en: 'Yeonsung University' },
     desc: {
