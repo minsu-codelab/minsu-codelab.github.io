@@ -47,11 +47,11 @@ export default function Gallery({ shots, name }: { shots: Shot[]; name: string }
   return (
     <div className="mt-10">
       <div className="mb-3 flex items-center justify-between">
-        <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-paper/40">
+        <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-paper/55">
           <span className="inline-block h-px w-6 bg-paper/30" />
           {lang === 'ko' ? '화면' : 'Screens'}
         </div>
-        <span className="font-mono text-[11px] text-paper/35">
+        <span className="font-mono text-[11px] text-paper/50">
           {String(idx + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}
         </span>
       </div>

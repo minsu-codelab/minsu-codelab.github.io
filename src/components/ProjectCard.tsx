@@ -24,7 +24,7 @@ function LinkPill({ link, label }: { link: ProjectLink; label: string }) {
   )
 }
 
-export default function ProjectCard({ project }: { project: Project }) {
+export default function ProjectCard({ project, total }: { project: Project; total: number }) {
   const { lang, t } = useLang()
 
   const linkLabel: Record<ProjectLink['kind'], string> = {
@@ -56,19 +56,24 @@ export default function ProjectCard({ project }: { project: Project }) {
       {/* 좌측: 대형 인덱스 (데스크톱 sticky) */}
       <div className="lg:w-40">
         <div className="lg:sticky lg:top-28">
-          <span
-            className={[
-              'font-display font-semibold leading-none tracking-tightest',
-              project.muted ? 'text-5xl text-paper/20' : 'text-7xl text-stroke',
-            ].join(' ')}
-          >
-            {project.index}
-          </span>
-          <div className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-paper/40">
+          <div className="flex items-baseline gap-2">
+            <span
+              className={[
+                'font-display font-semibold leading-none tracking-tightest',
+                project.muted ? 'text-5xl text-paper/25' : 'text-7xl text-stroke',
+              ].join(' ')}
+            >
+              {project.index}
+            </span>
+            <span className="font-mono text-base text-paper/45">
+              / {String(total).padStart(2, '0')}
+            </span>
+          </div>
+          <div className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-paper/55">
             {project.period}
           </div>
           <div className="mt-1.5">
-            <span className="inline-block rounded-full border border-paper/15 px-2.5 py-0.5 text-[10px] uppercase tracking-[0.15em] text-paper/50">
+            <span className="inline-block rounded-full border border-paper/20 px-2.5 py-0.5 text-[10px] uppercase tracking-[0.15em] text-paper/65">
               {project.kind === 'team' ? t.work.team : t.work.solo}
             </span>
           </div>
@@ -80,7 +85,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         <h3 className="font-display text-3xl font-semibold tracking-tightest sm:text-4xl">
           {project.name}
         </h3>
-        <p className="mt-3 max-w-2xl break-keep text-lg leading-relaxed text-paper/70">
+        <p className="mt-3 max-w-2xl break-keep text-lg leading-relaxed text-paper/85">
           {project.tagline[lang]}
         </p>
 
@@ -92,7 +97,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 <div className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
                   {m.value}
                 </div>
-                <div className="mt-1.5 break-keep text-[11px] leading-snug text-paper/45">
+                <div className="mt-1.5 text-balance break-keep text-[12px] leading-snug text-paper/65">
                   {m.label[lang]}
                 </div>
               </div>
@@ -109,13 +114,13 @@ export default function ProjectCard({ project }: { project: Project }) {
         <div className="mt-9 space-y-4">
           {paarRows.map((row, i) => (
             <div key={i} className="grid gap-1.5 sm:grid-cols-[88px_1fr] sm:gap-5">
-              <div className="pt-0.5 text-[11px] uppercase tracking-[0.2em] text-paper/35">
+              <div className="pt-0.5 text-[11px] font-medium uppercase tracking-[0.2em] text-paper/55">
                 {row.label}
               </div>
               <p
                 className={[
-                  'break-keep leading-relaxed',
-                  row.emphasis ? 'text-paper/90' : 'text-paper/65',
+                  'break-keep text-[15px] leading-relaxed sm:text-base',
+                  row.emphasis ? 'font-medium text-paper' : 'text-paper/80',
                 ].join(' ')}
               >
                 {row.text}
@@ -139,7 +144,7 @@ export default function ProjectCard({ project }: { project: Project }) {
           {project.stack.map((s) => (
             <span
               key={s}
-              className="rounded-md border border-paper/10 px-2.5 py-1 font-mono text-[12px] text-paper/50"
+              className="rounded-md border border-paper/15 px-2.5 py-1 font-mono text-[12px] text-paper/65"
             >
               {s}
             </span>

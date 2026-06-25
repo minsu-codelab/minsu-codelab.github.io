@@ -19,6 +19,16 @@
     overflow-wrap: break-word;
   }
 
+  /* 줄바꿈 다듬기: 제목은 줄 길이 균형, 본문은 마지막 줄 외톨이 단어 방지 */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+
   /* Lenis smooth scroll */
   html.lenis,
   html.lenis body {

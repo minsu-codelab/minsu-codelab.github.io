@@ -18,7 +18,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="text-lg leading-relaxed text-paper/70"
+              className="text-lg leading-relaxed text-paper/85"
             >
               {p}
             </motion.p>
@@ -37,10 +37,10 @@ export default function About() {
               className="group rounded-xl border border-paper/10 bg-paper/[0.02] p-5 transition-colors hover:border-paper/30"
             >
               <div className="flex items-baseline gap-3">
-                <span className="font-mono text-xs text-paper/40">0{i + 1}</span>
-                <h3 className="font-display text-lg font-medium">{pil.title}</h3>
+                <span className="font-mono text-xs text-paper/55">0{i + 1}</span>
+                <h3 className="font-display text-lg font-semibold">{pil.title}</h3>
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-paper/55">{pil.desc}</p>
+              <p className="mt-2 text-[15px] leading-relaxed text-paper/75">{pil.desc}</p>
             </motion.div>
           ))}
         </div>

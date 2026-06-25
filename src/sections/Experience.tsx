@@ -28,7 +28,7 @@ export default function Experience() {
               </span>
 
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                <span className="font-mono text-xs text-paper/45">{entry.period}</span>
+                <span className="font-mono text-xs text-paper/60">{entry.period}</span>
                 <span
                   className={[
                     'rounded-full border px-2 py-0.5 text-[10px] uppercase tracking-[0.15em]',
@@ -42,8 +42,8 @@ export default function Experience() {
               </div>
 
               <h3 className="mt-2 font-display text-xl font-medium">{entry.title[lang]}</h3>
-              <p className="text-sm text-paper/60">{entry.org[lang]}</p>
-              <p className="mt-2 max-w-xl text-sm leading-relaxed text-paper/50">
+              <p className="text-sm text-paper/75">{entry.org[lang]}</p>
+              <p className="mt-2 max-w-xl text-sm leading-relaxed text-paper/70">
                 {entry.desc[lang]}
               </p>
             </motion.div>

@@ -96,7 +96,7 @@ export default function FlowGraph({ flow, kicker, compact = false }: FlowGraphPr
         }}
       />
       <div className="pointer-events-none absolute inset-0 rounded-lg border" style={{ borderColor: node.emphasis ? 'rgba(250,250,250,0.28)' : 'rgba(250,250,250,0.14)' }} />
-      <span className={['relative z-10 block break-keep leading-snug', txt, node.emphasis ? 'font-medium text-paper' : 'text-paper/75'].join(' ')}>
+      <span className={['relative z-10 block text-balance break-keep leading-snug', txt, node.emphasis ? 'font-semibold text-paper' : 'text-paper/85'].join(' ')}>
         {node.label[lang]}
       </span>
     </div>
@@ -114,11 +114,11 @@ export default function FlowGraph({ flow, kicker, compact = false }: FlowGraphPr
 
   return (
     <div ref={scope} className="w-full">
-      <div className="mb-2 flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.25em] text-paper/40">
-        <span className="inline-block h-px w-6 bg-paper/30" />
+      <div className="mb-2 flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.25em] text-paper/55">
+        <span className="inline-block h-px w-6 bg-paper/40" />
         {kicker}
       </div>
-      {!compact && <div className="mb-6 text-center font-mono text-sm text-paper/60">{flow.title[lang]}</div>}
+      {!compact && <div className="mb-6 text-center font-mono text-sm text-paper/70">{flow.title[lang]}</div>}
 
       <div className="flex flex-col items-stretch justify-center md:flex-row">
         {flow.steps.map((step, i) => (
@@ -127,7 +127,7 @@ export default function FlowGraph({ flow, kicker, compact = false }: FlowGraphPr
             {step.parallel ? (
               <div data-col className="relative flex flex-1 flex-col gap-1.5 rounded-xl border border-dashed border-paper/25 p-2.5 md:gap-2">
                 {step.note && (
-                  <span className="text-center text-[9px] uppercase tracking-[0.2em] text-paper/45">
+                  <span className="text-center text-[10px] uppercase tracking-[0.2em] text-paper/60">
                     {step.note[lang]}
                   </span>
                 )}

@@ -21,7 +21,7 @@ export default function SectionHeading({
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.5 }}
         className={[
-          'flex items-center gap-3 text-[11px] uppercase tracking-[0.35em] text-paper/40',
+          'flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.35em] text-paper/55',
           align === 'center' ? 'justify-center' : '',
         ].join(' ')}
       >
@@ -46,7 +46,7 @@ export default function SectionHeading({
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.6, delay: 0.15 }}
           className={[
-            'mt-5 max-w-xl text-base text-paper/55',
+            'mt-5 max-w-xl text-base text-paper/70',
             align === 'center' ? 'mx-auto' : '',
           ].join(' ')}
         >

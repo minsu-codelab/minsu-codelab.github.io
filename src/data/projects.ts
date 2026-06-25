@@ -348,12 +348,12 @@ export const projects: Project[] = [
         en: 'Each fire-shutter model had finicky build rules, so only veterans could quote in Excel — and nothing was traceable from quote to inspection.',
       },
       approach: {
-        ko: '숙련자 머릿속 규칙을 코드로 옮기되, 거래처와 인증기관이 믿고 보는 원본 엑셀 양식은 100% 그대로 살려야 했습니다.',
-        en: 'I had to move the veterans’ rules into code while keeping the original Excel forms — the ones clients and certifiers trust — 100% intact.',
+        ko: '같은 현장에서 4년간 일하며, 숙련자가 견적을 어떻게 계산하는지와 생산직이 어디서 막히는지를 직접 묻고 관찰했습니다. 그 암묵지를 코드로 옮기되, 거래처와 인증기관이 믿고 보는 원본 엑셀 양식은 100% 그대로 살려야 했습니다.',
+        en: 'Having worked the same floor for four years, I asked the veterans exactly how they calculated quotes and watched where the production staff got stuck. I had to move that tacit knowledge into code while keeping the original Excel forms — the ones clients and certifiers trust — 100% intact.',
       },
       action: {
-        ko: '7개 모델 제작 규칙을 규칙 엔진으로 코드화하고, 견적→발주→승인→품질→작업지시→실측을 하나로 잇는 추적 구조에 실시간 사내 메신저까지 붙였습니다. (제가 4년간 일한 도메인이라 규칙이 손에 익었습니다.)',
-        en: 'I codified 7 models’ rules into a rule engine and built a single traceable thread from quote → order → approval → QC → work-order → measurement, plus a real-time in-house messenger. (This was my own domain for four years, so the rules were second nature.)',
+        ko: '견적 담당자·생산직과 직접 이야기하며 7개 모델의 제작 규칙(제작가로·샤프트 단수·마구리 등)을 하나씩 규칙 엔진으로 옮겼고, 견적→발주→승인→품질→작업지시→실측을 잇는 추적 구조와 실시간 사내 메신저까지 붙였습니다. 고령 생산직도 바로 쓸 수 있도록 화면 동선을 최대한 단순하게 설계했습니다.',
+        en: 'Talking directly with the estimators and production workers, I moved each of the 7 models’ build rules into a rule engine one by one, then wired a traceable thread from quote → order → approval → QC → work-order → measurement plus a real-time in-house messenger. I kept the UI flow as simple as possible so even older production workers could use it right away.',
       },
       result: {
         ko: '이제 비숙련자도 견적을 낼 수 있고, 핵심 계산은 골든 테스트 36건으로 묶어 두었습니다. 백엔드 16,000줄·27테이블·23 API를 혼자 만들어 Fly.io에 올려 운영 중입니다.',

@@ -12,7 +12,7 @@ export default function Projects() {
 
       <div className="mt-12">
         {projects.map((p) => (
-          <ProjectCard key={p.id} project={p} />
+          <ProjectCard key={p.id} project={p} total={projects.length} />
         ))}
       </div>
     </section>

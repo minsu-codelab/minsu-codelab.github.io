@@ -40,7 +40,7 @@ export default function Contact() {
           {t.contact.heading}
         </motion.h2>
 
-        <p className="mt-6 max-w-xl text-lg text-paper/55">{t.contact.line}</p>
+        <p className="mt-6 max-w-xl text-lg leading-relaxed text-paper/75">{t.contact.line}</p>
 
         <div className="mt-10 grid gap-px overflow-hidden rounded-xl border border-paper/10 bg-paper/10 sm:grid-cols-2">
           <a
@@ -48,7 +48,7 @@ export default function Contact() {
             className="group flex items-center justify-between bg-ink p-6 transition-colors hover:bg-paper/[0.04]"
           >
             <div>
-              <div className="text-[11px] uppercase tracking-[0.2em] text-paper/40">
+              <div className="text-[11px] uppercase tracking-[0.2em] text-paper/55">
                 {t.contact.email}
               </div>
               <div className="mt-1 font-display text-lg">{profile.email}</div>
@@ -62,7 +62,7 @@ export default function Contact() {
             className="group flex items-center justify-between bg-ink p-6 transition-colors hover:bg-paper/[0.04]"
           >
             <div>
-              <div className="text-[11px] uppercase tracking-[0.2em] text-paper/40">
+              <div className="text-[11px] uppercase tracking-[0.2em] text-paper/55">
                 {t.contact.github}
               </div>
               <div className="mt-1 font-display text-lg">{profile.githubHandle}</div>
@@ -71,7 +71,7 @@ export default function Contact() {
           </a>
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-paper/10 pt-6 text-xs text-paper/35 sm:flex-row sm:items-center">
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-paper/10 pt-6 text-xs text-paper/50 sm:flex-row sm:items-center">
           <span>
             © 2026 {profile.nameEn} · {profile.location[lang]}
           </span>

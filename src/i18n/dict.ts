@@ -123,8 +123,8 @@ const ko: Dict = {
   },
   contact: {
     label: '연락처',
-    heading: '같이 만들어요',
-    line: '새 기술을 실제 제품으로 이어붙이는 일에 관심 있는 팀이라면 편하게 연락 주세요.',
+    heading: '함께 일하고 싶습니다',
+    line: '기획부터 배포까지 직접 만들어 본 신입 개발자입니다. 좋은 팀에 합류해 제대로 배우고 빠르게 기여하고 싶습니다. 편하게 연락 주세요.',
     email: '이메일',
     github: '깃허브',
     backToTop: '맨 위로',
@@ -198,8 +198,8 @@ const en: Dict = {
   },
   contact: {
     label: 'Contact',
-    heading: "Let's build something",
-    line: 'If your team cares about turning new tech into real products, I’d love to talk.',
+    heading: "Let's work together",
+    line: "A junior developer who's taken products from planning to deployment. I'd love to join a strong team, learn fast and contribute. Feel free to reach out.",
     email: 'Email',
     github: 'GitHub',
     backToTop: 'Back to top',
