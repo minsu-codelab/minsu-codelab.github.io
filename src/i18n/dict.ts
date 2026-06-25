@@ -86,7 +86,7 @@ const ko: Dict = {
       },
       {
         title: '깨질 걸 가정하고 만든다',
-        desc: 'DB가 죽으면 스냅샷으로, API 키가 없으면 폴백으로. 잘 되는 경우만 짜면 5%가 사용자에게 그대로 갑니다.',
+        desc: 'DB가 죽으면 스냅샷으로, API 키가 없으면 폴백으로. 실패할 상황을 미리 가정하고 대비책을 깔아둡니다. 잘 되는 경우만 짜두면, 가끔 터지는 문제가 그대로 사용자에게 가니까요.',
       },
       {
         title: '기획부터 배포까지',
@@ -161,7 +161,7 @@ const en: Dict = {
       },
       {
         title: 'Built assuming it breaks',
-        desc: 'DB down? Fall back to a snapshot. No API key? Fall back to a stub. Code only the happy path and 5% reaches the user broken.',
+        desc: 'DB down? Fall back to a snapshot. No API key? Fall back to a stub. I plan for failure up front — code only the happy path and the occasional breakage lands straight on the user.',
       },
       {
         title: 'Plan to deploy',
