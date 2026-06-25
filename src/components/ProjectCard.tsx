@@ -16,7 +16,7 @@ function LinkPill({ link, label }: { link: ProjectLink; label: string }) {
       href={link.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group/link inline-flex items-center gap-1.5 rounded-full border border-paper/20 px-4 py-2 text-[13px] font-medium text-paper/80 transition-all hover:border-paper hover:bg-paper hover:text-ink"
+      className="group/link inline-flex items-center gap-1.5 rounded-full border border-paper/20 px-4 py-2 text-[14px] font-medium text-paper/80 transition-all hover:border-paper hover:bg-paper hover:text-ink"
     >
       {label}
       <ArrowIcon />
@@ -65,15 +65,15 @@ export default function ProjectCard({ project, total }: { project: Project; tota
             >
               {project.index}
             </span>
-            <span className="font-mono text-base text-paper/45">
+            <span className="font-mono text-base text-paper/60">
               / {String(total).padStart(2, '0')}
             </span>
           </div>
-          <div className="mt-4 font-mono text-[11px] uppercase tracking-[0.2em] text-paper/55">
+          <div className="mt-4 font-mono text-[12px] uppercase tracking-[0.2em] text-paper/70">
             {project.period}
           </div>
           <div className="mt-1.5">
-            <span className="inline-block rounded-full border border-paper/20 px-2.5 py-0.5 text-[10px] uppercase tracking-[0.15em] text-paper/65">
+            <span className="inline-block rounded-full border border-paper/20 px-2.5 py-0.5 text-[11px] uppercase tracking-[0.15em] text-paper/80">
               {project.kind === 'team' ? t.work.team : t.work.solo}
             </span>
           </div>
@@ -97,7 +97,7 @@ export default function ProjectCard({ project, total }: { project: Project; tota
                 <div className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
                   {m.value}
                 </div>
-                <div className="mt-1.5 text-balance break-keep text-[12px] leading-snug text-paper/65">
+                <div className="mt-1.5 text-balance break-keep text-[12px] leading-snug text-paper/80">
                   {m.label[lang]}
                 </div>
               </div>
@@ -114,7 +114,7 @@ export default function ProjectCard({ project, total }: { project: Project; tota
         <div className="mt-9 space-y-4">
           {paarRows.map((row, i) => (
             <div key={i} className="grid gap-1.5 sm:grid-cols-[88px_1fr] sm:gap-5">
-              <div className="pt-0.5 text-[11px] font-medium uppercase tracking-[0.2em] text-paper/55">
+              <div className="pt-0.5 text-[12px] font-medium uppercase tracking-[0.2em] text-paper/70">
                 {row.label}
               </div>
               <p
@@ -144,7 +144,7 @@ export default function ProjectCard({ project, total }: { project: Project; tota
           {project.stack.map((s) => (
             <span
               key={s}
-              className="rounded-md border border-paper/15 px-2.5 py-1 font-mono text-[12px] text-paper/65"
+              className="rounded-md border border-paper/15 px-2.5 py-1 font-mono text-[12px] text-paper/80"
             >
               {s}
             </span>

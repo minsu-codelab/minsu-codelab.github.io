@@ -30,13 +30,13 @@ export default function Skills() {
                   <h3 className="font-display text-[15px] font-semibold tracking-[0.04em] text-paper/95">
                     {cat.label[lang]}
                   </h3>
-                  <span className="font-mono text-xs text-paper/50">0{ci + 1}</span>
+                  <span className="font-mono text-xs text-paper/65">0{ci + 1}</span>
                 </div>
                 <ul className="flex flex-wrap gap-2">
                   {cat.items.map((item) => (
                     <li
                       key={item}
-                      className="group flex items-center gap-2 rounded-full border border-paper/15 bg-paper/[0.05] px-3 py-1.5 text-[13px] text-paper/85 transition-all hover:border-paper/40 hover:bg-paper/[0.08] hover:text-paper"
+                      className="group flex items-center gap-2 rounded-full border border-paper/15 bg-paper/[0.05] px-3 py-1.5 text-[14px] text-paper/85 transition-all hover:border-paper/40 hover:bg-paper/[0.08] hover:text-paper"
                     >
                       <TechIcon name={item} />
                       {item}

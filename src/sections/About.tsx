@@ -37,7 +37,7 @@ export default function About() {
               className="group rounded-xl border border-paper/10 bg-paper/[0.02] p-5 transition-colors hover:border-paper/30"
             >
               <div className="flex items-baseline gap-3">
-                <span className="font-mono text-xs text-paper/55">0{i + 1}</span>
+                <span className="font-mono text-xs text-paper/70">0{i + 1}</span>
                 <h3 className="font-display text-lg font-semibold">{pil.title}</h3>
               </div>
               <p className="mt-2 text-[15px] leading-relaxed text-paper/75">{pil.desc}</p>

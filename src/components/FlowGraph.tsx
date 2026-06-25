@@ -77,7 +77,7 @@ export default function FlowGraph({ flow, kicker, compact = false }: FlowGraphPr
   }, [reduced, lang])
 
   const pad = compact ? 'px-3 py-2.5 min-h-[42px]' : 'px-4 py-3 min-h-[52px]'
-  const txt = compact ? 'text-[12px]' : 'text-[13px]'
+  const txt = compact ? 'text-[12px]' : 'text-[14px]'
 
   const Node = ({ node }: { node: FlowNode }) => (
     <div
@@ -114,7 +114,7 @@ export default function FlowGraph({ flow, kicker, compact = false }: FlowGraphPr
 
   return (
     <div ref={scope} className="w-full">
-      <div className="mb-2 flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.25em] text-paper/55">
+      <div className="mb-2 flex items-center justify-center gap-2 text-[12px] uppercase tracking-[0.25em] text-paper/70">
         <span className="inline-block h-px w-6 bg-paper/40" />
         {kicker}
       </div>
@@ -127,7 +127,7 @@ export default function FlowGraph({ flow, kicker, compact = false }: FlowGraphPr
             {step.parallel ? (
               <div data-col className="relative flex flex-1 flex-col gap-1.5 rounded-xl border border-dashed border-paper/25 p-2.5 md:gap-2">
                 {step.note && (
-                  <span className="text-center text-[10px] uppercase tracking-[0.2em] text-paper/60">
+                  <span className="text-center text-[11px] uppercase tracking-[0.2em] text-paper/60">
                     {step.note[lang]}
                   </span>
                 )}

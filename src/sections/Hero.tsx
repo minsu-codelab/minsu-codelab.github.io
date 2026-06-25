@@ -159,7 +159,7 @@ export default function Hero() {
       <div data-hero-parallax className="mx-auto w-full max-w-6xl">
         <div
           data-hero-fade
-          className="mb-7 flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.3em] text-paper/50"
+          className="mb-7 flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.3em] text-paper/65"
         >
           <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-paper" />
           {t.hero.role}
@@ -185,7 +185,7 @@ export default function Hero() {
 
         <p
           data-hero-fade
-          className="mt-8 max-w-xl break-keep text-lg text-paper/55 sm:text-xl"
+          className="mt-8 max-w-xl break-keep text-lg text-paper/70 sm:text-xl"
         >
           {renderTagline(t.hero.tagline, EMPHASIS[lang])}
         </p>
@@ -195,7 +195,7 @@ export default function Hero() {
       <button
         data-hero-fade
         onClick={() => scrollToId('about')}
-        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-paper/40 transition-colors hover:text-paper/80"
+        className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[11px] uppercase tracking-[0.3em] text-paper/55 transition-colors hover:text-paper/80"
       >
         {t.hero.scroll}
         <span className="relative block h-9 w-px overflow-hidden bg-paper/20">

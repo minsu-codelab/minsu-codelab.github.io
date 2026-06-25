@@ -31,10 +31,10 @@ export default function Experience() {
                 <span className="font-mono text-xs text-paper/60">{entry.period}</span>
                 <span
                   className={[
-                    'rounded-full border px-2 py-0.5 text-[10px] uppercase tracking-[0.15em]',
+                    'rounded-full border px-2 py-0.5 text-[11px] uppercase tracking-[0.15em]',
                     entry.kind === 'work'
                       ? 'border-paper/30 text-paper/70'
-                      : 'border-paper/10 text-paper/40',
+                      : 'border-paper/10 text-paper/55',
                   ].join(' ')}
                 >
                   {entry.kind === 'work' ? 'Work' : 'Education'}

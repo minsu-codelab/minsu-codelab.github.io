@@ -24,7 +24,7 @@ export default function Contact() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-3 text-[11px] uppercase tracking-[0.35em] text-paper/40"
+          className="flex items-center gap-3 text-[12px] uppercase tracking-[0.35em] text-paper/55"
         >
           <span className="inline-block h-px w-8 bg-paper/40" />
           {t.contact.label}
@@ -48,12 +48,12 @@ export default function Contact() {
             className="group flex items-center justify-between bg-ink p-6 transition-colors hover:bg-paper/[0.04]"
           >
             <div>
-              <div className="text-[11px] uppercase tracking-[0.2em] text-paper/55">
+              <div className="text-[12px] uppercase tracking-[0.2em] text-paper/70">
                 {t.contact.email}
               </div>
               <div className="mt-1 font-display text-lg">{profile.email}</div>
             </div>
-            <span className="text-paper/40 transition-transform group-hover:translate-x-1">→</span>
+            <span className="text-paper/55 transition-transform group-hover:translate-x-1">→</span>
           </a>
           <a
             href={profile.github}
@@ -62,16 +62,16 @@ export default function Contact() {
             className="group flex items-center justify-between bg-ink p-6 transition-colors hover:bg-paper/[0.04]"
           >
             <div>
-              <div className="text-[11px] uppercase tracking-[0.2em] text-paper/55">
+              <div className="text-[12px] uppercase tracking-[0.2em] text-paper/70">
                 {t.contact.github}
               </div>
               <div className="mt-1 font-display text-lg">{profile.githubHandle}</div>
             </div>
-            <span className="text-paper/40 transition-transform group-hover:translate-x-1">→</span>
+            <span className="text-paper/55 transition-transform group-hover:translate-x-1">→</span>
           </a>
         </div>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-paper/10 pt-6 text-xs text-paper/50 sm:flex-row sm:items-center">
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-paper/10 pt-6 text-xs text-paper/65 sm:flex-row sm:items-center">
           <span>
             © 2026 {profile.nameEn} · {profile.location[lang]}
           </span>

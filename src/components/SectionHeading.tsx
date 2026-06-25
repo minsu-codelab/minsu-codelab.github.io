@@ -21,7 +21,7 @@ export default function SectionHeading({
         viewport={{ once: true, margin: '-80px' }}
         transition={{ duration: 0.5 }}
         className={[
-          'flex items-center gap-3 text-[11px] font-medium uppercase tracking-[0.35em] text-paper/55',
+          'flex items-center gap-3 text-[12px] font-medium uppercase tracking-[0.35em] text-paper/70',
           align === 'center' ? 'justify-center' : '',
         ].join(' ')}
       >

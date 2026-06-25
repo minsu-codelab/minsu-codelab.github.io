@@ -47,11 +47,11 @@ export default function Gallery({ shots, name }: { shots: Shot[]; name: string }
   return (
     <div className="mt-10">
       <div className="mb-3 flex items-center justify-between">
-        <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-paper/55">
+        <div className="flex items-center gap-2 text-[12px] uppercase tracking-[0.25em] text-paper/70">
           <span className="inline-block h-px w-6 bg-paper/30" />
           {lang === 'ko' ? '화면' : 'Screens'}
         </div>
-        <span className="font-mono text-[11px] text-paper/50">
+        <span className="font-mono text-[12px] text-paper/65">
           {String(idx + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}
         </span>
       </div>
@@ -86,7 +86,7 @@ export default function Gallery({ shots, name }: { shots: Shot[]; name: string }
 
         {/* 캡션 */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 to-transparent p-4 pt-10">
-          <p className="break-keep text-[13px] text-paper/90">{active.caption[lang]}</p>
+          <p className="break-keep text-[14px] text-paper/90">{active.caption[lang]}</p>
         </div>
 
         {/* 좌우 버튼 (호버 시) */}
@@ -138,7 +138,7 @@ export default function Gallery({ shots, name }: { shots: Shot[]; name: string }
             className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-ink/95 p-4 backdrop-blur-sm sm:p-10"
             onClick={() => setLightbox(false)}
           >
-            <div className="absolute right-5 top-5 text-xs uppercase tracking-[0.2em] text-paper/50">
+            <div className="absolute right-5 top-5 text-xs uppercase tracking-[0.2em] text-paper/65">
               {name} · Esc
             </div>
             <motion.img
