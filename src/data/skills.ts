@@ -21,7 +21,7 @@ export const skills: SkillCategory[] = [
   {
     key: 'backend',
     label: { ko: '백엔드 · 서버', en: 'Backend · Server' },
-    items: ['FastAPI', 'Node.js', 'tRPC', 'WebSocket', 'SQLAlchemy', 'Drizzle'],
+    items: ['FastAPI', 'Node.js', 'tRPC', 'WebSocket', 'SQLAlchemy', 'Drizzle', 'Typer', 'Rich', 'SSE'],
   },
   {
     key: 'database',
@@ -31,7 +31,17 @@ export const skills: SkillCategory[] = [
   {
     key: 'devops',
     label: { ko: 'DevOps · 인프라', en: 'DevOps · Infra' },
-    items: ['Docker', 'GitHub Actions', 'Fly.io', 'Vercel', 'AWS EC2', 'GCP', 'Cloudflare'],
+    items: ['Docker', 'GitHub Actions', 'Fly.io', 'Vercel', 'AWS EC2', 'GCP', 'Cloudflare', 'uv', 'WSL2', 'mypy', 'ruff', 'pytest'],
+  },
+  {
+    key: 'ai-llm',
+    label: { ko: 'AI · LLM', en: 'AI · LLM' },
+    items: ['Claude (Claude Code)', 'Gemini', 'llama.cpp', 'LM Studio', 'Qwen-Coder', 'RAG', 'sqlite-vec', 'FastEmbed', 'MCP', 'Pydantic-AI', 'QLoRA', 'Unsloth', 'bitsandbytes'],
+  },
+  {
+    key: 'ml-dl',
+    label: { ko: 'ML · DL', en: 'ML · DL' },
+    items: ['PyTorch', 'ONNX', 'YOLOv8', 'ResNet50', 'XGBoost', 'SAC (RL)', 'Whisper', 'Demucs'],
   },
 ]
 

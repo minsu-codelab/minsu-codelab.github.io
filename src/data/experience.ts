@@ -15,8 +15,8 @@ export const timeline: TimelineEntry[] = [
     title: { ko: 'AI 웹서비스 풀스택 부트캠프', en: 'AI Web Full-Stack Bootcamp' },
     org: { ko: '코드랩 아카데미', en: 'Codelab Academy' },
     desc: {
-      ko: 'AI 인공지능 웹서비스 풀스택 개발 과정. 6개 프로젝트를 기획·구현·배포까지 수행.',
-      en: 'Intensive AI web full-stack program. Planned, built and deployed six projects end-to-end.',
+      ko: 'AI 인공지능 웹서비스 풀스택 개발 과정. 7개 프로젝트를 기획·구현·배포까지 수행.',
+      en: 'Intensive AI web full-stack program. Planned, built and deployed seven projects end-to-end.',
     },
     kind: 'edu',
   },

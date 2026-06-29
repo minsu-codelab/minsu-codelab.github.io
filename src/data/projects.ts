@@ -62,8 +62,81 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 'arctictwin',
+    id: 'lca',
     index: '01',
+    name: 'lca · Local Coding Agent',
+    tagline: {
+      ko: '검증으로 신뢰하는 100% 로컬 AI 코딩 에이전트',
+      en: 'A 100%-local AI coding agent you trust through verification',
+    },
+    period: '2026.06',
+    kind: 'solo',
+    metrics: [
+      { value: '94%', label: { ko: '생성 정확도 (16/17, 3회 동일)', en: 'generation accuracy (16/17, ×3)' } },
+      { value: '198', label: { ko: 'pytest 통과 · mypy strict · CI', en: 'pytest passing · mypy strict · CI' } },
+      { value: '100%', label: { ko: '로컬 실행 (코드 유출 0)', en: 'local — zero code leaves the box' } },
+      { value: 'QLoRA', label: { ko: 'Blackwell 학습 검증 (loss 1.04)', en: 'fine-tune verified on Blackwell' } },
+    ],
+    paar: {
+      problem: {
+        ko: '보안상 사내 코드를 외부 클라우드 AI에 보낼 수 없는 곳이 많습니다. 그렇다고 로컬에 올릴 작은 모델은 환각(틀린 답을 확신)이 커서 믿고 맡기기 어려웠습니다.',
+        en: 'Many orgs can’t send code to a cloud AI for security — yet a small enough local model hallucinates with confidence, so it’s hard to trust.',
+      },
+      approach: {
+        ko: '모델을 키우는 대신 “검증으로 신뢰”를 택했습니다. 답을 주기 전에 실제로 실행해 보고, 서로 다른 관점으로 따지고, 답을 깨려 시도하고, 그래도 확신이 없으면 단정하지 않게 만들면 작은 로컬 모델로도 신뢰를 만들 수 있다고 봤습니다.',
+        en: 'Instead of a bigger model I chose trust-by-verification: run the answer, scrutinize it from independent angles, try to break it, and abstain when unsure — enough to make even a small local model trustworthy.',
+      },
+      action: {
+        ko: 'Claude Code류 에이전트의 두뇌(ReAct 루프·도구·권한·검증 게이트)를 직접 구현했습니다. 실행 오라클 + 다양관점 judge + 적대적 교차검증(보이지 않는 논쟁) + best-of-N + self-repair + abstention. 또 기존 바이브코딩으로 만든 제 프로젝트 코드를 RAG로 인덱싱·분석해 학습시키고, 언어·프레임워크 docs를 184장 레퍼런스로 사전 학습시켰으며, 검증 통과분만 기억하는 메모리와 7B QLoRA 파인튜닝까지 검증했습니다.',
+        en: 'I built the agent’s brain myself — ReAct loop, tools, permissions, verification gate: execution oracle + multi-lens judges + an adversarial cross-exam (a hidden debate) + best-of-N + self-repair + abstention. It also learns from my own vibe-coded projects via RAG, ships with a 184-card language/framework doc reference, remembers only verified solutions, and I validated 7B QLoRA fine-tuning.',
+      },
+      result: {
+        ko: '생성 정확도 94%(16/17, 3회 반복 동일)·도구 유효성 85~87%를 실측했고, 게이트가 자신 없을 때 실제로 답을 보류함을 라이브로 확인했습니다. QLoRA는 RTX 5070(Blackwell)에서 학습이 도는 것을 검증(loss 1.04)했고, pytest 198·mypy strict·CI를 갖춰 GitHub에 공개했습니다.',
+        en: 'Measured 94% generation accuracy (16/17, identical across 3 runs) and 85–87% tool validity, and live-confirmed the gate actually withholds answers when unsure. QLoRA was proven to train on an RTX 5070 (Blackwell, loss 1.04), shipped with 198 pytest, mypy --strict and CI on GitHub.',
+      },
+    },
+    stack: ['Python', 'FastAPI', 'Typer', 'Rich', 'llama.cpp', 'LM Studio', 'Qwen-Coder', 'RAG', 'sqlite-vec', 'FastEmbed', 'MCP', 'Pydantic-AI', 'QLoRA', 'Unsloth', 'Docker', 'GitHub Actions', 'mypy', 'ruff', 'pytest'],
+    links: [{ kind: 'repo', url: 'https://github.com/youmin0523/local-coding-agent' }],
+    pipeline: {
+      title: { ko: '요청에서 검증된 답까지', en: 'From a request to a verified answer' },
+      steps: [
+        { nodes: [{ id: 'g1', label: { ko: '요청', en: 'Request' } }] },
+        { nodes: [{ id: 'g2', label: { ko: '난이도 라우팅 (7B↔30B)', en: 'Difficulty routing (7B↔30B)' }, emphasis: true }] },
+        { nodes: [{ id: 'g3', label: { ko: 'RAG + 검증 메모리', en: 'RAG + verified memory' } }] },
+        { nodes: [{ id: 'g4', label: { ko: '생성 · best-of-N', en: 'Generate · best-of-N' }, emphasis: true }] },
+        {
+          parallel: true,
+          note: { ko: '검증 · 보이지 않는 논쟁', en: 'verify · hidden debate' },
+          nodes: [
+            { id: 'g5a', label: { ko: '실행 오라클', en: 'Execution oracle' }, emphasis: true },
+            { id: 'g5b', label: { ko: '다양관점 judge', en: 'Multi-lens judges' }, emphasis: true },
+            { id: 'g5c', label: { ko: '적대적 검토', en: 'Adversary' }, emphasis: true },
+          ],
+        },
+        { nodes: [{ id: 'g6', label: { ko: 'self-repair → 전달 or 보류', en: 'self-repair → deliver or abstain' }, emphasis: true }] },
+      ],
+    },
+    deploy: {
+      title: { ko: 'CI/CD · 로컬 서빙', en: 'CI/CD · local serving' },
+      steps: [
+        { nodes: [{ id: 'gd1', label: { ko: 'git push', en: 'git push' } }] },
+        {
+          parallel: true,
+          note: { ko: 'CI 게이트', en: 'CI gates' },
+          nodes: [
+            { id: 'gd2', label: { ko: 'ruff · mypy --strict', en: 'ruff · mypy --strict' }, emphasis: true },
+            { id: 'gd3', label: { ko: 'pytest · import-linter', en: 'pytest · import-linter' }, emphasis: true },
+          ],
+        },
+        { nodes: [{ id: 'gd4', label: { ko: '(옵션) WSL2 QLoRA 학습', en: '(opt) WSL2 QLoRA fine-tune' } }] },
+        { nodes: [{ id: 'gd5', label: { ko: '로컬 서빙 · LM Studio (30B+7B)', en: 'Local serving · LM Studio (30B+7B)' }, emphasis: true }] },
+        { nodes: [{ id: 'gd6', label: { ko: 'CLI · 웹 UI', en: 'CLI · web UI' } }] },
+      ],
+    },
+  },
+  {
+    id: 'arctictwin',
+    index: '02',
     name: 'ArcticTwin',
     tagline: {
       ko: '북극항로의 수익성과 리스크를 숫자로 답하는 디지털 트윈',
@@ -153,7 +226,7 @@ export const projects: Project[] = [
   },
   {
     id: 'aeroinspect',
-    index: '02',
+    index: '03',
     name: 'AeroInspect',
     tagline: {
       ko: '드론으로 찍고 AI가 찾아내는 건물 하자 점검 SaaS',
@@ -245,7 +318,7 @@ export const projects: Project[] = [
   },
   {
     id: 'rechord',
-    index: '03',
+    index: '04',
     name: 'Re:Chord',
     tagline: {
       ko: '업로드 한 번으로 반주·키·코드·악보까지 뽑는 음악 도구',
@@ -328,7 +401,7 @@ export const projects: Project[] = [
   },
   {
     id: 'fde-shutter',
-    index: '04',
+    index: '05',
     name: 'FDE Smart Shutter',
     tagline: {
       ko: '엑셀 수작업 견적을 규칙 엔진으로 옮긴 방화셔터 스마트팩토리',
@@ -402,7 +475,7 @@ export const projects: Project[] = [
   },
   {
     id: 'closet',
-    index: '05',
+    index: '06',
     name: "What's in my Closet",
     tagline: {
       ko: '"이거 비슷한 거 있었는데" 를 사기 전에 알려주는 옷장 앱',
@@ -478,7 +551,7 @@ export const projects: Project[] = [
   },
   {
     id: 'eggtalk',
-    index: '06',
+    index: '07',
     name: 'EggTalk',
     muted: true,
     tagline: {
