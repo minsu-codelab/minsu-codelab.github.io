@@ -133,6 +133,22 @@ export const projects: Project[] = [
         { nodes: [{ id: 'gd6', label: { ko: 'CLI · 웹 UI', en: 'CLI · web UI' } }] },
       ],
     },
+    shots: [
+      {
+        src: 'shots/lca-web.png',
+        caption: {
+          ko: '① 웹 UI: 코드 생성 → run_python 실행 → ✎changed · verified pass 배지 (모델 토글 · 되돌리기 · 컨텍스트 게이지)',
+          en: '① Web UI: generate → run_python → changed & verified-pass badges (model toggle · undo · context gauge)',
+        },
+      },
+      {
+        src: 'shots/lca-cli.png',
+        caption: {
+          ko: '② CLI: 라우팅(▶) · 검증된 기억 재사용(↺) · diff · 실제 실행 후 verified pass 까지 한 화면에',
+          en: '② CLI: routing, verified-memory reuse, a diff, and a verified pass after real execution',
+        },
+      },
+    ],
   },
   {
     id: 'arctictwin',
