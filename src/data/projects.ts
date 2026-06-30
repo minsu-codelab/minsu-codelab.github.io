@@ -163,7 +163,7 @@ export const projects: Project[] = [
     metrics: [
       { value: '40%', label: { ko: '수에즈 대비 거리 단축', en: 'shorter than the Suez route' } },
       { value: '84', label: { ko: '항로×빙급×선종 자동 학습 조합', en: 'auto-trained route × ice × ship combos' } },
-      { value: '100%', label: { ko: '출항 스케줄 안전 성공률(검증 조합)', en: 'safe-departure success (verified set)' } },
+      { value: '100%', label: { ko: '안전 출항 성공 (해상 마스크·A* 교차검증)', en: 'safe departures (sea-mask · A* cross-check)' } },
       { value: '24/7', label: { ko: '무중단 운영', en: 'uninterrupted uptime' } },
     ],
     paar: {
@@ -252,7 +252,7 @@ export const projects: Project[] = [
     kind: 'team',
     metrics: [
       { value: '63,285', label: { ko: '직접 모은 학습 이미지', en: 'images collected & trained on' } },
-      { value: '94.1%', label: { ko: 'M1 검출 recall (앙상블, +3.8%p)', en: 'M1 detection recall (ensemble, +3.8pp)' } },
+      { value: '90.4→94.1%', label: { ko: '검출 recall (동일도메인 self-ensemble)', en: 'detection recall (same-domain self-ensemble)' } },
       { value: '<60ms', label: { ko: '실시간 추론 지연 (Tier1)', en: 'real-time inference (Tier 1)' } },
       { value: '80→5.2MB', label: { ko: '빌드 이미지 경량화', en: 'build image slimmed down' } },
     ],
@@ -270,8 +270,8 @@ export const projects: Project[] = [
         en: 'I split 20+ defect types across 6 models (63,285 images, collected by hand) and wrapped real-time inference in a drop-queue that only processes the latest frame. The assumption that "more external models = better" I tested with WBF — and disproved.',
       },
       result: {
-        ko: '같은 도메인 self-ensemble로 M1 검출 recall을 90.4%에서 94.1%로 올렸고, 외부 모델은 오탐만 늘어 쓰지 않았습니다. Tier1 추론은 60ms 안쪽, 빌드 이미지는 80MB에서 5.2MB로 줄였습니다.',
-        en: 'Same-domain self-ensemble lifted M1 detection recall from 90.4% to 94.1%; the external model only added false positives, so I dropped it. Tier-1 inference stays under 60ms, and the build image went from 80MB to 5.2MB.',
+        ko: '추측 대신 측정으로 방향을 정했습니다. 외부 모델은 WBF로 직접 재보니 오탐이 늘어 넣지 않았고, 같은 도메인 self-ensemble로 검출 recall을 90.4%에서 94.1%로 올렸습니다. Tier1 추론은 60ms 안쪽, 빌드 이미지는 80MB에서 5.2MB로 줄였습니다.',
+        en: 'I let measurement set the direction. Measured directly with WBF, the external model added false positives, so I left it out; a same-domain self-ensemble lifted detection recall from 90.4% to 94.1%. Tier-1 inference stays under 60ms, and the build image went from 80MB to 5.2MB.',
       },
     },
     stack: ['React', 'Three.js', 'FastAPI', 'WebSocket', 'PostgreSQL', 'PyTorch', 'ONNX', 'YOLOv8', 'ResNet50', 'Docker', 'Fly.io', 'GCP'],
@@ -426,7 +426,7 @@ export const projects: Project[] = [
     period: '2026.05 ~ 06',
     kind: 'solo',
     metrics: [
-      { value: '16,000', label: { ko: '백엔드 코드 줄 (1인)', en: 'lines of backend, solo' } },
+      { value: '7종', label: { ko: '제작 규칙 규칙엔진화 — 숙련자만 하던 견적을 누구나', en: 'build rules as an engine — anyone can quote' } },
       { value: '27', label: { ko: 'DB 테이블', en: 'DB tables' } },
       { value: '23', label: { ko: 'API 라우터', en: 'API routers' } },
       { value: '36/36', label: { ko: '골든 회귀 테스트 통과', en: 'golden regression tests pass' } },
@@ -437,8 +437,8 @@ export const projects: Project[] = [
         en: 'Each fire-shutter model had finicky build rules, so only veterans could quote in Excel — and nothing was traceable from quote to inspection.',
       },
       approach: {
-        ko: '같은 현장에서 4년간 일하며, 숙련자가 견적을 어떻게 계산하는지와 생산직이 어디서 막히는지를 직접 묻고 관찰했습니다. 그 암묵지를 코드로 옮기되, 거래처와 인증기관이 믿고 보는 원본 엑셀 양식은 100% 그대로 살려야 했습니다.',
-        en: 'Having worked the same floor for four years, I asked the veterans exactly how they calculated quotes and watched where the production staff got stuck. I had to move that tacit knowledge into code while keeping the original Excel forms — the ones clients and certifiers trust — 100% intact.',
+        ko: '방화셔터를 설계하고 건설 현장에서 그 설치를 관리한 4년 반 동안, 숙련자가 견적을 어떻게 계산하는지와 현장 작업자가 어디서 막히는지를 직접 묻고 관찰했습니다. 그 암묵지를 코드로 옮기되, 거래처와 인정기관이 믿고 보는 원본 엑셀 양식은 100% 그대로 살려야 했습니다.',
+        en: 'Across four and a half years designing shutters and managing their installation on construction sites, I asked the veterans exactly how they calculated quotes and watched where the on-site crews got stuck. I had to move that tacit knowledge into code while keeping the original Excel forms — the ones clients and the approval body trust — 100% intact.',
       },
       action: {
         ko: '견적 담당자·생산직과 직접 이야기하며 7개 모델의 제작 규칙(제작가로·샤프트 단수·마구리 등)을 하나씩 규칙 엔진으로 옮겼고, 견적→발주→승인→품질→작업지시→실측을 잇는 추적 구조와 실시간 사내 메신저까지 붙였습니다. 고령 생산직도 바로 쓸 수 있도록 화면 동선을 최대한 단순하게 설계했습니다.',
@@ -502,7 +502,7 @@ export const projects: Project[] = [
     metrics: [
       { value: '94.7%', label: { ko: '중복 감지 정확도', en: 'duplicate-detection accuracy' } },
       { value: '0', label: { ko: '오경보 (평가셋)', en: 'false alarms (eval set)' } },
-      { value: '0개', label: { ko: 'API 키로도 전 기능 동작', en: 'API keys needed to run it all' } },
+      { value: '0', label: { ko: '외부 API 키 없이 전 기능 (폴백 5종)', en: 'full features, no external keys (5 fallbacks)' } },
       { value: '97·12', label: { ko: 'Vitest · Playwright', en: 'Vitest · Playwright' } },
     ],
     paar: {

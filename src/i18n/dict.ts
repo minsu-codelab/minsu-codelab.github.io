@@ -68,7 +68,7 @@ const ko: Dict = {
     contact: '연락처',
   },
   hero: {
-    role: 'AI 풀스택 개발자',
+    role: '설계·현장관리(PM) 4년 반 · AI 풀스택 개발자',
     tagline: '입력이 있으면, 반드시 출력이 있다.',
     scroll: '스크롤',
   },
@@ -76,7 +76,7 @@ const ko: Dict = {
     label: '소개',
     heading: '배운 걸 결과물로\n증명하는 개발자',
     body: [
-      '방화셔터를 설계하고 현장을 관리하며 4년을 보냈습니다. 제조 현장에서 문제를 정의하고 푸는 일을 하다, 그 과정을 코드로 옮기고 싶어 개발을 시작했습니다.',
+      '방화셔터를 설계하고, 건설 현장에서 그 설치를 관리하며 4년 반을 보냈습니다. 법정 방화 인정 제품의 문제를 정의하고 푸는 일을 하다, 그 과정을 코드로 옮기고 싶어 개발을 시작했습니다.',
       '지금은 공공데이터와 AI, 실시간 시스템을 다뤄 "그래서 결과가 뭔데?"에 숫자로 답하는 풀스택 개발을 합니다. 코드를 짰다고 끝이 아니라, 측정하고 검증해야 끝이라고 생각합니다.',
     ],
     pillars: [
@@ -90,7 +90,7 @@ const ko: Dict = {
       },
       {
         title: '기획부터 배포까지',
-        desc: '규칙 엔진, AI 파이프라인, 실시간 시스템, 배포까지 혼자 끝까지 이어붙여 봤습니다.',
+        desc: '규칙 엔진, AI 파이프라인, 실시간 시스템, 배포까지 혼자 끝까지 이어붙여 봤습니다. 그중 FDE는 제가 4년 반 몸담은 방화셔터 도메인의 제작 규칙을 그대로 옮겨, 지금도 운영 중인 코드입니다.',
       },
     ],
   },
@@ -124,7 +124,7 @@ const ko: Dict = {
   contact: {
     label: '연락처',
     heading: '함께 일하고 싶습니다',
-    line: '기획부터 배포까지 직접 만들어 본 신입 개발자입니다. 좋은 팀에 합류해 제대로 배우고 빠르게 기여하고 싶습니다. 편하게 연락 주세요.',
+    line: '기획·개발·배포·운영까지 직접 이어붙여 본 신입 개발자입니다. 만든 코드와 서비스는 모두 공개해 두었으니 편하게 둘러봐 주세요. 좋은 팀에 합류해 제대로 배우고, 빠르게 기여하는 개발자로 성장하고 싶습니다.',
     email: '이메일',
     github: '깃허브',
     backToTop: '맨 위로',
@@ -143,7 +143,7 @@ const en: Dict = {
     contact: 'Contact',
   },
   hero: {
-    role: 'AI Full-Stack Developer',
+    role: 'Design & Site PM, 4.5y · AI Full-Stack',
     tagline: 'Where there is an input, there is always an output.',
     scroll: 'Scroll',
   },
@@ -151,7 +151,7 @@ const en: Dict = {
     label: 'About',
     heading: 'I prove what I learn\nby shipping it',
     body: [
-      'I spent four years designing fire shutters and running the factory floor — defining and solving real manufacturing problems. I wanted to put that work into code, so I moved into development.',
+      'I spent four and a half years designing fire shutters and managing their installation on construction sites as a PM — defining and solving real problems on legally approved fire-safety products. I wanted to put that work into code, so I moved into development.',
       'Now I work across public data, AI and real-time systems to answer one question with numbers: "so what actually came out of it?" To me, writing the code isn’t the finish line — measuring and verifying it is.',
     ],
     pillars: [
@@ -165,7 +165,7 @@ const en: Dict = {
       },
       {
         title: 'Plan to deploy',
-        desc: 'Rule engines, AI pipelines, real-time systems, deployment — I’ve wired them all together end to end, solo.',
+        desc: 'Rule engines, AI pipelines, real-time systems, deployment — I’ve wired them all together end to end, solo. FDE in particular carries the build rules from the fire-shutter domain I worked in for four and a half years, and it’s still running in production.',
       },
     ],
   },
@@ -199,7 +199,7 @@ const en: Dict = {
   contact: {
     label: 'Contact',
     heading: "Let's work together",
-    line: "A junior developer who's taken products from planning to deployment. I'd love to join a strong team, learn fast and contribute. Feel free to reach out.",
+    line: "A junior developer who's taken products from planning through deployment and operation. The code and live services are all out in the open, so feel free to take a look. I'd love to join a good team, learn properly, and grow into someone who contributes fast.",
     email: 'Email',
     github: 'GitHub',
     backToTop: 'Back to top',

@@ -22,11 +22,11 @@ export const timeline: TimelineEntry[] = [
   },
   {
     period: '2021.08 ~ 2025.10',
-    title: { ko: '방화셔터 설계 · 현장 관리 (PM)', en: 'Fire-Shutter Design & Site Manager (PM)' },
+    title: { ko: '방화셔터 설계 · 건설 현장 시공 관리 (PM)', en: 'Fire-Shutter Design & Construction-Site Installation Manager (PM)' },
     org: { ko: '(주)주일기업', en: 'Juil Enterprise Co., Ltd.' },
     desc: {
-      ko: '법정 방화 인증 제품의 설계·견적·생산·현장 관리를 4년간 수행. 제조 도메인 지식의 토대.',
-      en: 'Four years of design, estimation, production and on-site management for certified fire-safety products — the foundation of my manufacturing domain knowledge.',
+      ko: '법정 방화 인정 제품을 설계하고, 건설 현장에서 방화셔터 설치를 관리하며 4년여를 수행. 방화셔터 도메인 지식의 토대.',
+      en: 'Over four years designing legally approved fire-safety products and managing their installation on construction sites — the foundation of my fire-shutter domain knowledge.',
     },
     kind: 'work',
   },
