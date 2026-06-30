@@ -19,3 +19,9 @@ pnpm-debug.log*
 public/hero1_pingpong.mp4
 
 *.tsbuildinfo
+
+# secrets / local env (never commit)
+.env
+.env.local
+.env.*.local
+*.local
